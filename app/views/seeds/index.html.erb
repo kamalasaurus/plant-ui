@@ -4,10 +4,11 @@
 
 <div id="seeds">
   <% @seeds.each do |seed| %>
-    <%= render seed %>
-    <p>
-      <%= link_to "Show this seed", seed %>
-    </p>
+    <div style="display: inline-block">
+      <%= link_to image_tag("#{seed.species}.png"), seed %>
+      <br />
+      <%= seed.quantity %>
+    </div>
   <% end %>
 </div>
 
