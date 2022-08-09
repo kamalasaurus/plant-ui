@@ -29,6 +29,8 @@
   height: 64px;
   position: relative;
   text-align: center;
+  border: solid 1px brown;
+  box-sizing: border-box;
 }
 
 .bin a {
@@ -49,12 +51,14 @@
 .bin .quantity {
   display: inline-block;
   pointer-events: none;
-  margin-top: 16px;
+  margin-top: 20px;
   background-color: red;
+  color: white;
   border-radius: 9px;
   border: solid 1px white;
   padding: 0 4px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 14px;
   position: relative;
 }
 
