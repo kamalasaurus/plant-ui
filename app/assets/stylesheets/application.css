@@ -13,3 +13,56 @@
  *= require_tree .
  *= require_self
  */
+
+.seedbox_name {
+  font-size: larger;
+  background-color: brown;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.bin {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  position: relative;
+  text-align: center;
+}
+
+.bin a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+}
+
+.bin .active_location {
+  pointer-events: none;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+}
+
+.bin .quantity {
+  display: inline-block;
+  pointer-events: none;
+  margin-top: 16px;
+  background-color: red;
+  border-radius: 9px;
+  border: solid 1px white;
+  padding: 0 4px;
+  line-height: 18px;
+  position: relative;
+}
+
+.bin .location {
+  text-align: center;
+  color: dimgrey;
+  font-size: 30px;
+  line-height: 64px;
+  vertical-align: bottom;
+  display: inline-block;
+}
