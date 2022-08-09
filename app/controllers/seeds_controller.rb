@@ -4,6 +4,7 @@ class SeedsController < ApplicationController
   # GET /seeds or /seeds.json
   def index
     @seeds = Seed.all
+    @grouped_seeds = Seed.group_by(:seedbox).order_by(:location)
   end
 
   # GET /seeds/1 or /seeds/1.json

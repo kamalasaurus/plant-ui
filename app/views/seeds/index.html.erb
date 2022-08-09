@@ -4,6 +4,7 @@
 
 <div id="seeds">
   <% @seeds.each do |seed| %>
+    <%= render @grouped_seeds %>
     <div style="display: inline-block">
       <%= link_to image_tag("#{seed.species}.png"), seed %>
       <br />
