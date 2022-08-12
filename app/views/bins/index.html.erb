@@ -2,6 +2,8 @@
 
 <h1>Bins</h1>
 
+<%= link_to "New bin", new_bin_path %>
+
 <div id="bins">
   <% @grouped_bins.each do |seedbox, bins| %>
     <section>
@@ -25,5 +27,3 @@
     </section>
   <% end %>
 </div>
-
-<%= link_to "New bin", new_bin_path %>
