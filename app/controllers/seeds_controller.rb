@@ -3,7 +3,7 @@ class SeedsController < ApplicationController
 
   # GET /seeds or /seeds.json
   def index
-    @grouped_seeds = Seed.by_seedbox
+    @seeds = Seed.all
   end
 
   # GET /seeds/1 or /seeds/1.json

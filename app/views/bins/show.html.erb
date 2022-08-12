@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @bin %>
+
+<div>
+  <%= link_to "Edit this bin", edit_bin_path(@bin) %> |
+  <%= link_to "Back to bins", bins_path %>
+
+  <%= button_to "Destroy this bin", @bin, method: :delete %>
+</div>

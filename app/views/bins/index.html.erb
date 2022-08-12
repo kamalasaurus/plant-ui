@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Bins</h1>
+
+<div id="bins">
+  <% @grouped_seeds.each do |seedbox, seeds| %>
+    <section>
+      <span class="seedbox_name"><%= seedbox %></span>
+      <div>
+      <% (1..100).each do |location| %>
+        <div class="bin">
+          <% if seeds[location] %>
+            <%= link_to image_tag("#{seeds[location].species}.png"), seeds[location] %>
+            <br />
+            <span class="active_location"><%= location %></span>
+            <span class="quantity"><%= seeds[location].quantity %></span>
+          <% else %>
+            <span class="location"><%= location %></span>
+          <% end %>
+        </div>
+        <% if location % 10 == 0 %>
+          <br />
+        <% end %>
+      <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>
+
+<%= link_to "New bin", new_bin_path %>

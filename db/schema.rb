@@ -10,18 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_052029) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_12_192228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "seeds", force: :cascade do |t|
-    t.string "species"
-    t.integer "generation"
+  create_table "bins", force: :cascade do |t|
+    t.bigint "seed_id", null: false
     t.string "seedbox"
     t.integer "location"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["seed_id"], name: "index_bins_on_seed_id"
   end
 
+  create_table "seeds", force: :cascade do |t|
+    t.string "species"
+    t.integer "generation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bins", "seeds"
 end
