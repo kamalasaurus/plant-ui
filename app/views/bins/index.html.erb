@@ -6,12 +6,11 @@
   <% @grouped_bins.each do |seedbox, bins| %>
     <section>
       <span class="seedbox_name"><%= seedbox %></span>
-      <div>
+      <div class="bin_block">
       <% (1..100).each do |location| %>
         <div class="bin">
           <% if bins[location] %>
             <%= link_to image_tag("#{bins[location].species}.png"), bins[location] %>
-            <br />
             <span class="active_location"><%= location %></span>
             <span class="quantity"><%= bins[location].quantity %></span>
           <% else %>
