@@ -4,7 +4,7 @@ class BinsController < ApplicationController
   # GET /bins or /bins.json
   def index
     @bins = Bin.all
-    @grouped_bins = Bin.by_seedbox
+    @grouped_bins = Bin.grouped_by_seedbox
   end
 
   # GET /bins/1 or /bins/1.json

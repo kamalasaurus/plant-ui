@@ -1,8 +1,10 @@
 class Bin < ApplicationRecord
   belongs_to :seed
 
-  def self.by_seedbox
-    joins(:seeds).each_with_object({}) do |bin, hsh|
+  scope :by_seedbox, -> { joins(:seed).select('bins.*, seeds.*') }
+
+  def self.grouped_by_seedbox
+    by_seedbox.each_with_object({}) do |bin, hsh|
       if hsh[bin.seedbox]
         hsh[bin.seedbox][bin.location] = bin
       else

@@ -3,10 +3,10 @@
 <h1>Seeds</h1>
 
 <div id="seeds">
-  <% @bins.each do |bin| %>
-    <%= render bin %>
+  <% @seeds.each do |seed| %>
+    <%= render seed %>
     <p>
-      <%= link_to "Show this bin", bin %>
+      <%= link_to "Show this seed", seed %>
     </p>
   <% end %>
 </div>

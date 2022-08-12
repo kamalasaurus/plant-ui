@@ -3,17 +3,17 @@
 <h1>Bins</h1>
 
 <div id="bins">
-  <% @grouped_seeds.each do |seedbox, seeds| %>
+  <% @grouped_bins.each do |seedbox, bins| %>
     <section>
       <span class="seedbox_name"><%= seedbox %></span>
       <div>
       <% (1..100).each do |location| %>
         <div class="bin">
-          <% if seeds[location] %>
-            <%= link_to image_tag("#{seeds[location].species}.png"), seeds[location] %>
+          <% if bins[location] %>
+            <%= link_to image_tag("#{bins[location].species}.png"), bins[location] %>
             <br />
             <span class="active_location"><%= location %></span>
-            <span class="quantity"><%= seeds[location].quantity %></span>
+            <span class="quantity"><%= bins[location].quantity %></span>
           <% else %>
             <span class="location"><%= location %></span>
           <% end %>
