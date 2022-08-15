@@ -1,0 +1,2 @@
+class Seedbox < ApplicationRecord
+end
