@@ -1,1 +1,1 @@
-json.array! @seeds, partial: "seeds/seed", as: :seed
+json.array! @seeds, partial: 'seeds/seed', as: :seed

@@ -1,1 +1,1 @@
-json.array! @populations, partial: "populations/population", as: :population
+json.array! @populations, partial: 'populations/population', as: :population

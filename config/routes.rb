@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :populations
   resources :seedboxes
-  resources :bins #tubes?
+  resources :bins # tubes?
   resources :seeds
   # population
 

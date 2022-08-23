@@ -1,45 +1,46 @@
-require "test_helper"
+require 'test_helper'
 
 class PopulationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @population = populations(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get populations_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_population_url
     assert_response :success
   end
 
-  test "should create population" do
-    assert_difference("Population.count") do
+  test 'should create population' do
+    assert_difference('Population.count') do
       post populations_url, params: { population: { location: @population.location, name: @population.name } }
     end
 
     assert_redirected_to population_url(Population.last)
   end
 
-  test "should show population" do
+  test 'should show population' do
     get population_url(@population)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_population_url(@population)
     assert_response :success
   end
 
-  test "should update population" do
-    patch population_url(@population), params: { population: { location: @population.location, name: @population.name } }
+  test 'should update population' do
+    patch population_url(@population),
+          params: { population: { location: @population.location, name: @population.name } }
     assert_redirected_to population_url(@population)
   end
 
-  test "should destroy population" do
-    assert_difference("Population.count", -1) do
+  test 'should destroy population' do
+    assert_difference('Population.count', -1) do
       delete population_url(@population)
     end
 

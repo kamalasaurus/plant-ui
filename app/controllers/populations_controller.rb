@@ -1,5 +1,5 @@
 class PopulationsController < ApplicationController
-  before_action :set_population, only: %i[ show edit update destroy ]
+  before_action :set_population, only: %i[show edit update destroy]
 
   # GET /populations or /populations.json
   def index
@@ -7,8 +7,7 @@ class PopulationsController < ApplicationController
   end
 
   # GET /populations/1 or /populations/1.json
-  def show
-  end
+  def show; end
 
   # GET /populations/new
   def new
@@ -16,8 +15,7 @@ class PopulationsController < ApplicationController
   end
 
   # GET /populations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /populations or /populations.json
   def create
@@ -25,7 +23,7 @@ class PopulationsController < ApplicationController
 
     respond_to do |format|
       if @population.save
-        format.html { redirect_to population_url(@population), notice: "Population was successfully created." }
+        format.html { redirect_to population_url(@population), notice: 'Population was successfully created.' }
         format.json { render :show, status: :created, location: @population }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class PopulationsController < ApplicationController
   def update
     respond_to do |format|
       if @population.update(population_params)
-        format.html { redirect_to population_url(@population), notice: "Population was successfully updated." }
+        format.html { redirect_to population_url(@population), notice: 'Population was successfully updated.' }
         format.json { render :show, status: :ok, location: @population }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class PopulationsController < ApplicationController
     @population.destroy
 
     respond_to do |format|
-      format.html { redirect_to populations_url, notice: "Population was successfully destroyed." }
+      format.html { redirect_to populations_url, notice: 'Population was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_population
-      @population = Population.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def population_params
-      params.require(:population).permit(:name, :location)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_population
+    @population = Population.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def population_params
+    params.require(:population).permit(:name, :location)
+  end
 end

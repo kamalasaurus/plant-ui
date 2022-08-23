@@ -1,1 +1,1 @@
-json.partial! "populations/population", population: @population
+json.partial! 'populations/population', population: @population

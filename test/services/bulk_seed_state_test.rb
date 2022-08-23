@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class BulkSeedStateTest < ActiveSupport::TestCase
-
   setup do
   end
 

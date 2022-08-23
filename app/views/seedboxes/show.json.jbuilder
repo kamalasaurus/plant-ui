@@ -1,1 +1,1 @@
-json.partial! "seedboxes/seedbox", seedbox: @seedbox
+json.partial! 'seedboxes/seedbox', seedbox: @seedbox

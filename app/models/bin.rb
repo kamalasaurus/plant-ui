@@ -9,7 +9,7 @@ class Bin < ApplicationRecord
       if hsh[bin.seedbox]
         hsh[bin.seedbox][bin.location] = bin
       else
-        hsh[bin.seedbox] = {bin.location => bin}
+        hsh[bin.seedbox] = { bin.location => bin }
       end
     end
   end

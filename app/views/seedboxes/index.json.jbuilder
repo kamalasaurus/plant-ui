@@ -1,1 +1,1 @@
-json.array! @seedboxes, partial: "seedboxes/seedbox", as: :seedbox
+json.array! @seedboxes, partial: 'seedboxes/seedbox', as: :seedbox

@@ -1,1 +1,1 @@
-json.partial! "bins/bin", bin: @bin
+json.partial! 'bins/bin', bin: @bin

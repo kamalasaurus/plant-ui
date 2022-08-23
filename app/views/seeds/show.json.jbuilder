@@ -1,1 +1,1 @@
-json.partial! "seeds/seed", seed: @seed
+json.partial! 'seeds/seed', seed: @seed
