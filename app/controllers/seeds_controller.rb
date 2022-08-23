@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeedsController < ApplicationController
   before_action :set_seed, only: %i[show edit update destroy]
 

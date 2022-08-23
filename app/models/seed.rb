@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Seed < ApplicationRecord
   has_many :bin
   belongs_to :population

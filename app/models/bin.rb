@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Bin < ApplicationRecord
   belongs_to :seed
 
