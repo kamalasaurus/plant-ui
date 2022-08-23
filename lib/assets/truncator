@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'csv'
+
+CSV.open('truncated_seed_tubes.csv', 'wb') do |out|
+  CSV.foreach('./all_seed_tubes_2022_08_23.csv', headers: true).with_index do |row, line|
+    out << row if line % 20 == 0
+  end
+end
