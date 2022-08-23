@@ -23,7 +23,8 @@
 
   <div>
     <%= form.label :parent, style: "display: block" %>
-    <%= form.number_field :parent %>
+    <%= form.collection_select :parent, Seed.all, :id, :species %>
+    <!--TODO: need label to be species-population-accession-->
   </div>
 
   <div>
