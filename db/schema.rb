@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_24_154706) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_171828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,12 +20,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_154706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "subpopulation"
+    t.index ["name", "subpopulation"], name: "index_populations_on_name_and_subpopulation", unique: true
   end
 
   create_table "seedboxes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_seedboxes_on_name", unique: true
   end
 
   create_table "seeds", force: :cascade do |t|
@@ -38,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_154706) do
     t.bigint "population_id"
     t.index ["parent_id"], name: "index_seeds_on_parent_id"
     t.index ["population_id"], name: "index_seeds_on_population_id"
+    t.index ["species", "generation", "accession", "population_id"], name: "uniqueness_index", unique: true
   end
 
   create_table "tubes", force: :cascade do |t|
@@ -49,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_154706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["seed_id"], name: "index_tubes_on_seed_id"
+    t.index ["seedbox_id", "position"], name: "index_tubes_on_seedbox_id_and_position", unique: true
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
