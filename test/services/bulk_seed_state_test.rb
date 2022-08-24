@@ -9,6 +9,7 @@ class BulkSeedStateTest < ActiveSupport::TestCase
 
   test 'it should upload csv to db' do
     BulkSeedState.upload(@csv)
+    # assert Seed.all.count is somehting
     assert true
   end
 end

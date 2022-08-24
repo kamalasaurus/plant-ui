@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seed: one
+  seedbox: one
+  position: 1
+  volume: 1
+  count: 1
+
+two:
+  seed: two
+  seedbox: two
+  position: 1
+  volume: 1
+  count: 1
