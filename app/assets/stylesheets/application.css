@@ -38,7 +38,7 @@
   box-sizing: border-box;
 }
 
-.bin a, .bin a img {
+.tube a, .tube a img {
   position: absolute;
   display: block;
   top: 0;
@@ -48,7 +48,7 @@
   height: 100%;
 }
 
-.bin .active_location {
+.tube .active_location {
   pointer-events: none;
   position: absolute;
   display: block;
@@ -58,7 +58,7 @@
   line-height: 16px;
 }
 
-.bin .quantity {
+.tube .quantity {
   position: relative;
   display: inline-block;
   pointer-events: none;
@@ -73,7 +73,7 @@
   margin-bottom: 4px;
 }
 
-.bin .location {
+.tube .location {
   text-align: center;
   color: dimgrey;
   font-size: 30px;
