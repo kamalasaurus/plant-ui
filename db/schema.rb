@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,47 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_823_181_424) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_152748) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'bins', force: :cascade do |t|
-    t.bigint 'seed_id', null: false
-    t.string 'seedbox'
-    t.integer 'location'
-    t.integer 'quantity'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['seed_id'], name: 'index_bins_on_seed_id'
+  create_table "bins", force: :cascade do |t|
+    t.bigint "seed_id", null: false
+    t.string "seedbox"
+    t.integer "location"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seed_id"], name: "index_bins_on_seed_id"
   end
 
-  create_table 'populations', force: :cascade do |t|
-    t.string 'name'
-    t.point 'location'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'subpopulation'
+  create_table "populations", force: :cascade do |t|
+    t.string "name"
+    t.point "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subpopulation"
   end
 
-  create_table 'seedboxes', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "seedboxes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'seeds', force: :cascade do |t|
-    t.string 'species'
-    t.integer 'generation'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'accession'
-    t.bigint 'parent_id'
-    t.bigint 'population_id'
-    t.index ['parent_id'], name: 'index_seeds_on_parent_id'
-    t.index ['population_id'], name: 'index_seeds_on_population_id'
+  create_table "seeds", force: :cascade do |t|
+    t.string "species"
+    t.integer "generation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "accession"
+    t.bigint "parent_id"
+    t.bigint "population_id"
+    t.index ["parent_id"], name: "index_seeds_on_parent_id"
+    t.index ["population_id"], name: "index_seeds_on_population_id"
   end
 
-  add_foreign_key 'bins', 'seeds'
-  add_foreign_key 'seeds', 'populations'
-  add_foreign_key 'seeds', 'seeds', column: 'parent_id'
+  create_table "tubes", force: :cascade do |t|
+    t.bigint "seed_id", null: false
+    t.bigint "seedbox_id", null: false
+    t.integer "position"
+    t.decimal "volume"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seed_id"], name: "index_tubes_on_seed_id"
+    t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
+  end
+
+  add_foreign_key "bins", "seeds"
+  add_foreign_key "seeds", "populations"
+  add_foreign_key "seeds", "seeds", column: "parent_id"
+  add_foreign_key "tubes", "seedboxes"
+  add_foreign_key "tubes", "seeds"
 end

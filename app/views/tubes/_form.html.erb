@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :seed_id, style: "display: block" %>
-    <%= form.text_field :seed_id %>
+    <%= form.collection_select :seed_id, Seed.all, :id, :label %>
   </div>
 
   <div>
     <%= form.label :seedbox_id, style: "display: block" %>
-    <%= form.text_field :seedbox_id %>
+    <%= form.collection_select :seedbox_id, Seedbox.all, :id, :name %>
   </div>
 
   <div>

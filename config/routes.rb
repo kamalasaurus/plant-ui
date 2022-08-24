@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :tubes
   resources :populations
   resources :seedboxes
-  resources :bins # tubes?
   resources :seeds
 
   resource :bulk_upload, only: [:update]

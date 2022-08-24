@@ -2,13 +2,28 @@
 
 <h1>Tubes</h1>
 
+<%= link_to "New tube", new_tube_path %>
+
 <div id="tubes">
-  <% @tubes.each do |tube| %>
-    <%= render tube %>
-    <p>
-      <%= link_to "Show this tube", tube %>
-    </p>
+  <% @grouped_tubes.each do |seedbox, tubes| %>
+    <section>
+      <span class="seedbox_name"><%= seedbox.name %></span>
+      <div class="tube_block">
+      <% (1..100).each do |location| %>
+        <div class="tube">
+          <% if tubes[location] %>
+            <%= link_to image_tag("#{tubes[location].species}.png"), tubes[location] %>
+            <span class="active_location"><%= location %></span>
+            <span class="quantity"><%= tubes[location].quantity %></span>
+          <% else %>
+            <span class="location"><%= location %></span>
+          <% end %>
+        </div>
+        <% if location % 10 == 0 %>
+          <br />
+        <% end %>
+      <% end %>
+      </div>
+    </section>
   <% end %>
 </div>
-
-<%= link_to "New tube", new_tube_path %>

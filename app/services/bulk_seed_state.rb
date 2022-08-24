@@ -19,11 +19,6 @@ module BulkSeedState
         seed = Seed.upsert(species: SPECIES[h[:species]], generation: h[:generation], accession: h[:accid], population_id: population.id)
         bin = Bin.upsert(seed_id: seed.id, seedbox: seedbox.id, location: h[:position], quantity: h[:quantity_seeds])
       end
-      # migrate bin to have seedbox reference, not string
-      # migrate bin to be called tube
-      # migrate bin to change location to position
-      # migrate bin to have volume
-      # migrate bin to have quantity
 
       # store seed parent relationships and do a second pass to add them!!
     end
