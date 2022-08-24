@@ -9,8 +9,11 @@ class BulkSeedStateTest < ActiveSupport::TestCase
 
   test 'it should upload csv to db' do
     BulkSeedState.upload(@csv)
-    binding.pry
-    # assert Seed.all.count is somehting
-    assert true
+    assert [
+      Seed.all.count,
+      Seedbox.all.count,
+      Population.all.count,
+      Tube.all.count
+    ].all? { |x| x == 113 }
   end
 end
