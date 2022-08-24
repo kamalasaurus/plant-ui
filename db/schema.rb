@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_24_152748) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_154706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bins", force: :cascade do |t|
-    t.bigint "seed_id", null: false
-    t.string "seedbox"
-    t.integer "location"
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["seed_id"], name: "index_bins_on_seed_id"
-  end
 
   create_table "populations", force: :cascade do |t|
     t.string "name"
@@ -62,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_152748) do
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
-  add_foreign_key "bins", "seeds"
   add_foreign_key "seeds", "populations"
   add_foreign_key "seeds", "seeds", column: "parent_id"
   add_foreign_key "tubes", "seedboxes"
