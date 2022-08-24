@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class Seedbox < ApplicationRecord
-  has_many :tube
+  has_many :tubes
 end
