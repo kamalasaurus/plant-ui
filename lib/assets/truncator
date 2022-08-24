@@ -3,8 +3,8 @@
 
 require 'csv'
 
-CSV.open('truncated_seed_tubes.csv', 'wb') do |out|
-  CSV.foreach((ARGV[0]).to_s, headers: true).with_index do |row, line|
-    out << row if (line % 20).zero?
+CSV.open('truncated_seed_tubes.csv', 'wb') do |csv|
+  CSV.foreach((ARGV[0]).to_s).with_index do |row, line|
+    csv << row if (line % 20).zero?
   end
 end
