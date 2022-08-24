@@ -39,6 +39,8 @@ module BulkSeedState
           volume: h[:quantity_ml],
           count: self.check(h[:quantity_seeds])
         })
+      rescue
+        puts row.to_s
       end
     end
     # what to do about temp boxes?  Just store as box?
