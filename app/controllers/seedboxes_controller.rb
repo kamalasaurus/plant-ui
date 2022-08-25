@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SeedboxesController < ApplicationController
-  before_action :set_seedbox, only: %i[ show edit update destroy ]
+  before_action :set_seedbox, only: %i[show edit update destroy]
 
   # GET /seedboxes or /seedboxes.json
   def index
@@ -7,8 +9,7 @@ class SeedboxesController < ApplicationController
   end
 
   # GET /seedboxes/1 or /seedboxes/1.json
-  def show
-  end
+  def show; end
 
   # GET /seedboxes/new
   def new
@@ -16,8 +17,7 @@ class SeedboxesController < ApplicationController
   end
 
   # GET /seedboxes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /seedboxes or /seedboxes.json
   def create
@@ -25,7 +25,7 @@ class SeedboxesController < ApplicationController
 
     respond_to do |format|
       if @seedbox.save
-        format.html { redirect_to seedbox_url(@seedbox), notice: "Seedbox was successfully created." }
+        format.html { redirect_to seedbox_url(@seedbox), notice: 'Seedbox was successfully created.' }
         format.json { render :show, status: :created, location: @seedbox }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class SeedboxesController < ApplicationController
   def update
     respond_to do |format|
       if @seedbox.update(seedbox_params)
-        format.html { redirect_to seedbox_url(@seedbox), notice: "Seedbox was successfully updated." }
+        format.html { redirect_to seedbox_url(@seedbox), notice: 'Seedbox was successfully updated.' }
         format.json { render :show, status: :ok, location: @seedbox }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class SeedboxesController < ApplicationController
     @seedbox.destroy
 
     respond_to do |format|
-      format.html { redirect_to seedboxes_url, notice: "Seedbox was successfully destroyed." }
+      format.html { redirect_to seedboxes_url, notice: 'Seedbox was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_seedbox
-      @seedbox = Seedbox.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def seedbox_params
-      params.require(:seedbox).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_seedbox
+    @seedbox = Seedbox.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def seedbox_params
+    params.require(:seedbox).permit(:name)
+  end
 end

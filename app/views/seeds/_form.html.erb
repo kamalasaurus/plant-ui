@@ -22,6 +22,12 @@
   </div>
 
   <div>
+    <%= form.label :parent, style: "display: block" %>
+    <%= form.collection_select :parent, Seed.all, :id, :species %>
+    <!--TODO: need label to be species-population-accession-->
+  </div>
+
+  <div>
     <%= form.label :accession, style: "display: block" %>
     <%= form.text_field :accession %>
   </div>

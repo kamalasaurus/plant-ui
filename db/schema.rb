@@ -10,33 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_15_191851) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_171828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bins", force: :cascade do |t|
-    t.bigint "seed_id", null: false
-    t.string "seedbox"
-    t.integer "location"
-    t.integer "quantity"
+  create_table "populations", force: :cascade do |t|
+    t.string "name", null: false
+    t.point "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seed_id"], name: "index_bins_on_seed_id"
+    t.string "subpopulation", null: false
+    t.index ["name", "subpopulation"], name: "index_populations_on_name_and_subpopulation", unique: true
   end
 
   create_table "seedboxes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_seedboxes_on_name", unique: true
   end
 
   create_table "seeds", force: :cascade do |t|
-    t.string "species"
-    t.integer "generation"
+    t.string "species", null: false
+    t.integer "generation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "accession"
+    t.string "accession", null: false
+    t.bigint "parent_id"
+    t.bigint "population_id", null: false
+    t.index ["parent_id"], name: "index_seeds_on_parent_id"
+    t.index ["population_id"], name: "index_seeds_on_population_id"
+    t.index ["species", "generation", "accession", "population_id"], name: "uniqueness_index", unique: true
   end
 
-  add_foreign_key "bins", "seeds"
+  create_table "tubes", force: :cascade do |t|
+    t.bigint "seed_id", null: false
+    t.bigint "seedbox_id", null: false
+    t.integer "position", null: false
+    t.decimal "volume"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seed_id"], name: "index_tubes_on_seed_id"
+    t.index ["seedbox_id", "position"], name: "index_tubes_on_seedbox_id_and_position", unique: true
+    t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
+  end
+
+  add_foreign_key "seeds", "populations"
+  add_foreign_key "seeds", "seeds", column: "parent_id"
+  add_foreign_key "tubes", "seedboxes"
+  add_foreign_key "tubes", "seeds"
 end

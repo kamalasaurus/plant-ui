@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @population %>
+
+<div>
+  <%= link_to "Edit this population", edit_population_path(@population) %> |
+  <%= link_to "Back to populations", populations_path %>
+
+  <%= button_to "Destroy this population", @population, method: :delete %>
+</div>

@@ -1,15 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  species: MyString
+  accession: "01"
   generation: 1
-  seedbox: MyString
-  location: 1
-  quantity: 1
+  species: erophila
+  population: one
 
 two:
-  species: MyString
+  accession: "02"
   generation: 1
-  seedbox: MyString
-  location: 1
-  quantity: 1
+  species: erophila
+  population: two

@@ -2,12 +2,14 @@
 
 one:
   seed: one
-  seedbox: MyString
-  location: 1
-  quantity: 1
+  seedbox: one
+  position: 1
+  volume: 1
+  count: 1
 
 two:
   seed: two
-  seedbox: MyString
-  location: 1
-  quantity: 1
+  seedbox: two
+  position: 2
+  volume: 1
+  count: 1

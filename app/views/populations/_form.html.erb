@@ -1,0 +1,32 @@
+<%= form_with(model: population) do |form| %>
+  <% if population.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(population.errors.count, "error") %> prohibited this population from being saved:</h2>
+
+      <ul>
+        <% population.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :subpopulation, style: "display: block" %>
+    <%= form.text_field :subpopulation %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

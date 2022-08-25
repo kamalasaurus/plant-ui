@@ -1,1 +1,3 @@
-json.partial! "seedboxes/seedbox", seedbox: @seedbox
+# frozen_string_literal: true
+
+json.partial! 'seedboxes/seedbox', seedbox: @seedbox

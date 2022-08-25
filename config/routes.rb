@@ -1,10 +1,12 @@
-Rails.application.routes.draw do
-  resources :seedboxes
-  resources :bins #tubes?
-  resources :seeds
-  # population
+# frozen_string_literal: true
 
-  resource :bulk_upload, only: [:show, :update]
+Rails.application.routes.draw do
+  resources :tubes
+  resources :populations
+  resources :seedboxes
+  resources :seeds
+
+  resource :bulk_upload, only: [:update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

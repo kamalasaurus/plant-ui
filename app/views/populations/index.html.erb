@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Populations</h1>
+
+<div id="populations">
+  <% @populations.each do |population| %>
+    <%= render population %>
+    <p>
+      <%= link_to "Show this population", population %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New population", new_population_path %>
