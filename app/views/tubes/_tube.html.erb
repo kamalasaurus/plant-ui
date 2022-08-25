@@ -1,5 +1,9 @@
 <div id="<%= dom_id tube %>">
   <p>
+    <strong><%= "#{tube.seed.species}-#{tube.seed.population.name}-#{tube.seed.population.subpopulation}-#{tube.seed.accession} #{tube.seed.generation}" %></strong>
+  </p>
+
+  <p>
     <strong>Seed:</strong>
     <%= tube.seed_id %>
   </p>
@@ -16,7 +20,7 @@
 
   <p>
     <strong>Volume:</strong>
-    <%= tube.volume %>
+    <%= tube.volume %>mL
   </p>
 
   <p>
