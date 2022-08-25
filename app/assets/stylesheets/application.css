@@ -30,11 +30,9 @@
 
 .tube {
   display: inline-block;
-  /* --width: calc(100% / 10); */
-  /* width: var(--width); */
-  /* height: var(--width); */
-  width: 64px;
-  height: 64px;
+  width: calc(100% / 10);
+  aspect-ratio: 1/1;
+  height: auto;
   position: relative;
   text-align: center;
   border: solid 1px brown;
