@@ -23,12 +23,12 @@
   margin-bottom: 10px;
 }
 
-.bin_block {
+.tube_block {
   line-height: 64px;
   font-size: 0;
 }
 
-.bin {
+.tube {
   display: inline-block;
   width: 64px;
   height: 64px;
@@ -48,7 +48,7 @@
   height: 100%;
 }
 
-.tube .active_location {
+.tube .active_position {
   pointer-events: none;
   position: absolute;
   display: block;
@@ -73,7 +73,7 @@
   margin-bottom: 4px;
 }
 
-.tube .location {
+.tube .position {
   text-align: center;
   color: dimgrey;
   font-size: 30px;
