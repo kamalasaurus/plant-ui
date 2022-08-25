@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  accession: MyString
+  accession: "01"
   generation: 1
-  species: MyString
+  species: erophila
+  population: one
 
 two:
-  accession: MyString
+  accession: "02"
   generation: 1
-  species: MyString
+  species: erophila
+  population: two

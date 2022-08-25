@@ -10,6 +10,6 @@ one:
 two:
   seed: two
   seedbox: two
-  position: 1
+  position: 2
   volume: 1
   count: 1

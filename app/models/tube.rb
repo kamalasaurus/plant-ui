@@ -2,7 +2,7 @@ class Tube < ApplicationRecord
   belongs_to :seed
   belongs_to :seedbox
 
-  validates :quantity, inclusion: { in: 1..100 }
+  validates :position, inclusion: { in: 1..100 }
 
   scope :by_seedbox, -> { joins(:seed).select('bins.*, seeds.*') }
 
