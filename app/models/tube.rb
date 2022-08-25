@@ -16,11 +16,26 @@ class Tube < ApplicationRecord
     end.sort_by { |seedbox, _| seedbox.name.to_i }
   end
 
+  def abbreviation
+    "#{trunc_name}-#{seed.population.name}-#{seed.population.subpopulation}-#{seed.accession}"
+  end
+
   def amount
     if count&.nonzero? then count else "#{volume}mL" end
   end
 
   def critical?
     count.present? and count <= 500
+  end
+
+  private
+
+  def trunc_name
+    seed.species.split('-')
+      .map.with_index do |stem, i|
+        if i.zero? then stem[0,1] else stem[0,2] end
+      end
+      .join
+      .upcase
   end
 end
