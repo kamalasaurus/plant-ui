@@ -9,15 +9,9 @@ class BulkSeedStateTest < ActiveSupport::TestCase
 
   test 'it should upload csv to db' do
     BulkSeedState.upload(@csv)
-    puts Seed.all.count
-    puts Seedbox.all.count
-    puts Population.all.count
-    puts Tube.all.count
-    assert [
-      Seed.all.count,
-      Seedbox.all.count,
-      Population.all.count,
-      Tube.all.count
-    ].all? { |x| x == 113 }
+    assert_equal Seed.all.count, 112
+    assert_equal Seedbox.all.count, 28
+    assert_equal Population.all.count, 61
+    assert_equal Tube.all.count, 113
   end
 end
