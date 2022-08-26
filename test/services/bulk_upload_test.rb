@@ -8,10 +8,11 @@ class BulkUploadTest < ActiveSupport::TestCase
   end
 
   test 'it should upload csv to db' do
-    BulkUpload.parse(@csv)
+    upload = BulkUpload.parse(@csv)
     assert_equal Seed.all.count, 112
     assert_equal Seedbox.all.count, 28
     assert_equal Population.all.count, 61
     assert_equal Tube.all.count, 113
+    assert_empty upload.errors
   end
 end

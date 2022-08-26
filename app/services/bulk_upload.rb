@@ -1,19 +1,36 @@
 # frozen_string_literal: true
 require 'csv'
 
-module BulkUpload
+class BulkUpload
+  private_class_method :new
+  attr_reader :errors
+
   SPECIES = {
     'Ath' => 'arabidopsis-thaliana',
     'Chi' => 'cardamine-hirsuta',
     'Dve' => 'draba-verna'
   }.freeze
 
-  def self.check(str)
-    if str == "NA" then nil else str end
+  def initialize(file)
+    @errors = []
+    @file = file
+    parse
   end
 
   def self.parse(file)
-    CSV.parse(file, headers: true, header_converters: %i[downcase symbol]) do |row|
+    new(file)
+    # what to do about temp boxes?  Just store as box?
+    # store seed parent relationships and do a second pass to add them!!
+  end
+
+  private
+
+  def check(str)
+    if str == "NA" then nil else str end
+  end
+
+  def parse
+    CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
       seedbox, population, seed, bin = nil
       h = row.to_h
       ActiveRecord::Base.transaction do 
@@ -35,14 +52,13 @@ module BulkUpload
           seedbox_id: seedbox.id,
           position: h[:position],
           volume: h[:quantity_ml],
-          count: self.check(h[:quantity_seeds])
+          count: check(h[:quantity_seeds])
         )
       rescue Exception => e
         puts e
         puts row.to_h
+        @errors.push([e, row])
       end
     end
-    # what to do about temp boxes?  Just store as box?
-    # store seed parent relationships and do a second pass to add them!!
   end
 end
