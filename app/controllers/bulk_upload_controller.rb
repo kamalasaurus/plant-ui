@@ -3,10 +3,10 @@
 class BulkUploadController < ApplicationController
   def index; end
 
-  def update
+  def create
     respond_to do |format|
-      if (@seedstate = BulkSeedState.upload(bulk_seed_state_params))
-        format.html { redirect_to :index, notice: 'Database was successfully updated.' }
+      if (@seedstate = BulkUpload.parse(file_params.read))
+        format.html { redirect_to bulk_upload_index_path, notice: 'Database was successfully updated.' }
         format.json { render :index, status: :ok }
       else
         format.html { render :update, status: :unprocessable_entity }
@@ -17,7 +17,7 @@ class BulkUploadController < ApplicationController
 
   private
 
-  def bulk_seed_state_params
-    params.require(:bulk_upload).permit(:file)
+  def file_params
+    params.require(:file)
   end
 end
