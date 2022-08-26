@@ -22,14 +22,17 @@
 
 #root nav {
   background-color: orange;
+  font-size: 0;
 }
 
-#root nav a {
+#root nav > a {
   display: inline-block;
   color: #333;
   text-decoration: none;
   padding: 0.5em 1em;
   border-right: solid 1px dimgray;
+  /* font-size: 1rem; */
+  font-size: clamp(10px, 2.5vw, 18px);
 }
 
 #tubes > section {
