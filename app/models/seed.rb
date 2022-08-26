@@ -10,4 +10,19 @@ class Seed < ApplicationRecord
   def label
     "#{species}-#{population.name}-#{population.subpopulation}-#{accession}"
   end
+
+  def abbreviation
+    "#{trunc_name}-#{population.name.upcase}-#{population.subpopulation.upcase}-#{accession}"
+  end
+
+  private
+
+  def trunc_name
+    species.split('-')
+      .map.with_index do |stem, i|
+        if i.zero? then stem[0,1] else stem[0,2] end
+      end
+      .join
+      .upcase
+  end
 end

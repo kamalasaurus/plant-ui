@@ -9,17 +9,18 @@
     <section>
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
-      <% (1..100).each do |location| %>
+      <% (1..100).each do |position| %>
         <div class="tube">
-          <% if tubes[location] %>
-            <%= link_to image_tag("#{tubes[location].species}.png"), tubes[location] %>
-            <span class="active_location"><%= location %></span>
-            <span class="quantity"><%= tubes[location].quantity %></span>
+          <% if tubes[position] %>
+            <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
+            <span class="active_position"><%= position %></span>
+            <span class="amount <%= "critical" if tubes[position].critical? %>"><%= tubes[position].amount %></span>
+            <span class="name"><%= tubes[position].abbreviation %></span>
           <% else %>
-            <span class="location"><%= location %></span>
+            <span class="position"><%= position %></span>
           <% end %>
         </div>
-        <% if location % 10 == 0 %>
+        <% if position % 10 == 0 %>
           <br />
         <% end %>
       <% end %>

@@ -14,28 +14,42 @@
  *= require_self
  */
 
-.seedbox_name {
-  font-size: larger;
-  background-color: brown;
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+@media only screen and (max-width: 420px) {
+  body {
+    grid-template-columns: 0 100% 0;
+  }
 }
 
-.bin_block {
-  line-height: 64px;
+#tubes > section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+ .seedbox_name {
+  font-size: larger;
+  background-color: #1D0000;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px 8px 0 0;
+  min-width: 10vw;
+  text-align: center;
+}
+
+.tube_block {
   font-size: 0;
 }
 
-.bin {
-  display: inline-block;
-  width: 64px;
-  height: 64px;
+.tube {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 10);
+  aspect-ratio: 1/1;
+  height: auto;
   position: relative;
-  text-align: center;
-  border: solid 1px brown;
+  border: solid 1px #1D0000;
   box-sizing: border-box;
+  vertical-align: bottom;
 }
 
 .tube a, .tube a img {
@@ -48,36 +62,50 @@
   height: 100%;
 }
 
-.tube .active_location {
+.tube .active_position {
   pointer-events: none;
   position: absolute;
   display: block;
   top: 0;
   left: 0;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: clamp(2px, 2vw, 16px);
+  line-height: clamp(2px, 2vw, 16px);
 }
 
-.tube .quantity {
-  position: relative;
-  display: inline-block;
+.tube .amount {
+  position: absolute;
   pointer-events: none;
-  background-color: red;
+  background-color: #6F473B;
   color: white;
-  padding: 0 4px;
-  font-size: 12px;
-  line-height: 14px;
-  border-radius: 9px;
-  border: solid 1px white;
-  vertical-align: bottom;
-  margin-bottom: 4px;
+  padding: 0 clamp(2px, 0.5vw, 4px);
+  font-size: clamp(6px, 1.5vw, 12px);
+  line-height: clamp(8px, 2vw, 14px);
+  display: block;
+  top: 0;
+  right: 0;
 }
 
-.tube .location {
+.tube .amount.critical {
+  background-color: red;
+}
+
+.tube .name {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  background-color: #6F473B;
+  color: white;
+  font-size: clamp(4px, 1vw, 9px);
+  line-height: clamp(4px, 1vw, 9px);
+}
+
+.tube .position {
+  display: inline-block;
   text-align: center;
   color: dimgrey;
-  font-size: 30px;
-  line-height: 64px;
+  font-size: clamp(4px, 4vw, 30px);
   vertical-align: bottom;
-  display: inline-block;
 }
