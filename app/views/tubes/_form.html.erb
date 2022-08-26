@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :seed_id, style: "display: block" %>
-    <%= form.collection_select :seed_id, Seed.all, :id, :label %>
+    <%= form.collection_select :seed_id, Seed.all, :id, :abbreviation %>
   </div>
 
   <div>

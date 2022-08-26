@@ -14,7 +14,7 @@
           <% if tubes[position] %>
             <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
             <span class="active_position"><%= position %></span>
-            <span class="amount"><%= tubes[position].amount %></span>
+            <span class="amount <%= "critical" if tubes[position].critical? %>"><%= tubes[position].amount %></span>
             <span class="name"><%= tubes[position].abbreviation %></span>
           <% else %>
             <span class="position"><%= position %></span>

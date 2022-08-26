@@ -14,6 +14,12 @@
  *= require_self
  */
 
+@media only screen and (max-width: 420px) {
+  body {
+    grid-template-columns: 0 100% 0;
+  }
+}
+
 #tubes > section {
   padding-left: 0;
   padding-right: 0;
@@ -21,10 +27,12 @@
 
  .seedbox_name {
   font-size: larger;
-  background-color: #6F473B;
+  background-color: #1D0000;
   display: inline-block;
   padding: 2px 8px;
   border-radius: 8px 8px 0 0;
+  min-width: 10vw;
+  text-align: center;
 }
 
 .tube_block {
@@ -39,7 +47,7 @@
   aspect-ratio: 1/1;
   height: auto;
   position: relative;
-  border: solid 1px #6F473B;
+  border: solid 1px #1D0000;
   box-sizing: border-box;
   vertical-align: bottom;
 }
@@ -67,16 +75,18 @@
 .tube .amount {
   position: absolute;
   pointer-events: none;
-  background-color: #1D0000;
+  background-color: #6F473B;
   color: white;
-  padding: 0 clamp(1px, 0.5vw, 4px);
-  font-size: clamp(2px, 1.5vw, 12px);
-  line-height: clamp(3px, 2vw, 14px);
-  border-radius: clamp(0, 1vw, 9px);
-  /* border: solid 1px white; */
+  padding: 0 clamp(2px, 0.5vw, 4px);
+  font-size: clamp(6px, 1.5vw, 12px);
+  line-height: clamp(8px, 2vw, 14px);
   display: block;
   top: 0;
   right: 0;
+}
+
+.tube .amount.critical {
+  background-color: red;
 }
 
 .tube .name {
@@ -86,11 +96,10 @@
   width: 100%;
   text-align: center;
   pointer-events: none;
-  background-color: #1D0000;
+  background-color: #6F473B;
   color: white;
-  font-size: clamp(2px, 1vw, 11px);
-  line-height: clamp(2px, 1vw, 11px);
-  font-stretch: condensed;
+  font-size: clamp(4px, 1vw, 9px);
+  line-height: clamp(4px, 1vw, 9px);
 }
 
 .tube .position {
