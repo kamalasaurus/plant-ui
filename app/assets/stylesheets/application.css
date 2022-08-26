@@ -20,12 +20,27 @@
   }
 }
 
+#root nav {
+  background-color: orange;
+  font-size: 0;
+}
+
+#root nav > a {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-right: solid 1px dimgray;
+  /* font-size: 1rem; */
+  font-size: clamp(10px, 2.5vw, 18px);
+}
+
 #tubes > section {
   padding-left: 0;
   padding-right: 0;
 }
 
- .seedbox_name {
+#tubes .seedbox_name {
   font-size: larger;
   background-color: #1D0000;
   display: inline-block;
@@ -35,11 +50,11 @@
   text-align: center;
 }
 
-.tube_block {
+#tubes .tube_block {
   font-size: 0;
 }
 
-.tube {
+#tubes .tube {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -52,7 +67,7 @@
   vertical-align: bottom;
 }
 
-.tube a, .tube a img {
+#tubes .tube a, #tubes .tube a img {
   position: absolute;
   display: block;
   top: 0;
@@ -62,7 +77,7 @@
   height: 100%;
 }
 
-.tube .active_position {
+#tubes .tube .active_position {
   pointer-events: none;
   position: absolute;
   display: block;
@@ -72,7 +87,7 @@
   line-height: clamp(2px, 2vw, 16px);
 }
 
-.tube .amount {
+#tubes .tube .amount {
   position: absolute;
   pointer-events: none;
   background-color: #6F473B;
@@ -85,11 +100,11 @@
   right: 0;
 }
 
-.tube .amount.critical {
+#tubes .tube .amount.critical {
   background-color: red;
 }
 
-.tube .name {
+#tubes .tube .name {
   position: absolute;
   display: block;
   bottom: 0;
@@ -102,7 +117,7 @@
   line-height: clamp(4px, 1vw, 9px);
 }
 
-.tube .position {
+#tubes .tube .position {
   display: inline-block;
   text-align: center;
   color: dimgrey;
