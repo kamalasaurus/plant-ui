@@ -6,6 +6,7 @@
 .DS_Store
 .envrc
 .byebug_history
+public/uploads/*
 
 # Ignore bundler config.
 /.bundle

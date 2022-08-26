@@ -1,0 +1,9 @@
+<%= form_with url: bulk_upload_index_path, method: :post, multipart: true do |form| %>
+  <div>
+    <%= form.file_field :file, accept: '.csv,.tsv' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

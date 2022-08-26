@@ -2,16 +2,17 @@
 
 require 'test_helper'
 
-class BulkSeedStateTest < ActiveSupport::TestCase
+class BulkUploadTest < ActiveSupport::TestCase
   setup do
     @csv = file_fixture('truncated_seed_tubes.csv').read
   end
 
   test 'it should upload csv to db' do
-    BulkSeedState.upload(@csv)
+    upload = BulkUpload.parse(@csv)
     assert_equal Seed.all.count, 112
     assert_equal Seedbox.all.count, 28
     assert_equal Population.all.count, 61
     assert_equal Tube.all.count, 113
+    assert_empty upload.errors
   end
 end

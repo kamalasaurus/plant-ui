@@ -7,5 +7,5 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-BulkSeedState.upload(File.read(Rails.root.join('lib', 'assets', 'all_seed_tubes_2022_08_23.csv')))
+BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', 'all_seed_tubes_2022_08_23.csv')))
 puts 'all data seeded!'
