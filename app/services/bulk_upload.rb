@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'csv'
 
-module BulkSeedState
+module BulkUpload
   SPECIES = {
     'Ath' => 'arabidopsis-thaliana',
     'Chi' => 'cardamine-hirsuta',
@@ -12,7 +12,7 @@ module BulkSeedState
     if str == "NA" then nil else str end
   end
 
-  def self.upload(file)
+  def self.parse(file)
     CSV.parse(file, headers: true, header_converters: %i[downcase symbol]) do |row|
       seedbox, population, seed, bin = nil
       h = row.to_h

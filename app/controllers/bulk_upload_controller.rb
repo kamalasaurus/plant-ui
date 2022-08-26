@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class BulkSeedStateController < ApplicationController
+class BulkUploadController < ApplicationController
   def index; end
 
-  def update(_file)
+  def update
     respond_to do |format|
       if (@seedstate = BulkSeedState.upload(bulk_seed_state_params))
         format.html { redirect_to :index, notice: 'Database was successfully updated.' }
@@ -18,6 +18,6 @@ class BulkSeedStateController < ApplicationController
   private
 
   def bulk_seed_state_params
-    params.require(:bulk_seed_state).permit(:file)
+    params.require(:bulk_upload).permit(:file)
   end
 end
