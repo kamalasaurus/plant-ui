@@ -14,6 +14,7 @@ class BulkUpload
   def initialize(file)
     @errors = []
     @file = file
+    copy
     parse
   end
 
@@ -27,6 +28,13 @@ class BulkUpload
 
   def check(str)
     if str == "NA" then nil else str end
+  end
+
+  def copy
+    name = "#{ DateTime.now.strftime '%Y_%m_%d' }_upload"
+    File.open(Rails.root.join('public', 'uploads', name), 'wb') do |file|
+      file.write(@file)
+    end
   end
 
   def parse
