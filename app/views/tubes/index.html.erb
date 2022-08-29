@@ -2,15 +2,23 @@
 
 <h1>Tubes</h1>
 
+<%= javascript_include_tag "search.js", type: "module" %>
+<search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
+
 <%= link_to "New tube", new_tube_path %>
+
 
 <div id="tubes">
   <% @grouped_tubes.each do |seedbox, tubes| %>
-    <section>
+    <section class="seedbox" id=<%= seedbox.name %>>
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <div class="tube">
+        <div
+          class="tube"
+          id='<%= "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>'
+          data-item='<%= "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>'
+        >
           <% if tubes[position] %>
             <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
             <span class="active_position"><%= position %></span>
