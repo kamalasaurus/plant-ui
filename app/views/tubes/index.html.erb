@@ -2,15 +2,22 @@
 
 <h1>Tubes</h1>
 
+<input id="search-bar" type="text" disabled></div>
+
 <%= link_to "New tube", new_tube_path %>
+
 
 <div id="tubes">
   <% @grouped_tubes.each do |seedbox, tubes| %>
-    <section>
+    <section class="seedbox" id=<%= seedbox.name %>>
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <div class="tube">
+        <div
+          class="tube"
+          data-id=<%= tubes[position]&.flex_id || "#{seedbox.name}-#{position}" %>
+          data-item=<%= tubes[position]&.flex_item || "#{seedbox.name} #{position}" %>
+        >
           <% if tubes[position] %>
             <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
             <span class="active_position"><%= position %></span>

@@ -24,6 +24,10 @@ class BulkUpload
     # store seed parent relationships and do a second pass to add them!!
   end
 
+  def success?
+    @errors.empty?
+  end
+
   private
 
   def check(str)

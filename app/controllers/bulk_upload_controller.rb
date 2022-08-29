@@ -5,7 +5,8 @@ class BulkUploadController < ApplicationController
 
   def create
     respond_to do |format|
-      if (seedstate = BulkUpload.parse(file_params.read))
+      seedstate = BulkUpload.parse(file_params.read)
+      if seedstate.success?
         format.html { redirect_to bulk_upload_index_path, notice: 'Database was successfully updated.' }
         format.json { render :index, status: :ok }
       else
