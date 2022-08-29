@@ -4,13 +4,15 @@ void function main() {
   const index = new FlexSearch.Index({tokenize: 'full'});
 
   Promise.resolve(index)
-    .then(index => {
-      Array.from(document.querySelectorAll('.tube'))
-        .forEach(tube => {
-          const id = tube.getAttribute('data-id');
-          const item = tube.getAttribute('data-item');
-          index.add(id, item);
-         });
+    .then(async index => {
+      await Promise.all(
+        Array.from(document.querySelectorAll('.tube'))
+          .map(async tube => {
+            const id = tube.getAttribute('data-id');
+            const item = tube.getAttribute('data-item');
+            await index.add(id, item);
+          })
+        );
       return index;
     })
     .then(index => {

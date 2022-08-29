@@ -8,11 +8,11 @@ class Seed < ApplicationRecord
   has_many :children, class_name: 'Seed', foreign_key: 'parent_id'
 
   def label
-    "#{species}-#{population.name}-#{population.subpopulation}-#{accession}"
+    "#{species}-#{population.label}-#{accession}"
   end
 
   def abbreviation
-    "#{trunc_name}-#{population.name.upcase}-#{population.subpopulation.upcase}-#{accession}"
+    "#{trunc_name.upcase}-#{population.label.upcase}-#{accession}"
   end
 
   private
@@ -23,6 +23,5 @@ class Seed < ApplicationRecord
         if i.zero? then stem[0,1] else stem[0,2] end
       end
       .join
-      .upcase
   end
 end

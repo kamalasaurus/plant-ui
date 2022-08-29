@@ -2,4 +2,8 @@
 
 class Population < ApplicationRecord
   has_many :seeds
+
+  def label
+    "#{name}-#{subpopulation}"
+  end
 end

@@ -37,6 +37,11 @@ class Tube < ApplicationRecord
   end
 
   def flex_item
-    "#{seed.species.split('-').join(' ')} #{seedbox.name} #{abbreviation.split('-').join(' ')} compRgene"
+    <<~ITEM.chomp
+      #{seed.species.split('-').join(" ")} \
+      #{seedbox.name} \
+      #{abbreviation} \
+      compRgene
+    ITEM
   end
 end
