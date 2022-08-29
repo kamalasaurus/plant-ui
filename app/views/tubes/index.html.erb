@@ -1,8 +1,10 @@
+<%= javascript_include_tag "search.js", type: "module" %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Tubes</h1>
 
-<input id="search-bar" type="text" disabled></div>
+<%# <input id="search-bar" type="text" disabled> %>
+<search-bar data-searchable=".tube"></search-bar>
 
 <%= link_to "New tube", new_tube_path %>
 
@@ -15,7 +17,7 @@
       <% (1..100).each do |position| %>
         <div
           class="tube"
-          data-id='<%= tubes[position]&.flex_id || "#{seedbox.name}-#{position}" %>'
+          id='<%= tubes[position]&.flex_id || "#{seedbox.name}-#{position}" %>'
           data-item='<%= tubes[position]&.flex_item || "#{seedbox.name} #{position}" %>'
         >
           <% if tubes[position] %>
@@ -34,5 +36,4 @@
       </div>
     </section>
   <% end %>
-  <%= javascript_include_tag "search.js", type: "module" %>
 </div>
