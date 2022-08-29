@@ -1,10 +1,9 @@
-<%= javascript_include_tag "search.js", type: "module" %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Tubes</h1>
 
-<%# <input id="search-bar" type="text" disabled> %>
-<search-bar data-searchable=".tube"></search-bar>
+<%= javascript_include_tag "search.js", type: "module" %>
+<search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
 
 <%= link_to "New tube", new_tube_path %>
 
@@ -17,8 +16,8 @@
       <% (1..100).each do |position| %>
         <div
           class="tube"
-          id='<%= tubes[position]&.flex_id || "#{seedbox.name}-#{position}" %>'
-          data-item='<%= tubes[position]&.flex_item || "#{seedbox.name} #{position}" %>'
+          id='<%= "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>'
+          data-item='<%= "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>'
         >
           <% if tubes[position] %>
             <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>

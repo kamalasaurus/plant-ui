@@ -1,81 +1,90 @@
 import FlexSearch from "flexsearch"
 
-class SearchBar extends HTMLInputElement {
+class SearchBar extends HTMLElement {
   constructor () {
     super()
-    this.setAttribute('type', 'text')
-    this.setAttribute('id', 'search-bar')
-    this.disabled = true
 
+    // create input field
+    this.shadow = this.attachShadow({mode: 'closed'})
+    this.input = document.createElement('input')
+      this.input.type = 'text'
+      this.input.disabled = true
+      this.input.style = `display: block; border-radius: 10px; border: solid 1px dimgray; width: 100%; height: 2em; line-height: 2em;`
+    this.shadow.appendChild(this.input)
+
+    // initialize index
     this.index = new FlexSearch.Index({tokenize: 'full'})
-    this.indexed = new window.Event('indexed')
-
-    this.addEventListener('keydown', (e) => {
-      let returns = this.index.search(e.value)
-      this.searchables.forEach(e => e.classList.add('hidden'))
-      this.getReturns(returns).forEach(e => e.classList.remove('hidden'))
-      // hide seedboxes by id and reveal if they have tubes available
-    })
   }
 
+  // add data to index and keyup data to input when element attached to DOM
   connectedCallback() {
-    const searchable = this.getData('searchable')
-    this.searchables = Array.from(document.querySelectorAll(searchable))
+    this.searchable = this.dataset.searchable
+    this.searchables = Array.from(document.querySelectorAll(this.searchable))
+
+    this.searchableparent = this.dataset.searchableparent
+    this.searchableparents = Array.from(document.querySelectorAll(this.searchableparent))
+
+    this.input.addEventListener('keyup', this.keyup.bind(this))
     this.fillIndex()
   }
 
+  // keyup event for input field
+  keyup(e) {
+    if (e.target.value === '')
+      this.searchables.forEach(e => e.classList.remove('hidden'))
+    else {
+      const returns = this.index.search(e.target.value, Infinity)
+      this.searchables.forEach(e => e.classList.add('hidden'))
+      this.getReturns(returns).forEach(e => e.classList.remove('hidden'))
+    }
+    this.checkSearchableParents() // this is kind of a shoehorn pattern, just calling it here
+  }
+
+  // fill flexsearch index with data from tubes' index.html.erb (.tube element)
   async fillIndex() {
     return await Promise.resolve(this.index)
-      .then(async index => {
-        await Promise.all(
-          this.searchables
-            .map(async tube => {
-              const id = tube.getAttribute('id')
-              const item = tube.getAttribute('data-item')
-              return await index.add(id, item)
-            })
-          )
+      // .then(async index => {
+      //   await Promise.all(
+      //     this.searchables
+      //       .map(async tube => {
+      //         const id = tube.getAttribute('id')
+      //         const item = tube.getAttribute('data-item')
+      //         return await index.add(id, item)
+      //       })
+      //     )
+      //   return index
+      // })
+      .then(index => {
+        this.searchables.forEach(tube => {
+          const id = tube.getAttribute('id')
+          const item = tube.getAttribute('data-item')
+          index.add(id, item)
+        })
         return index
       })
       .then(index => {
-        this.disabled = false;
+        this.input.disabled = false
+        this.input.focus()
         return index
       });
   }
 
+  // get elements from DOM if search index says they have relevant information
   getReturns(returns) {
     const queryString = returns.map(id => `#${id}`).join()
     return document.querySelectorAll(queryString)
   }
+
+  // show/hide seedbox if they have all hidden or some visible children
+  checkSearchableParents() {
+    this.searchableparents.forEach(p => {
+      p.classList.remove('hidden')
+      if (Array.from(p.querySelectorAll(this.searchable)).every(c => c.classList.contains('hidden')))
+        p.classList.add('hidden')
+    })
+  }
 }
 
-window.customElements.define('search-bar', SearchBar, {extends: 'input'})
+window.customElements.define('search-bar', SearchBar)
 
-// void function main() {
-//   window.customElements.define('search-bar', SearchBar, {extends: 'input'})
-// }
-
-// void function main() {
-//   const index = new FlexSearch.Index({tokenize: 'full'});
-
-//   Promise.resolve(index)
-//     .then(async index => {
-//       await Promise.all(
-//         Array.from(document.querySelectorAll('.tube'))
-//           .map(async tube => {
-//             const id = tube.getAttribute('data-id');
-//             const item = tube.getAttribute('data-item');
-//             return await index.add(id, item);
-//           })
-//         );
-//       return index;
-//     })
-//     .then(index => {
-//       document.querySelector('#search-bar').disabled = false;
-//     });
-
-//   // add input field + trigger with keystroke events + debounce
-//   // display all tube boxes to none
-//   index.search();
-//   // re-display tube boxes where tubes are visible
-// }();
+export default SearchBar;
