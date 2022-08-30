@@ -26,7 +26,7 @@
 
 .no-click {
   pointer-events: none;
-  background-image: url();
+  background-image: url(<%= asset_path 'woman-gesturing-no.png' %>) !important;
 }
 
 #root nav {
@@ -73,7 +73,7 @@
   border: solid 1px #1D0000;
   box-sizing: border-box;
   vertical-align: bottom;
-  color: gray;
+  color: lightgray;
   text-decoration: none;
   background-repeat: no-repeat;
   background-size: cover;
@@ -137,4 +137,9 @@
   color: dimgrey;
   font-size: clamp(4px, 4vw, 30px);
   vertical-align: bottom;
+}
+
+
+#tubes .tube.no-click .position {
+  font-size: 0;
 }

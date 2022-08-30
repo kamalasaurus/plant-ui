@@ -31,11 +31,11 @@ class SearchBar extends HTMLElement {
   // keyup event for input field
   keyup(e) {
     if (e.target.value === '')
-      this.searchables.forEach(e => e.classList.remove('hidden'))
+      this.searchables.forEach(e => e.classList.remove('no-click'))
     else {
       const returns = this.index.search(e.target.value, Infinity)
-      this.searchables.forEach(e => e.classList.add('hidden'))
-      this.getReturns(returns).forEach(e => e.classList.remove('hidden'))
+      this.searchables.forEach(e => e.classList.add('no-click'))
+      this.getReturns(returns).forEach(e => e.classList.remove('no-click'))
     }
     this.checkSearchableParents() // this is kind of a shoehorn pattern, just calling it here
   }
@@ -79,7 +79,7 @@ class SearchBar extends HTMLElement {
   checkSearchableParents() {
     this.searchableparents.forEach(p => {
       p.classList.remove('hidden')
-      if (Array.from(p.querySelectorAll(this.searchable)).every(c => c.classList.contains('hidden')))
+      if (Array.from(p.querySelectorAll(this.searchable)).every(c => c.classList.contains('no-click')))
         p.classList.add('hidden')
     })
   }

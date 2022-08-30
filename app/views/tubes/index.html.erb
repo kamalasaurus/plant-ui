@@ -2,11 +2,9 @@
 
 <h1>Tubes</h1>
 
-<%= javascript_include_tag "search.js", type: "module" %>
 <search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
 
 <%= link_to "New tube", new_tube_path %>
-
 
 <div id="tubes">
   <% @grouped_tubes.each do |seedbox, tubes| %>
@@ -14,14 +12,15 @@
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <% id = "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>
-        <% classes = "tube #{tubes[position]&.species || '' }"%>
-        <% data_item = "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>
-        <%= link_to(tubes[position], id: id, class: classes) do %>
-          <% if tubes[position] %>
+        <% tube = tubes[position]%>
+        <% id = if tube then "tube-#{tube.flex_id}" else "tube-#{seedbox.name}-#{position}" end %>
+        <% classes = if tube then "tube #{tube.species}" else "tube" end %>
+        <% data_item = if tube then "#{tube.flex_item}#{ " critical" if tube.critical?}" else "#{seedbox.name} #{position} empty" end %>
+        <%= link_to(tube, id: id, class: classes, :'data-item' => data_item) do %>
+          <% if tube %>
             <span class="active_position"><%= position %></span>
-            <span class="amount <%= "critical" if tubes[position].critical? %>"><%= tubes[position].amount %></span>
-            <span class="name"><%= tubes[position].abbreviation %></span>
+            <span class="amount <%= "critical" if tube.critical? %>"><%= tube.amount %></span>
+            <span class="name"><%= tube.abbreviation %></span>
           <% else %>
             <span class="position"><%= position %></span>
           <% end %>
@@ -34,3 +33,4 @@
     </section>
   <% end %>
 </div>
+<%= javascript_include_tag "search.js", type: "module" %>
