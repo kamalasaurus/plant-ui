@@ -5,7 +5,7 @@ class SearchBar extends HTMLElement {
     super()
 
     // create input field
-    this.shadow = this.attachShadow({mode: 'closed'})
+    this.shadow = this.attachShadow({mode: 'open'})
     this.input = document.createElement('input')
       this.input.type = 'text'
       this.input.disabled = true
@@ -43,23 +43,15 @@ class SearchBar extends HTMLElement {
   // fill flexsearch index with data from tubes' index.html.erb (.tube element)
   async fillIndex() {
     return await Promise.resolve(this.index)
-      // .then(async index => {
-      //   await Promise.all(
-      //     this.searchables
-      //       .map(async tube => {
-      //         const id = tube.getAttribute('id')
-      //         const item = tube.getAttribute('data-item')
-      //         return await index.add(id, item)
-      //       })
-      //     )
-      //   return index
-      // })
-      .then(index => {
-        this.searchables.forEach(tube => {
-          const id = tube.getAttribute('id')
-          const item = tube.getAttribute('data-item')
-          index.add(id, item)
-        })
+      .then(async index => {
+        await Promise.all(
+          this.searchables
+            .map(async tube => {
+              const id = tube.getAttribute('id')
+              const item = tube.getAttribute('data-item')
+              return await index.add(id, item)
+            })
+          )
         return index
       })
       .then(index => {
