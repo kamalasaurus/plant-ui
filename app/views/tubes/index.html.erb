@@ -2,32 +2,31 @@
 
 <h1>Tubes</h1>
 
-<%= javascript_include_tag "search.js", type: "module" %>
-<search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
-
-<%= link_to "New tube", new_tube_path %>
-
-
 <div id="tubes">
+
+  <search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
+  <%= button_tag 'Show Critical', onclick: "window.criticalButton()"%>
+  <%= button_tag 'Clear Search', onclick: "window.clearButton()"%>
+  <%= link_to "New tube", new_tube_path %>
+
   <% @grouped_tubes.each do |seedbox, tubes| %>
     <section class="seedbox" id=<%= seedbox.name %>>
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <div
-          class="tube"
-          id='<%= "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>'
-          data-item='<%= "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>'
-        >
-          <% if tubes[position] %>
-            <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
+        <% tube = tubes[position]%>
+        <% id = if tube then "tube-#{tube.flex_id}" else "tube-#{seedbox.name}-#{position}" end %>
+        <% classes = if tube then "tube #{tube.species}" else "tube" end %>
+        <% data_item = if tube then "#{tube.flex_item}#{ " critical" if tube.critical?}" else "#{seedbox.name} #{position} empty" end %>
+        <%= link_to(tube, id: id, class: classes, :'data-item' => data_item) do %>
+          <% if tube %>
             <span class="active_position"><%= position %></span>
-            <span class="amount <%= "critical" if tubes[position].critical? %>"><%= tubes[position].amount %></span>
-            <span class="name"><%= tubes[position].abbreviation %></span>
+            <span class="amount <%= "critical" if tube.critical? %>"><%= tube.amount %></span>
+            <span class="name"><%= tube.abbreviation %></span>
           <% else %>
             <span class="position"><%= position %></span>
           <% end %>
-        </div>
+        <% end %>
         <% if position % 10 == 0 %>
           <br />
         <% end %>
@@ -36,3 +35,5 @@
     </section>
   <% end %>
 </div>
+<%= javascript_include_tag "search.js", type: "module" %>
+<%= javascript_include_tag "tube-search-buttons.js" %>
