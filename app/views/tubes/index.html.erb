@@ -2,13 +2,13 @@
 
 <h1>Tubes</h1>
 
-<search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
-
-<%= button_tag 'Show Critical', onclick: "window.criticalButton()"%>
-
-<%= link_to "New tube", new_tube_path %>
-
 <div id="tubes">
+
+  <search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
+  <%= button_tag 'Show Critical', onclick: "window.criticalButton()"%>
+  <%= button_tag 'Clear Search', onclick: "window.clearButton()"%>
+  <%= link_to "New tube", new_tube_path %>
+
   <% @grouped_tubes.each do |seedbox, tubes| %>
     <section class="seedbox" id=<%= seedbox.name %>>
       <span class="seedbox_name"><%= seedbox.name %></span>
@@ -36,4 +36,4 @@
   <% end %>
 </div>
 <%= javascript_include_tag "search.js", type: "module" %>
-<%= javascript_include_tag "critical-button.js" %>
+<%= javascript_include_tag "tube-search-buttons.js" %>

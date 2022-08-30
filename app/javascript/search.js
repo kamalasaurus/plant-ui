@@ -9,7 +9,7 @@ class SearchBar extends HTMLElement {
     this.input = document.createElement('input')
       this.input.type = 'text'
       this.input.disabled = true
-      this.input.style = `display: block; border-radius: 10px; border: solid 1px dimgray; width: 100%; height: 2em; line-height: 2em;`
+      this.input.style = `display: block; border-radius: 10px; border: solid 1px dimgray; width: 100%; height: 1em; line-height: 2em; padding: 1em;`
     this.shadow.appendChild(this.input)
 
     // initialize index
