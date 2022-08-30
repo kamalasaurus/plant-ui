@@ -79,4 +79,4 @@ class SearchBar extends HTMLElement {
 
 window.customElements.define('search-bar', SearchBar)
 
-export default SearchBar;
+export default SearchBar
