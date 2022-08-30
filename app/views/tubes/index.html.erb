@@ -14,20 +14,18 @@
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <div
-          class="tube"
-          id='<%= "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>'
-          data-item='<%= "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>'
-        >
+        <% id = "tube-#{tubes[position]&.flex_id}" || "tube-#{seedbox.name}-#{position}" %>
+        <% classes = "tube #{tubes[position]&.species || '' }"%>
+        <% data_item = "#{tubes[position]&.flex_item} #{"critical" if tubes[position]&.critical?}" || "#{seedbox.name} #{position} empty" %>
+        <%= link_to(tubes[position], id: id, class: classes) do %>
           <% if tubes[position] %>
-            <%= link_to image_tag("#{tubes[position].species}.png"), tubes[position] %>
             <span class="active_position"><%= position %></span>
             <span class="amount <%= "critical" if tubes[position].critical? %>"><%= tubes[position].amount %></span>
             <span class="name"><%= tubes[position].abbreviation %></span>
           <% else %>
             <span class="position"><%= position %></span>
           <% end %>
-        </div>
+        <% end %>
         <% if position % 10 == 0 %>
           <br />
         <% end %>
