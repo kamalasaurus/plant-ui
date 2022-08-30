@@ -18,12 +18,12 @@
 
   <div>
     <%= form.label :seedbox_id, style: "display: block" %>
-    <%= form.collection_select :seedbox_id, Seedbox.all, :id, :name %>
+    <%= form.collection_select :seedbox_id, Seedbox.all, :id, :name, selected: params[:seedbox_id] %>
   </div>
 
   <div>
     <%= form.label :position, style: "display: block" %>
-    <%= form.number_field :position %>
+    <%= form.number_field :position, min: 1, max: 100, value: params[:position] %>
   </div>
 
   <div>

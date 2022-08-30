@@ -14,18 +14,10 @@
       <span class="seedbox_name"><%= seedbox.name %></span>
       <div class="tube_block">
       <% (1..100).each do |position| %>
-        <% tube = tubes[position]%>
-        <% id = if tube then "tube-#{tube.flex_id}" else "tube-#{seedbox.name}-#{position}" end %>
-        <% classes = if tube then "tube #{tube.species}" else "tube" end %>
-        <% data_item = if tube then "#{tube.flex_item}#{ " critical" if tube.critical?}" else "#{seedbox.name} #{position} empty" end %>
-        <%= link_to(tube, id: id, class: classes, :'data-item' => data_item) do %>
-          <% if tube %>
-            <span class="active_position"><%= position %></span>
-            <span class="amount <%= "critical" if tube.critical? %>"><%= tube.amount %></span>
-            <span class="name"><%= tube.abbreviation %></span>
-          <% else %>
-            <span class="position"><%= position %></span>
-          <% end %>
+        <% if (tube = tubes[position]) %>
+          <%= render partial: "tube_present", locals: {tube: tube, seedbox: seedbox, position: position} %>
+        <% else %>
+          <%= render partial: "tube_missing", locals: {seedbox: seedbox, position: position} %>
         <% end %>
         <% if position % 10 == 0 %>
           <br />

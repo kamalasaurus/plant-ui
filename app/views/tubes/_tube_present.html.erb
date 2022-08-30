@@ -1,0 +1,8 @@
+<% id = "tube-#{seedbox.name}-#{position}" %>
+<% classes = "tube #{tube.species}" %>
+<% data_item = "#{tube.flex_item}#{ " critical" if tube.critical?}" %>
+<%= link_to(tube, id: id, class: classes, :'data-item' => data_item) do %>
+  <span class="active_position"><%= position %></span>
+  <span class="amount <%= "critical" if tube.critical? %>"><%= tube.amount %></span>
+  <span class="name"><%= tube.abbreviation %></span>
+<% end %>

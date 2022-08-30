@@ -1,0 +1,5 @@
+<% id = "tube-#{seedbox.name}-#{position}" %>
+<% data_item = "#{seedbox.name} #{position} empty" %>
+<%= link_to(new_tube_path(position: position, seedbox_id: seedbox.id), id: id, class: "tube", :'data-item' => data_item) do %>
+  <span class="position"><%= position %></span>
+<% end %>
