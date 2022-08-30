@@ -11,6 +11,14 @@ void function() {
     search_bar.input.dispatchEvent(new KeyboardEvent('keyup')) 
   }
 
-  window.criticalButton = criticalButton;
-  window.clearButton = clearButton;
+  function renderCsvButton() {
+    const query = Array.from(document.querySelectorAll('.tube:not(.no-click)'))
+      .map() // get the relevant tubes or seeds to look up by?
+      .reduce() // convert to xml http request post object, or fetch?
+    new XMLHttpRequest(/* */ query)
+  }
+  
+  window.criticalButton = criticalButton
+  window.clearButton = clearButton
+  window.renderCsvButton = renderCsvButton
 }()
