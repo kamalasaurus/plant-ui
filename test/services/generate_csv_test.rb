@@ -4,8 +4,8 @@ require 'test_helper'
 
 class GenerateCsvTest < ActiveSupport::TestCase
   setup do
-    # @csv = file_fixture('truncated_seed_tubes.csv').read
-    # @json = file_fixture('selected_tubes.json').read
+    @json = JSON.parse(file_fixture('selected_tubes.json').read)
+    binding.pry
   end
 
   test 'it should upload csv to db' do

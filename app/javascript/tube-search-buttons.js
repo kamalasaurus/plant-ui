@@ -23,8 +23,18 @@ void function() {
         "X-CSRF-Token": csrfToken,
         'Content-Type': 'application/json'
       },
-      redirect: 'follow',
       body: body
+    })
+    .then(response => response.blob())
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob, {type: 'text/csv'})
+      const a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = url
+      a.download = getFilename(title)
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
     })
   }
 
@@ -33,6 +43,12 @@ void function() {
   function getCSRFToken() {
     const csrfToken = document.querySelector("[name='csrf-token']")
     return csrfToken ? csrfToken.content : null
+  }
+
+  function getFilename(title) {
+    const [month, day, year] = (new Date).toLocaleDateString().split('/')
+    const suffix = title.replace(/' '/g, '_')
+    return `${[year, month.padStart(2, '0'), day.padStart(2, '0'), suffix].join('_')}.csv`
   }
 
   function getBody(title) {

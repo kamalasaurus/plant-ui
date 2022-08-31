@@ -4,17 +4,17 @@ require 'csv'
 
 class GenerateCsv
   private_class_method :new
-  attr_reader :errors
+  attr_reader :errors, :file
 
-  def initialize(title, json)
+  def initialize(tubes)
     @errors = []
-    @title = title.parameterize.underscore
-    @json = json
+    @tubes = tubes
+    @file = nil
     generate
   end
 
-  def self.parse(title, json)
-    new(title, json)
+  def self.generate(tubes)
+    new(tubes)
   end
 
   def success?
@@ -22,22 +22,23 @@ class GenerateCsv
   end
 
   private
-  
-  def filename
-    "#{DateTime.now.strftime '%Y_%m_%d'}_#{@title}.csv"
-  end
 
-  def parse
-    binding.pry
-    # JSON.parse(@json)
-    # process json here
-    temp_file = Tempfile.new
-    CSV.new(temp_file, "w") do |csv|
-      csv << processed_json
+  def generate
+    csv = CSV.generate do |csv|
+      csv << ['name', 'seedbox', 'position', 'population', 'accession'] # headers
+      @tubes.each do |tube|
+        id = tube['id']
+        item = tube['item']
+        *, position = id.split('-')
+        genus, species, seedbox, label, * = item.split(' ')
+        *, pop1, pop2, accession = label.split('-')
+        name = "#{genus} #{species}"
+        population = "#{pop1}-#{pop2}"
+        row = [name, seedbox, position, population, accession]
+        csv << row
+      end
     end
-  end
 
-  def processed_json
-    JSON.parse(@json)
+    @file = csv
   end
 end

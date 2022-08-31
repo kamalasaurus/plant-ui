@@ -1,16 +1,14 @@
 # frozen_string_literal: true
+require 'csv'
 
 class GenerateCsvController < ApplicationController
   def create
     respond_to do |format|
-      csv = GenerateCsv.parse(title_params, tube_params)
+      csv = GenerateCsv.generate(tubes)
       if csv.success?
-        send_file csv.path, disposition: 'attachment', notice: 'CSV was successfully generated.'
-        # where to redirect to get file?
-        # format.html { redirect_to bulk_upload_index_path, notice: 'CSV was successfully generated.' }
-        # format.json { render :index, status: :ok }
+        format.csv { send_data csv.file, filename: filename, disposition: 'attachment', type: 'text/csv'}
       else
-        format.html { render :update, status: :unprocessable_entity }
+        format.html { redirect_to tubes_index_path, status: :unprocessable_entity }
         format.json { render json: csv.errors, status: :unprocessable_entity }
       end
     end
@@ -19,10 +17,14 @@ class GenerateCsvController < ApplicationController
   private
 
   def tube_params
-    params.permit(selected_tubes: [:id, :item])['selected_tubes'].map(&:to_h)
+    params.require(:generate_csv).permit(:title, selected_tubes: [:id, :item])
   end
 
-  def title_params
-    params.require(:title)
+  def tubes
+    tube_params['selected_tubes'].map(&:to_h)
+  end
+
+  def filename
+    "#{DateTime.now.strftime '%Y_%m_%d'}_#{tube_params['title'].parameterize.underscore}.csv"
   end
 end
