@@ -6,6 +6,7 @@
 
   <search-bar id="search-bar" data-searchable=".tube" data-searchableparent=".seedbox"></search-bar>
   <%= button_tag 'Show Critical', onclick: "window.criticalButton()"%>
+  <%= button_tag 'Generate CSV', onclick: "window.generateCsvButton()"%>
   <%= button_tag 'Clear Search', onclick: "window.clearButton()"%>
   <%= link_to "New tube", new_tube_path %>
 
