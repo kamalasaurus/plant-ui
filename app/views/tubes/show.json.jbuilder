@@ -1,1 +1,3 @@
-json.partial! "tubes/tube", tube: @tube
+# frozen_string_literal: true
+
+json.partial! 'tubes/tube', tube: @tube

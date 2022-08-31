@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tube < ApplicationRecord
   belongs_to :seed
   belongs_to :seedbox
@@ -21,7 +23,7 @@ class Tube < ApplicationRecord
   end
 
   def amount
-    if count&.nonzero? then count else "#{volume}mL" end
+    count&.nonzero? ? count : "#{volume}mL"
   end
 
   def critical?
@@ -35,7 +37,7 @@ class Tube < ApplicationRecord
   # name of the project group to easily filter by concerns
   def flex_item
     <<~ITEM.chomp
-      #{seed.species.split('-').join(" ")} \
+      #{seed.species.split('-').join(' ')} \
       #{seedbox.name} \
       #{abbreviation} \
       compRgene

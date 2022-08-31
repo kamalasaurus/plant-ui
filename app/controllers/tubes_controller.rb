@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TubesController < ApplicationController
-  before_action :set_tube, only: %i[ show edit update destroy ]
+  before_action :set_tube, only: %i[show edit update destroy]
 
   # GET /tubes or /tubes.json
   def index
@@ -8,8 +10,7 @@ class TubesController < ApplicationController
   end
 
   # GET /tubes/1 or /tubes/1.json
-  def show
-  end
+  def show; end
 
   # GET /tubes/new
   def new
@@ -17,8 +18,7 @@ class TubesController < ApplicationController
   end
 
   # GET /tubes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tubes or /tubes.json
   def create
@@ -26,7 +26,7 @@ class TubesController < ApplicationController
 
     respond_to do |format|
       if @tube.save
-        format.html { redirect_to tube_url(@tube), notice: "Tube was successfully created." }
+        format.html { redirect_to tube_url(@tube), notice: 'Tube was successfully created.' }
         format.json { render :show, status: :created, location: @tube }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class TubesController < ApplicationController
   def update
     respond_to do |format|
       if @tube.update(tube_params)
-        format.html { redirect_to tube_url(@tube), notice: "Tube was successfully updated." }
+        format.html { redirect_to tube_url(@tube), notice: 'Tube was successfully updated.' }
         format.json { render :show, status: :ok, location: @tube }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,19 +53,20 @@ class TubesController < ApplicationController
     @tube.destroy
 
     respond_to do |format|
-      format.html { redirect_to tubes_url, notice: "Tube was successfully destroyed." }
+      format.html { redirect_to tubes_url, notice: 'Tube was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tube
-      @tube = Tube.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tube_params
-      params.require(:tube).permit(:seed_id, :seedbox_id, :position, :volume, :count)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tube
+    @tube = Tube.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tube_params
+    params.require(:tube).permit(:seed_id, :seedbox_id, :position, :volume, :count)
+  end
 end

@@ -27,3 +27,6 @@ Style/Documentation:
 
 Lint/EmptyBlock:
   Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
