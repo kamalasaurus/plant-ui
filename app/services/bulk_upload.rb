@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 class BulkUpload
@@ -31,21 +32,19 @@ class BulkUpload
   private
 
   def check(str)
-    if str == "NA" then nil else str end
+    str == 'NA' ? nil : str
   end
 
   def copy
-    name = "#{ DateTime.now.strftime '%Y_%m_%d' }_upload"
-    File.open(Rails.root.join('public', 'uploads', name), 'wb') do |file|
-      file.write(@file)
-    end
+    name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload"
+    File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 
-  def parse
+  def parse # rubocop:disable Metrics/AbcSize
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
-      seedbox, population, seed, bin = nil
+      seedbox, population, seed, tube = nil
       h = row.to_h
-      ActiveRecord::Base.transaction do 
+      ActiveRecord::Base.transaction do
         seedbox = Seedbox.find_or_create_by(
           name: h[:seedbox]
         )
@@ -66,7 +65,7 @@ class BulkUpload
           volume: h[:quantity_ml],
           count: check(h[:quantity_seeds])
         )
-      rescue Exception => e
+      rescue StandardError => e
         puts e
         puts row.to_h
         @errors.push([e, row])

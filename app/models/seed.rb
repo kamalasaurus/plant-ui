@@ -19,9 +19,9 @@ class Seed < ApplicationRecord
 
   def trunc_name
     species.split('-')
-      .map.with_index do |stem, i|
-        if i.zero? then stem[0,1] else stem[0,2] end
-      end
-      .join
+           .map.with_index do |stem, i|
+      i.zero? ? stem[0, 1] : stem[0, 2]
+    end
+           .join
   end
 end

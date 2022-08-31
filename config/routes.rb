@@ -3,9 +3,10 @@
 Rails.application.routes.draw do
   resources :tubes, :populations, :seedboxes, :seeds
 
-  resources :bulk_upload, only: [:index, :create]
+  resources :bulk_upload, only: %i[index create]
+  resources :generate_csv, only: %i[create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "root#index"
+  root 'root#index'
 end

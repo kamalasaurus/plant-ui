@@ -1,0 +1,1538 @@
+{
+  "title": "critical",
+  "selected_tubes": [
+    {
+      "id": "tube-9-12",
+      "item": "arabidopsis thaliana 9 ATH-ANGE-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-13",
+      "item": "arabidopsis thaliana 9 ATH-BELL-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-14",
+      "item": "arabidopsis thaliana 9 ATH-ANGE-B-6 compRgene critical"
+    },
+    {
+      "id": "tube-9-15",
+      "item": "arabidopsis thaliana 9 ATH-CAMA-D-8 compRgene critical"
+    },
+    {
+      "id": "tube-9-16",
+      "item": "arabidopsis thaliana 9 ATH-CAMA-D-10 compRgene critical"
+    },
+    {
+      "id": "tube-9-17",
+      "item": "arabidopsis thaliana 9 ATH-CAMA-D-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-18",
+      "item": "arabidopsis thaliana 9 ATH-CAMA-D-14 compRgene critical"
+    },
+    {
+      "id": "tube-9-19",
+      "item": "arabidopsis thaliana 9 ATH-CAMA-E-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-32",
+      "item": "arabidopsis thaliana 9 ATH-CASS-A-15 compRgene critical"
+    },
+    {
+      "id": "tube-9-33",
+      "item": "arabidopsis thaliana 9 ATH-CERN-A-15 compRgene critical"
+    },
+    {
+      "id": "tube-9-34",
+      "item": "arabidopsis thaliana 9 ATH-CERN-B-9 compRgene critical"
+    },
+    {
+      "id": "tube-9-35",
+      "item": "arabidopsis thaliana 9 ATH-CERN-B-13 compRgene critical"
+    },
+    {
+      "id": "tube-9-36",
+      "item": "arabidopsis thaliana 9 ATH-CERN-B-14 compRgene critical"
+    },
+    {
+      "id": "tube-9-37",
+      "item": "arabidopsis thaliana 9 ATH-CIER-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-38",
+      "item": "arabidopsis thaliana 9 ATH-CLAR-B-7 compRgene critical"
+    },
+    {
+      "id": "tube-9-39",
+      "item": "arabidopsis thaliana 9 ATH-CLAR-B-11 compRgene critical"
+    },
+    {
+      "id": "tube-9-52",
+      "item": "arabidopsis thaliana 9 ATH-COLO-B-5 compRgene critical"
+    },
+    {
+      "id": "tube-9-53",
+      "item": "arabidopsis thaliana 9 ATH-COLO-B-9 compRgene critical"
+    },
+    {
+      "id": "tube-9-54",
+      "item": "arabidopsis thaliana 9 ATH-COLO-B-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-56",
+      "item": "arabidopsis thaliana 9 ATH-GAIL-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-9-57",
+      "item": "arabidopsis thaliana 9 ATH-GAIL-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-9-58",
+      "item": "arabidopsis thaliana 9 ATH-GAIL-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-9-59",
+      "item": "arabidopsis thaliana 9 ATH-GAIL-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-9-72",
+      "item": "arabidopsis thaliana 9 ATH-GAIL-B-4 compRgene critical"
+    },
+    {
+      "id": "tube-9-75",
+      "item": "arabidopsis thaliana 9 ATH-LUNA-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-9-77",
+      "item": "arabidopsis thaliana 9 ATH-LUNA-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-78",
+      "item": "arabidopsis thaliana 9 ATH-MONT-B-10 compRgene critical"
+    },
+    {
+      "id": "tube-9-80",
+      "item": "arabidopsis thaliana 9 ATH-PUYM-B-11 compRgene critical"
+    },
+    {
+      "id": "tube-9-92",
+      "item": "arabidopsis thaliana 9 ATH-PUYM-B-12 compRgene critical"
+    },
+    {
+      "id": "tube-9-96",
+      "item": "arabidopsis thaliana 9 ATH-SIMO-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-9-99",
+      "item": "arabidopsis thaliana 9 ATH-VILLE-C-17 compRgene critical"
+    },
+    {
+      "id": "tube-10-15",
+      "item": "cardamine hirsuta 10 CHI-ANGE-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-10-16",
+      "item": "cardamine hirsuta 10 CHI-ANGE-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-10-41",
+      "item": "cardamine hirsuta 10 CHI-BARR-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-10-42",
+      "item": "cardamine hirsuta 10 CHI-BARR-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-10-51",
+      "item": "cardamine hirsuta 10 CHI-BELL-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-10-60",
+      "item": "cardamine hirsuta 10 CHI-BELL-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-10-72",
+      "item": "cardamine hirsuta 10 CHI-CAMA-D-3 compRgene critical"
+    },
+    {
+      "id": "tube-11-12",
+      "item": "cardamine hirsuta 11 CHI-CERN-B-3 compRgene critical"
+    },
+    {
+      "id": "tube-11-16",
+      "item": "cardamine hirsuta 11 CHI-CERN-B-8 compRgene critical"
+    },
+    {
+      "id": "tube-11-58",
+      "item": "cardamine hirsuta 11 CHI-COLO-B-2 compRgene critical"
+    },
+    {
+      "id": "tube-11-77",
+      "item": "cardamine hirsuta 11 CHI-ESPE-B-5 compRgene critical"
+    },
+    {
+      "id": "tube-11-82",
+      "item": "cardamine hirsuta 11 CHI-ESPE-B-10 compRgene critical"
+    },
+    {
+      "id": "tube-11-85",
+      "item": "cardamine hirsuta 11 CHI-FERR-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-11-93",
+      "item": "cardamine hirsuta 11 CHI-GAIL-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-11-95",
+      "item": "cardamine hirsuta 11 CHI-GAIL-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-11-99",
+      "item": "cardamine hirsuta 11 CHI-GAIL-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-11-100",
+      "item": "cardamine hirsuta 11 CHI-GAIL-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-12-20",
+      "item": "cardamine hirsuta 12 CHI-JUZET-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-12-28",
+      "item": "cardamine hirsuta 12 CHI-JUZET-C-2 compRgene critical"
+    },
+    {
+      "id": "tube-12-30",
+      "item": "cardamine hirsuta 12 CHI-JUZET-C-4 compRgene critical"
+    },
+    {
+      "id": "tube-12-32",
+      "item": "cardamine hirsuta 12 CHI-JUZET-C-6 compRgene critical"
+    },
+    {
+      "id": "tube-12-40",
+      "item": "cardamine hirsuta 12 CHI-LABAS-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-12-47",
+      "item": "cardamine hirsuta 12 CHI-LABAS-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-12-94",
+      "item": "cardamine hirsuta 12 CHI-LUNA-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-12-97",
+      "item": "cardamine hirsuta 12 CHI-LUNA-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-12-99",
+      "item": "cardamine hirsuta 12 CHI-LUNA-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-13-22",
+      "item": "cardamine hirsuta 13 CHI-MASS-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-13-24",
+      "item": "cardamine hirsuta 13 CHI-MASS-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-13-25",
+      "item": "cardamine hirsuta 13 CHI-MASS-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-13-28",
+      "item": "cardamine hirsuta 13 CHI-MASS-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-13-59",
+      "item": "cardamine hirsuta 13 CHI-MONTI-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-13-61",
+      "item": "cardamine hirsuta 13 CHI-MONTI-B-3 compRgene critical"
+    },
+    {
+      "id": "tube-13-63",
+      "item": "cardamine hirsuta 13 CHI-MONTI-B-6 compRgene critical"
+    },
+    {
+      "id": "tube-13-67",
+      "item": "cardamine hirsuta 13 CHI-MONTI-B-10 compRgene critical"
+    },
+    {
+      "id": "tube-13-69",
+      "item": "cardamine hirsuta 13 CHI-MONTI-D-3 compRgene critical"
+    },
+    {
+      "id": "tube-13-70",
+      "item": "cardamine hirsuta 13 CHI-MONTI-D-4 compRgene critical"
+    },
+    {
+      "id": "tube-13-74",
+      "item": "cardamine hirsuta 13 CHI-MONTI-D-9 compRgene critical"
+    },
+    {
+      "id": "tube-13-76",
+      "item": "cardamine hirsuta 13 CHI-NAZA-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-13-78",
+      "item": "cardamine hirsuta 13 CHI-NAZA-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-13-85",
+      "item": "cardamine hirsuta 13 CHI-NAZA-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-13-86",
+      "item": "cardamine hirsuta 13 CHI-PUYM-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-13-92",
+      "item": "cardamine hirsuta 13 CHI-PUYM-B-7 compRgene critical"
+    },
+    {
+      "id": "tube-13-94",
+      "item": "cardamine hirsuta 13 CHI-PUYM-B-9 compRgene critical"
+    },
+    {
+      "id": "tube-14-22",
+      "item": "cardamine hirsuta 14 CHI-SALV-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-14-28",
+      "item": "cardamine hirsuta 14 CHI-SALV-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-14-58",
+      "item": "cardamine hirsuta 14 CHI-VICT-B-5 compRgene critical"
+    },
+    {
+      "id": "tube-15-42",
+      "item": "cardamine hirsuta 15 CHI-CASS-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-15-43",
+      "item": "cardamine hirsuta 15 CHI-CERN-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-15-44",
+      "item": "cardamine hirsuta 15 CHI-CERN-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-15-45",
+      "item": "cardamine hirsuta 15 CHI-CERN-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-15-46",
+      "item": "cardamine hirsuta 15 CHI-CERN-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-15-47",
+      "item": "cardamine hirsuta 15 CHI-CERN-B-7 compRgene critical"
+    },
+    {
+      "id": "tube-15-48",
+      "item": "cardamine hirsuta 15 CHI-FERR-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-15-49",
+      "item": "cardamine hirsuta 15 CHI-GAIL-B-9 compRgene critical"
+    },
+    {
+      "id": "tube-15-61",
+      "item": "cardamine hirsuta 15 CHI-MONF-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-15-62",
+      "item": "cardamine hirsuta 15 CHI-RAYR-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-181-2",
+      "item": "draba verna 181 DVE-AMBR-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-181-4",
+      "item": "draba verna 181 DVE-AMBR-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-181-5",
+      "item": "draba verna 181 DVE-AMBR-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-181-6",
+      "item": "draba verna 181 DVE-AMBR-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-181-22",
+      "item": "draba verna 181 DVE-ANGE-B-6 compRgene critical"
+    },
+    {
+      "id": "tube-181-23",
+      "item": "draba verna 181 DVE-ANGE-B-7 compRgene critical"
+    },
+    {
+      "id": "tube-181-29",
+      "item": "draba verna 181 DVE-AUZE-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-181-30",
+      "item": "draba verna 181 DVE-AUZE-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-181-50",
+      "item": "draba verna 181 DVE-BARA-C-9 compRgene critical"
+    },
+    {
+      "id": "tube-181-54",
+      "item": "draba verna 181 DVE-BARR-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-181-57",
+      "item": "draba verna 181 DVE-BARR-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-181-59",
+      "item": "draba verna 181 DVE-BARR-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-181-62",
+      "item": "draba verna 181 DVE-BARR-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-181-63",
+      "item": "draba verna 181 DVE-BARR-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-181-64",
+      "item": "draba verna 181 DVE-BARR-A-13 compRgene critical"
+    },
+    {
+      "id": "tube-181-65",
+      "item": "draba verna 181 DVE-BARR-A-14 compRgene critical"
+    },
+    {
+      "id": "tube-181-66",
+      "item": "draba verna 181 DVE-BARR-A-15 compRgene critical"
+    },
+    {
+      "id": "tube-181-84",
+      "item": "draba verna 181 DVE-CAMA-D-3 compRgene critical"
+    },
+    {
+      "id": "tube-182-33",
+      "item": "draba verna 182 DVE-CINT-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-182-43",
+      "item": "draba verna 182 DVE-CINT-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-182-48",
+      "item": "draba verna 182 DVE-CINT-B-5 compRgene critical"
+    },
+    {
+      "id": "tube-182-74",
+      "item": "draba verna 182 DVE-DAMI-C-1 compRgene critical"
+    },
+    {
+      "id": "tube-182-90",
+      "item": "draba verna 182 DVE-ESPE-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-182-93",
+      "item": "draba verna 182 DVE-ESPE-B-4 compRgene critical"
+    },
+    {
+      "id": "tube-183-15",
+      "item": "draba verna 183 DVE-GAIL-B-3 compRgene critical"
+    },
+    {
+      "id": "tube-183-28",
+      "item": "draba verna 183 DVE-JUZE-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-183-34",
+      "item": "draba verna 183 DVE-JUZE-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-183-35",
+      "item": "draba verna 183 DVE-JUZE-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-183-64",
+      "item": "draba verna 183 DVE-LABAS-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-183-73",
+      "item": "draba verna 183 DVE-LANT-B-2 compRgene critical"
+    },
+    {
+      "id": "tube-183-87",
+      "item": "draba verna 183 DVE-LANT-D-6 compRgene critical"
+    },
+    {
+      "id": "tube-183-92",
+      "item": "draba verna 183 DVE-LANT-D-11 compRgene critical"
+    },
+    {
+      "id": "tube-183-93",
+      "item": "draba verna 183 DVE-LANT-D-12 compRgene critical"
+    },
+    {
+      "id": "tube-183-94",
+      "item": "draba verna 183 DVE-LANT-D-13 compRgene critical"
+    },
+    {
+      "id": "tube-183-96",
+      "item": "draba verna 183 DVE-LANT-D-15 compRgene critical"
+    },
+    {
+      "id": "tube-183-99",
+      "item": "draba verna 183 DVE-LAUZ-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-184-22",
+      "item": "draba verna 184 DVE-LUNA-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-184-29",
+      "item": "draba verna 184 DVE-LUNA-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-184-34",
+      "item": "draba verna 184 DVE-MARS-C-4 compRgene critical"
+    },
+    {
+      "id": "tube-184-41",
+      "item": "draba verna 184 DVE-MONB-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-184-43",
+      "item": "draba verna 184 DVE-MONB-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-184-45",
+      "item": "draba verna 184 DVE-MONB-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-184-49",
+      "item": "draba verna 184 DVE-MONB-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-184-54",
+      "item": "draba verna 184 DVE-MONF-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-184-71",
+      "item": "draba verna 184 DVE-MONTM-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-184-80",
+      "item": "draba verna 184 DVE-NAZA-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-184-87",
+      "item": "draba verna 184 DVE-NAZA-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-184-90",
+      "item": "draba verna 184 DVE-NAZA-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-184-91",
+      "item": "draba verna 184 DVE-NAZA-A-12 compRgene critical"
+    },
+    {
+      "id": "tube-184-93",
+      "item": "draba verna 184 DVE-PUYM-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-184-96",
+      "item": "draba verna 184 DVE-PUYM-B-4 compRgene critical"
+    },
+    {
+      "id": "tube-184-97",
+      "item": "draba verna 184 DVE-PUYM-B-5 compRgene critical"
+    },
+    {
+      "id": "tube-184-98",
+      "item": "draba verna 184 DVE-PUYM-B-6 compRgene critical"
+    },
+    {
+      "id": "tube-185-4",
+      "item": "draba verna 185 DVE-PUYM-B-12 compRgene critical"
+    },
+    {
+      "id": "tube-185-5",
+      "item": "draba verna 185 DVE-PUYM-B-13 compRgene critical"
+    },
+    {
+      "id": "tube-185-6",
+      "item": "draba verna 185 DVE-PUYM-B-14 compRgene critical"
+    },
+    {
+      "id": "tube-185-12",
+      "item": "draba verna 185 DVE-RAYR-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-185-29",
+      "item": "draba verna 185 DVE-SALV-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-185-40",
+      "item": "draba verna 185 DVE-SAUB-B-10 compRgene critical"
+    },
+    {
+      "id": "tube-185-51",
+      "item": "draba verna 185 DVE-THOM-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-185-54",
+      "item": "draba verna 185 DVE-THOM-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-185-55",
+      "item": "draba verna 185 DVE-THOM-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-185-59",
+      "item": "draba verna 185 DVE-THOM-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-185-66",
+      "item": "draba verna 185 DVE-VILLE-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-185-71",
+      "item": "draba verna 185 DVE-VILLE-A-10 compRgene critical"
+    },
+    {
+      "id": "tube-185-72",
+      "item": "draba verna 185 DVE-VILLE-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-185-74",
+      "item": "draba verna 185 DVE-VILLE-A-13 compRgene critical"
+    },
+    {
+      "id": "tube-185-82",
+      "item": "draba verna 185 DVE-VILLE-B-7 compRgene critical"
+    },
+    {
+      "id": "tube-185-84",
+      "item": "draba verna 185 DVE-VILLE-B-9 compRgene critical"
+    },
+    {
+      "id": "tube-185-88",
+      "item": "draba verna 185 DVE-VILLE-B-13 compRgene critical"
+    },
+    {
+      "id": "tube-185-93",
+      "item": "draba verna 185 DVE-VILLE-C-4 compRgene critical"
+    },
+    {
+      "id": "tube-186-6",
+      "item": "draba verna 186 DVE-ANGE-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-186-8",
+      "item": "draba verna 186 DVE-ANGE-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-186-9",
+      "item": "draba verna 186 DVE-ANGE-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-186-14",
+      "item": "draba verna 186 DVE-ANGE-B-3 compRgene critical"
+    },
+    {
+      "id": "tube-186-15",
+      "item": "draba verna 186 DVE-ANGE-B-4 compRgene critical"
+    },
+    {
+      "id": "tube-186-20",
+      "item": "draba verna 186 DVE-AUZE-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-186-21",
+      "item": "draba verna 186 DVE-BARA-C-1 compRgene critical"
+    },
+    {
+      "id": "tube-186-22",
+      "item": "draba verna 186 DVE-BARA-C-2 compRgene critical"
+    },
+    {
+      "id": "tube-186-23",
+      "item": "draba verna 186 DVE-BARA-C-3 compRgene critical"
+    },
+    {
+      "id": "tube-186-24",
+      "item": "draba verna 186 DVE-BARA-C-4 compRgene critical"
+    },
+    {
+      "id": "tube-186-26",
+      "item": "draba verna 186 DVE-BARA-C-6 compRgene critical"
+    },
+    {
+      "id": "tube-186-29",
+      "item": "draba verna 186 DVE-BARA-C-10 compRgene critical"
+    },
+    {
+      "id": "tube-186-31",
+      "item": "draba verna 186 DVE-BARR-A-5 compRgene critical"
+    },
+    {
+      "id": "tube-186-32",
+      "item": "draba verna 186 DVE-BARR-A-7 compRgene critical"
+    },
+    {
+      "id": "tube-186-33",
+      "item": "draba verna 186 DVE-BARR-A-9 compRgene critical"
+    },
+    {
+      "id": "tube-186-56",
+      "item": "draba verna 186 DVE-CINT-A-11 compRgene critical"
+    },
+    {
+      "id": "tube-186-64",
+      "item": "draba verna 186 DVE-CLAR-C-8 compRgene critical"
+    },
+    {
+      "id": "tube-186-89",
+      "item": "draba verna 186 DVE-LABAS-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-186-98",
+      "item": "draba verna 186 DVE-LECT-A-8 compRgene critical"
+    },
+    {
+      "id": "tube-187-21",
+      "item": "draba verna 187 DVE-SALV-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-187-31",
+      "item": "draba verna 187 DVE-SIMO-A-2 compRgene critical"
+    },
+    {
+      "id": "tube-187-32",
+      "item": "draba verna 187 DVE-VILLE-A-1 compRgene critical"
+    },
+    {
+      "id": "tube-187-33",
+      "item": "draba verna 187 DVE-VILLE-A-3 compRgene critical"
+    },
+    {
+      "id": "tube-187-34",
+      "item": "draba verna 187 DVE-VILLE-A-4 compRgene critical"
+    },
+    {
+      "id": "tube-187-35",
+      "item": "draba verna 187 DVE-VILLE-A-6 compRgene critical"
+    },
+    {
+      "id": "tube-187-37",
+      "item": "draba verna 187 DVE-VILLE-B-1 compRgene critical"
+    },
+    {
+      "id": "tube-187-38",
+      "item": "draba verna 187 DVE-VILLE-B-2 compRgene critical"
+    },
+    {
+      "id": "tube-187-39",
+      "item": "draba verna 187 DVE-VILLE-B-6 compRgene critical"
+    },
+    {
+      "id": "tube-187-40",
+      "item": "draba verna 187 DVE-VILLE-B-10 compRgene critical"
+    },
+    {
+      "id": "tube-187-41",
+      "item": "draba verna 187 DVE-VILLE-B-14 compRgene critical"
+    },
+    {
+      "id": "tube-187-43",
+      "item": "draba verna 187 DVE-VILLE-C-2 compRgene critical"
+    },
+    {
+      "id": "tube-187-44",
+      "item": "draba verna 187 DVE-VILLE-C-3 compRgene critical"
+    },
+    {
+      "id": "tube-187-45",
+      "item": "draba verna 187 DVE-VILLE-C-6 compRgene critical"
+    }
+  ],
+  "generate_csv": {
+    "title": "critical",
+    "selected_tubes": [
+      {
+        "id": "tube-9-12",
+        "item": "arabidopsis thaliana 9 ATH-ANGE-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-13",
+        "item": "arabidopsis thaliana 9 ATH-BELL-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-14",
+        "item": "arabidopsis thaliana 9 ATH-ANGE-B-6 compRgene critical"
+      },
+      {
+        "id": "tube-9-15",
+        "item": "arabidopsis thaliana 9 ATH-CAMA-D-8 compRgene critical"
+      },
+      {
+        "id": "tube-9-16",
+        "item": "arabidopsis thaliana 9 ATH-CAMA-D-10 compRgene critical"
+      },
+      {
+        "id": "tube-9-17",
+        "item": "arabidopsis thaliana 9 ATH-CAMA-D-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-18",
+        "item": "arabidopsis thaliana 9 ATH-CAMA-D-14 compRgene critical"
+      },
+      {
+        "id": "tube-9-19",
+        "item": "arabidopsis thaliana 9 ATH-CAMA-E-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-32",
+        "item": "arabidopsis thaliana 9 ATH-CASS-A-15 compRgene critical"
+      },
+      {
+        "id": "tube-9-33",
+        "item": "arabidopsis thaliana 9 ATH-CERN-A-15 compRgene critical"
+      },
+      {
+        "id": "tube-9-34",
+        "item": "arabidopsis thaliana 9 ATH-CERN-B-9 compRgene critical"
+      },
+      {
+        "id": "tube-9-35",
+        "item": "arabidopsis thaliana 9 ATH-CERN-B-13 compRgene critical"
+      },
+      {
+        "id": "tube-9-36",
+        "item": "arabidopsis thaliana 9 ATH-CERN-B-14 compRgene critical"
+      },
+      {
+        "id": "tube-9-37",
+        "item": "arabidopsis thaliana 9 ATH-CIER-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-38",
+        "item": "arabidopsis thaliana 9 ATH-CLAR-B-7 compRgene critical"
+      },
+      {
+        "id": "tube-9-39",
+        "item": "arabidopsis thaliana 9 ATH-CLAR-B-11 compRgene critical"
+      },
+      {
+        "id": "tube-9-52",
+        "item": "arabidopsis thaliana 9 ATH-COLO-B-5 compRgene critical"
+      },
+      {
+        "id": "tube-9-53",
+        "item": "arabidopsis thaliana 9 ATH-COLO-B-9 compRgene critical"
+      },
+      {
+        "id": "tube-9-54",
+        "item": "arabidopsis thaliana 9 ATH-COLO-B-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-56",
+        "item": "arabidopsis thaliana 9 ATH-GAIL-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-9-57",
+        "item": "arabidopsis thaliana 9 ATH-GAIL-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-9-58",
+        "item": "arabidopsis thaliana 9 ATH-GAIL-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-9-59",
+        "item": "arabidopsis thaliana 9 ATH-GAIL-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-9-72",
+        "item": "arabidopsis thaliana 9 ATH-GAIL-B-4 compRgene critical"
+      },
+      {
+        "id": "tube-9-75",
+        "item": "arabidopsis thaliana 9 ATH-LUNA-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-9-77",
+        "item": "arabidopsis thaliana 9 ATH-LUNA-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-78",
+        "item": "arabidopsis thaliana 9 ATH-MONT-B-10 compRgene critical"
+      },
+      {
+        "id": "tube-9-80",
+        "item": "arabidopsis thaliana 9 ATH-PUYM-B-11 compRgene critical"
+      },
+      {
+        "id": "tube-9-92",
+        "item": "arabidopsis thaliana 9 ATH-PUYM-B-12 compRgene critical"
+      },
+      {
+        "id": "tube-9-96",
+        "item": "arabidopsis thaliana 9 ATH-SIMO-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-9-99",
+        "item": "arabidopsis thaliana 9 ATH-VILLE-C-17 compRgene critical"
+      },
+      {
+        "id": "tube-10-15",
+        "item": "cardamine hirsuta 10 CHI-ANGE-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-10-16",
+        "item": "cardamine hirsuta 10 CHI-ANGE-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-10-41",
+        "item": "cardamine hirsuta 10 CHI-BARR-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-10-42",
+        "item": "cardamine hirsuta 10 CHI-BARR-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-10-51",
+        "item": "cardamine hirsuta 10 CHI-BELL-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-10-60",
+        "item": "cardamine hirsuta 10 CHI-BELL-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-10-72",
+        "item": "cardamine hirsuta 10 CHI-CAMA-D-3 compRgene critical"
+      },
+      {
+        "id": "tube-11-12",
+        "item": "cardamine hirsuta 11 CHI-CERN-B-3 compRgene critical"
+      },
+      {
+        "id": "tube-11-16",
+        "item": "cardamine hirsuta 11 CHI-CERN-B-8 compRgene critical"
+      },
+      {
+        "id": "tube-11-58",
+        "item": "cardamine hirsuta 11 CHI-COLO-B-2 compRgene critical"
+      },
+      {
+        "id": "tube-11-77",
+        "item": "cardamine hirsuta 11 CHI-ESPE-B-5 compRgene critical"
+      },
+      {
+        "id": "tube-11-82",
+        "item": "cardamine hirsuta 11 CHI-ESPE-B-10 compRgene critical"
+      },
+      {
+        "id": "tube-11-85",
+        "item": "cardamine hirsuta 11 CHI-FERR-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-11-93",
+        "item": "cardamine hirsuta 11 CHI-GAIL-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-11-95",
+        "item": "cardamine hirsuta 11 CHI-GAIL-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-11-99",
+        "item": "cardamine hirsuta 11 CHI-GAIL-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-11-100",
+        "item": "cardamine hirsuta 11 CHI-GAIL-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-12-20",
+        "item": "cardamine hirsuta 12 CHI-JUZET-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-12-28",
+        "item": "cardamine hirsuta 12 CHI-JUZET-C-2 compRgene critical"
+      },
+      {
+        "id": "tube-12-30",
+        "item": "cardamine hirsuta 12 CHI-JUZET-C-4 compRgene critical"
+      },
+      {
+        "id": "tube-12-32",
+        "item": "cardamine hirsuta 12 CHI-JUZET-C-6 compRgene critical"
+      },
+      {
+        "id": "tube-12-40",
+        "item": "cardamine hirsuta 12 CHI-LABAS-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-12-47",
+        "item": "cardamine hirsuta 12 CHI-LABAS-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-12-94",
+        "item": "cardamine hirsuta 12 CHI-LUNA-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-12-97",
+        "item": "cardamine hirsuta 12 CHI-LUNA-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-12-99",
+        "item": "cardamine hirsuta 12 CHI-LUNA-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-13-22",
+        "item": "cardamine hirsuta 13 CHI-MASS-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-13-24",
+        "item": "cardamine hirsuta 13 CHI-MASS-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-13-25",
+        "item": "cardamine hirsuta 13 CHI-MASS-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-13-28",
+        "item": "cardamine hirsuta 13 CHI-MASS-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-13-59",
+        "item": "cardamine hirsuta 13 CHI-MONTI-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-13-61",
+        "item": "cardamine hirsuta 13 CHI-MONTI-B-3 compRgene critical"
+      },
+      {
+        "id": "tube-13-63",
+        "item": "cardamine hirsuta 13 CHI-MONTI-B-6 compRgene critical"
+      },
+      {
+        "id": "tube-13-67",
+        "item": "cardamine hirsuta 13 CHI-MONTI-B-10 compRgene critical"
+      },
+      {
+        "id": "tube-13-69",
+        "item": "cardamine hirsuta 13 CHI-MONTI-D-3 compRgene critical"
+      },
+      {
+        "id": "tube-13-70",
+        "item": "cardamine hirsuta 13 CHI-MONTI-D-4 compRgene critical"
+      },
+      {
+        "id": "tube-13-74",
+        "item": "cardamine hirsuta 13 CHI-MONTI-D-9 compRgene critical"
+      },
+      {
+        "id": "tube-13-76",
+        "item": "cardamine hirsuta 13 CHI-NAZA-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-13-78",
+        "item": "cardamine hirsuta 13 CHI-NAZA-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-13-85",
+        "item": "cardamine hirsuta 13 CHI-NAZA-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-13-86",
+        "item": "cardamine hirsuta 13 CHI-PUYM-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-13-92",
+        "item": "cardamine hirsuta 13 CHI-PUYM-B-7 compRgene critical"
+      },
+      {
+        "id": "tube-13-94",
+        "item": "cardamine hirsuta 13 CHI-PUYM-B-9 compRgene critical"
+      },
+      {
+        "id": "tube-14-22",
+        "item": "cardamine hirsuta 14 CHI-SALV-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-14-28",
+        "item": "cardamine hirsuta 14 CHI-SALV-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-14-58",
+        "item": "cardamine hirsuta 14 CHI-VICT-B-5 compRgene critical"
+      },
+      {
+        "id": "tube-15-42",
+        "item": "cardamine hirsuta 15 CHI-CASS-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-15-43",
+        "item": "cardamine hirsuta 15 CHI-CERN-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-15-44",
+        "item": "cardamine hirsuta 15 CHI-CERN-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-15-45",
+        "item": "cardamine hirsuta 15 CHI-CERN-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-15-46",
+        "item": "cardamine hirsuta 15 CHI-CERN-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-15-47",
+        "item": "cardamine hirsuta 15 CHI-CERN-B-7 compRgene critical"
+      },
+      {
+        "id": "tube-15-48",
+        "item": "cardamine hirsuta 15 CHI-FERR-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-15-49",
+        "item": "cardamine hirsuta 15 CHI-GAIL-B-9 compRgene critical"
+      },
+      {
+        "id": "tube-15-61",
+        "item": "cardamine hirsuta 15 CHI-MONF-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-15-62",
+        "item": "cardamine hirsuta 15 CHI-RAYR-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-181-2",
+        "item": "draba verna 181 DVE-AMBR-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-181-4",
+        "item": "draba verna 181 DVE-AMBR-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-181-5",
+        "item": "draba verna 181 DVE-AMBR-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-181-6",
+        "item": "draba verna 181 DVE-AMBR-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-181-22",
+        "item": "draba verna 181 DVE-ANGE-B-6 compRgene critical"
+      },
+      {
+        "id": "tube-181-23",
+        "item": "draba verna 181 DVE-ANGE-B-7 compRgene critical"
+      },
+      {
+        "id": "tube-181-29",
+        "item": "draba verna 181 DVE-AUZE-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-181-30",
+        "item": "draba verna 181 DVE-AUZE-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-181-50",
+        "item": "draba verna 181 DVE-BARA-C-9 compRgene critical"
+      },
+      {
+        "id": "tube-181-54",
+        "item": "draba verna 181 DVE-BARR-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-181-57",
+        "item": "draba verna 181 DVE-BARR-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-181-59",
+        "item": "draba verna 181 DVE-BARR-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-181-62",
+        "item": "draba verna 181 DVE-BARR-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-181-63",
+        "item": "draba verna 181 DVE-BARR-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-181-64",
+        "item": "draba verna 181 DVE-BARR-A-13 compRgene critical"
+      },
+      {
+        "id": "tube-181-65",
+        "item": "draba verna 181 DVE-BARR-A-14 compRgene critical"
+      },
+      {
+        "id": "tube-181-66",
+        "item": "draba verna 181 DVE-BARR-A-15 compRgene critical"
+      },
+      {
+        "id": "tube-181-84",
+        "item": "draba verna 181 DVE-CAMA-D-3 compRgene critical"
+      },
+      {
+        "id": "tube-182-33",
+        "item": "draba verna 182 DVE-CINT-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-182-43",
+        "item": "draba verna 182 DVE-CINT-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-182-48",
+        "item": "draba verna 182 DVE-CINT-B-5 compRgene critical"
+      },
+      {
+        "id": "tube-182-74",
+        "item": "draba verna 182 DVE-DAMI-C-1 compRgene critical"
+      },
+      {
+        "id": "tube-182-90",
+        "item": "draba verna 182 DVE-ESPE-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-182-93",
+        "item": "draba verna 182 DVE-ESPE-B-4 compRgene critical"
+      },
+      {
+        "id": "tube-183-15",
+        "item": "draba verna 183 DVE-GAIL-B-3 compRgene critical"
+      },
+      {
+        "id": "tube-183-28",
+        "item": "draba verna 183 DVE-JUZE-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-183-34",
+        "item": "draba verna 183 DVE-JUZE-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-183-35",
+        "item": "draba verna 183 DVE-JUZE-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-183-64",
+        "item": "draba verna 183 DVE-LABAS-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-183-73",
+        "item": "draba verna 183 DVE-LANT-B-2 compRgene critical"
+      },
+      {
+        "id": "tube-183-87",
+        "item": "draba verna 183 DVE-LANT-D-6 compRgene critical"
+      },
+      {
+        "id": "tube-183-92",
+        "item": "draba verna 183 DVE-LANT-D-11 compRgene critical"
+      },
+      {
+        "id": "tube-183-93",
+        "item": "draba verna 183 DVE-LANT-D-12 compRgene critical"
+      },
+      {
+        "id": "tube-183-94",
+        "item": "draba verna 183 DVE-LANT-D-13 compRgene critical"
+      },
+      {
+        "id": "tube-183-96",
+        "item": "draba verna 183 DVE-LANT-D-15 compRgene critical"
+      },
+      {
+        "id": "tube-183-99",
+        "item": "draba verna 183 DVE-LAUZ-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-184-22",
+        "item": "draba verna 184 DVE-LUNA-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-184-29",
+        "item": "draba verna 184 DVE-LUNA-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-184-34",
+        "item": "draba verna 184 DVE-MARS-C-4 compRgene critical"
+      },
+      {
+        "id": "tube-184-41",
+        "item": "draba verna 184 DVE-MONB-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-184-43",
+        "item": "draba verna 184 DVE-MONB-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-184-45",
+        "item": "draba verna 184 DVE-MONB-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-184-49",
+        "item": "draba verna 184 DVE-MONB-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-184-54",
+        "item": "draba verna 184 DVE-MONF-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-184-71",
+        "item": "draba verna 184 DVE-MONTM-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-184-80",
+        "item": "draba verna 184 DVE-NAZA-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-184-87",
+        "item": "draba verna 184 DVE-NAZA-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-184-90",
+        "item": "draba verna 184 DVE-NAZA-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-184-91",
+        "item": "draba verna 184 DVE-NAZA-A-12 compRgene critical"
+      },
+      {
+        "id": "tube-184-93",
+        "item": "draba verna 184 DVE-PUYM-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-184-96",
+        "item": "draba verna 184 DVE-PUYM-B-4 compRgene critical"
+      },
+      {
+        "id": "tube-184-97",
+        "item": "draba verna 184 DVE-PUYM-B-5 compRgene critical"
+      },
+      {
+        "id": "tube-184-98",
+        "item": "draba verna 184 DVE-PUYM-B-6 compRgene critical"
+      },
+      {
+        "id": "tube-185-4",
+        "item": "draba verna 185 DVE-PUYM-B-12 compRgene critical"
+      },
+      {
+        "id": "tube-185-5",
+        "item": "draba verna 185 DVE-PUYM-B-13 compRgene critical"
+      },
+      {
+        "id": "tube-185-6",
+        "item": "draba verna 185 DVE-PUYM-B-14 compRgene critical"
+      },
+      {
+        "id": "tube-185-12",
+        "item": "draba verna 185 DVE-RAYR-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-185-29",
+        "item": "draba verna 185 DVE-SALV-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-185-40",
+        "item": "draba verna 185 DVE-SAUB-B-10 compRgene critical"
+      },
+      {
+        "id": "tube-185-51",
+        "item": "draba verna 185 DVE-THOM-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-185-54",
+        "item": "draba verna 185 DVE-THOM-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-185-55",
+        "item": "draba verna 185 DVE-THOM-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-185-59",
+        "item": "draba verna 185 DVE-THOM-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-185-66",
+        "item": "draba verna 185 DVE-VILLE-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-185-71",
+        "item": "draba verna 185 DVE-VILLE-A-10 compRgene critical"
+      },
+      {
+        "id": "tube-185-72",
+        "item": "draba verna 185 DVE-VILLE-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-185-74",
+        "item": "draba verna 185 DVE-VILLE-A-13 compRgene critical"
+      },
+      {
+        "id": "tube-185-82",
+        "item": "draba verna 185 DVE-VILLE-B-7 compRgene critical"
+      },
+      {
+        "id": "tube-185-84",
+        "item": "draba verna 185 DVE-VILLE-B-9 compRgene critical"
+      },
+      {
+        "id": "tube-185-88",
+        "item": "draba verna 185 DVE-VILLE-B-13 compRgene critical"
+      },
+      {
+        "id": "tube-185-93",
+        "item": "draba verna 185 DVE-VILLE-C-4 compRgene critical"
+      },
+      {
+        "id": "tube-186-6",
+        "item": "draba verna 186 DVE-ANGE-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-186-8",
+        "item": "draba verna 186 DVE-ANGE-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-186-9",
+        "item": "draba verna 186 DVE-ANGE-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-186-14",
+        "item": "draba verna 186 DVE-ANGE-B-3 compRgene critical"
+      },
+      {
+        "id": "tube-186-15",
+        "item": "draba verna 186 DVE-ANGE-B-4 compRgene critical"
+      },
+      {
+        "id": "tube-186-20",
+        "item": "draba verna 186 DVE-AUZE-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-186-21",
+        "item": "draba verna 186 DVE-BARA-C-1 compRgene critical"
+      },
+      {
+        "id": "tube-186-22",
+        "item": "draba verna 186 DVE-BARA-C-2 compRgene critical"
+      },
+      {
+        "id": "tube-186-23",
+        "item": "draba verna 186 DVE-BARA-C-3 compRgene critical"
+      },
+      {
+        "id": "tube-186-24",
+        "item": "draba verna 186 DVE-BARA-C-4 compRgene critical"
+      },
+      {
+        "id": "tube-186-26",
+        "item": "draba verna 186 DVE-BARA-C-6 compRgene critical"
+      },
+      {
+        "id": "tube-186-29",
+        "item": "draba verna 186 DVE-BARA-C-10 compRgene critical"
+      },
+      {
+        "id": "tube-186-31",
+        "item": "draba verna 186 DVE-BARR-A-5 compRgene critical"
+      },
+      {
+        "id": "tube-186-32",
+        "item": "draba verna 186 DVE-BARR-A-7 compRgene critical"
+      },
+      {
+        "id": "tube-186-33",
+        "item": "draba verna 186 DVE-BARR-A-9 compRgene critical"
+      },
+      {
+        "id": "tube-186-56",
+        "item": "draba verna 186 DVE-CINT-A-11 compRgene critical"
+      },
+      {
+        "id": "tube-186-64",
+        "item": "draba verna 186 DVE-CLAR-C-8 compRgene critical"
+      },
+      {
+        "id": "tube-186-89",
+        "item": "draba verna 186 DVE-LABAS-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-186-98",
+        "item": "draba verna 186 DVE-LECT-A-8 compRgene critical"
+      },
+      {
+        "id": "tube-187-21",
+        "item": "draba verna 187 DVE-SALV-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-187-31",
+        "item": "draba verna 187 DVE-SIMO-A-2 compRgene critical"
+      },
+      {
+        "id": "tube-187-32",
+        "item": "draba verna 187 DVE-VILLE-A-1 compRgene critical"
+      },
+      {
+        "id": "tube-187-33",
+        "item": "draba verna 187 DVE-VILLE-A-3 compRgene critical"
+      },
+      {
+        "id": "tube-187-34",
+        "item": "draba verna 187 DVE-VILLE-A-4 compRgene critical"
+      },
+      {
+        "id": "tube-187-35",
+        "item": "draba verna 187 DVE-VILLE-A-6 compRgene critical"
+      },
+      {
+        "id": "tube-187-37",
+        "item": "draba verna 187 DVE-VILLE-B-1 compRgene critical"
+      },
+      {
+        "id": "tube-187-38",
+        "item": "draba verna 187 DVE-VILLE-B-2 compRgene critical"
+      },
+      {
+        "id": "tube-187-39",
+        "item": "draba verna 187 DVE-VILLE-B-6 compRgene critical"
+      },
+      {
+        "id": "tube-187-40",
+        "item": "draba verna 187 DVE-VILLE-B-10 compRgene critical"
+      },
+      {
+        "id": "tube-187-41",
+        "item": "draba verna 187 DVE-VILLE-B-14 compRgene critical"
+      },
+      {
+        "id": "tube-187-43",
+        "item": "draba verna 187 DVE-VILLE-C-2 compRgene critical"
+      },
+      {
+        "id": "tube-187-44",
+        "item": "draba verna 187 DVE-VILLE-C-3 compRgene critical"
+      },
+      {
+        "id": "tube-187-45",
+        "item": "draba verna 187 DVE-VILLE-C-6 compRgene critical"
+      }
+    ]
+  }
+}

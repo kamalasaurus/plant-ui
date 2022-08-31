@@ -75,6 +75,10 @@ class SearchBar extends HTMLElement {
         p.classList.add('hidden')
     })
   }
+
+  value() {
+    
+  }
 }
 
 window.customElements.define('search-bar', SearchBar)
