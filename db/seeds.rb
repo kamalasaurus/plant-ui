@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-binding.pry
+most_recent_csv = Dir.new(Rails.root.join('lib','assets')).entries.select { |s| /\d/ =~ s }.sort.pop
 
-BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', '2022_08_23_all_seed_tubes.csv')))
+BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', most_recent_csv)))
 puts 'all data seeded!'
