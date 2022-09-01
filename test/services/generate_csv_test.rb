@@ -4,19 +4,15 @@ require 'test_helper'
 
 class GenerateCsvTest < ActiveSupport::TestCase
   setup do
-    @json = JSON.parse(file_fixture('selected_tubes.json').read)
-    binding.pry
+    @json = JSON.parse(file_fixture('critical_seed_tubes.json').read)
+    @tubes = @json['selected_tubes']
   end
 
-  test 'it should upload csv to db' do
-    # upload = BulkUpload.parse(@csv)
-    # assert_equal Seed.all.count, 112
-    # assert_equal Seedbox.all.count, 28
-    # assert_equal Population.all.count, 61
-    # assert_equal Tube.all.count, 113
-    # assert_empty upload.errors
-
-    # file = GenerateCsv.parse(@json)
-    # assert_equal ...
+  test 'it should generate a csv string' do
+    csv = GenerateCsv.generate(@tubes)
+    assert_instance_of String, csv.file
+    assert_equal csv.file.split(/\n/).count, @tubes.length + 1
+    assert_equal csv.file.split(/\n/).first, "name,seedbox,position,population,accession"
+    assert_empty csv.errors
   end
 end
