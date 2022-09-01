@@ -40,31 +40,62 @@ class BulkUpload
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 
+  def create_or_update_seedbox(h)
+    Seedbox.upsert({
+      name: h[:seedbox]
+    }, unique_by: :name)
+    Seedbox.find_by(name: h[:seedbox])
+  end
+
+  def create_or_update_population(h)
+    Population.upsert({
+      name: h[:popid1],
+      subpopulation: h[:popid2]
+    }, unique_by: %i[name subpopulation])
+    Population.find_by(name: h[:popid1], subpopulation: h[:popid2])
+  end
+
+  def create_or_update_seed(h, population)
+    Seed.upsert({
+      species: SPECIES[h[:species]],
+      generation: h[:generation],
+      accession: h[:accid],
+      population_id: population.id
+    }, unique_by: :uniqueness_index)
+    Seed.find_by(
+      species: SPECIES[h[:species]],
+      generation: h[:generation],
+      accession: h[:accid],
+      population_id: population.id
+    )
+  end
+
+  def create_or_update_tube(h, seed, seedbox)
+    Tube.upsert({
+      seed_id: seed.id,
+      seedbox_id: seedbox.id,
+      position: h[:position],
+      volume: h[:quantity_ml],
+      count: check(h[:quantity_seeds])
+    }, unique_by: %i[seedbox_id position])
+    Tube.find_by(
+      seed_id: seed.id,
+      seedbox_id: seedbox.id,
+      position: h[:position],
+      volume: h[:quantity_ml],
+      count: check(h[:quantity_seeds])
+    )
+  end
+
   def parse # rubocop:disable Metrics/AbcSize
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
       seedbox, population, seed, tube = nil
       h = row.to_h
       ActiveRecord::Base.transaction do
-        seedbox = Seedbox.find_or_create_by(
-          name: h[:seedbox]
-        )
-        population = Population.find_or_create_by(
-          name: h[:popid1],
-          subpopulation: h[:popid2]
-        )
-        seed = Seed.find_or_create_by(
-          species: SPECIES[h[:species]],
-          generation: h[:generation],
-          accession: h[:accid],
-          population_id: population.id
-        )
-        tube = Tube.find_or_create_by(
-          seed_id: seed.id,
-          seedbox_id: seedbox.id,
-          position: h[:position],
-          volume: h[:quantity_ml],
-          count: check(h[:quantity_seeds])
-        )
+        seedbox = create_or_update_seedbox(h)
+        population = create_or_update_population(h)
+        seed = create_or_update_seed(h, population)
+        tube = create_or_update_tube(h, seed, seedbox)
       rescue StandardError => e
         puts e
         puts row.to_h
