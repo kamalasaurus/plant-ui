@@ -12,13 +12,15 @@ export default function generateCsv(search_bar) {
     },
     body: body
   })
-  .then(response => response.blob())
-  .then(blob => {
+  .then(response => {
+    return Promise.all([getFilename(response), response.blob()])
+  })
+  .then(([filename, blob]) => {
     const url = window.URL.createObjectURL(blob, {type: 'text/csv'})
     const a = document.createElement('a')
     a.style.display = 'none'
     a.href = url
-    a.download = getFilename(title)
+    a.download = filename
     document.body.appendChild(a)
     a.click()
     a.remove()
@@ -32,10 +34,8 @@ function getCSRFToken() {
   return csrfToken ? csrfToken.content : null
 }
 
-function getFilename(title) {
-  const [month, day, year] = (new Date).toLocaleDateString().split('/')
-  const suffix = title.replace(/' '/g, '_')
-  return `${[year, month.padStart(2, '0'), day.padStart(2, '0'), suffix].join('_')}.csv`
+function getFilename(response) {
+  return response.headers.get('Content-Disposition').match(/'(\d.*$)/).pop()
 }
 
 function getBody(title) {
