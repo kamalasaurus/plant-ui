@@ -87,12 +87,14 @@ To extract the current state of the database, click the `Generate Csv` button on
 Expects the same csv schema as `db:seed`, which is:
 
 | seedbox | popid1 | popid2 | species | generation | accid | position | quantity_ml | quantity_seeds |
+| --- |
 
 ### Generate Csv
 
 The schema here is different from the expectations of Bulk Upload.  It is:
 
 | name | seedbox | position | population | accession |
+| --- |
 
 It may be sensible to unify the schemas, or create another CSV generation task that will pull down the current state in the expected schema for easy reset.
 
