@@ -32,7 +32,7 @@ I recommend using a version manager to install Ruby to avoid requests for `sudo`
 Asdf requires the most configuration, so I would not recommend that if you're just getting started.  For the remainder of this section, I will assume you're using RVM--navigate to the RVM webpage and follow the first two commands (install gpg key, install rvm--not the version with rails included).  We are not using the command that installs stable rails on the assumption that between the writing of this document and the running of the script, the current stable version will have elapsed.  After doing so, complete the following command:
 
 ```
-rvm install 3.1.0
+rvm install 3.1.2
 ```
 
 To verify the installation was successful, you can run:
@@ -41,7 +41,7 @@ To verify the installation was successful, you can run:
 ruby --version
 ```
 
-and expecto to see `3.1.0p0`
+and expecto to see `3.1.2p20`
 
 
 ```
