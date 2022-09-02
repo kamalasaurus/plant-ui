@@ -16,10 +16,6 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -85,6 +81,4 @@ test:
 production:
   <<: *default
   database: plant_ui_production
-  username: plant_ui
-  password: <%= ENV["PLANT_UI_DATABASE_PASSWORD"] %>
   url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>

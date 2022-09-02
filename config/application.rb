@@ -13,9 +13,11 @@ module PlantUi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.log_level = :debug
-    config.log_tags  = [:subdomain, :uuid]
-    config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    if Rails.env.production?
+      config.log_level = :debug
+      config.log_tags  = [:subdomain, :uuid]
+      config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    end
 
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
     # Configuration for the application, engines, and railties goes here.
