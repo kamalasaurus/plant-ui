@@ -5,11 +5,13 @@ services:
     image: postgres:14.4
     environment:
       POSTGRES_USER: plant-ui
-      POSTGRES_PASSWORD: Bergelson999
+      POSTGRES_PASSWORD: "${PLANT_UI_DATABASE_PASSWORD}"
     ports: 
       - '5432:5432'
     volumes:
       - plant-ui-postgres:/var/lib/postgresql/data
+    env_file:
+      - .env
 
   redis:
     image: redis:7.0

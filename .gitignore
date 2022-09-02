@@ -7,7 +7,7 @@
 .env
 .envrc
 .byebug_history
-public/uploads/*
+public/uploads/*.csv
 
 # Ignore bundler config.
 /.bundle

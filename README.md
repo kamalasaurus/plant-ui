@@ -17,6 +17,8 @@ docker run ???
 
 And all the dependencies and development requirements will be good to go.
 
+The general reasoning for the `docker-compose` arrangement can be found at this informative blogpost: [Dockerizing a Ruby on Rails Application](https://semaphoreci.com/community/tutorials/dockerizing-a-ruby-on-rails-application)
+
 ## Configuration
 
 Feel free to use [direnv](https://direnv.net) to manage your environment on a per-project basis.  In lieu of that you may add the following to your `~/.zshrc` or `~/.bashrc` depending on which shell you're using:
