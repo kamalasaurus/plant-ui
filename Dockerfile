@@ -14,4 +14,4 @@ RUN bundle _2.3.3_ install
 RUN bundle config --global frozen 1
 RUN bundle install
 
-CMD ["rails server &"] 
+CMD rails server -p 3000 -b '0.0.0.0' &
