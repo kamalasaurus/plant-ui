@@ -20,11 +20,11 @@ services:
     volumes:
       - plant-ui-redis:/var/lib/redis/data
 
-  plant-ui:
+  app:
     build:
       context: .
     volumes:
-      - ./plant-ui:/opt/app
+      - ./plant-ui:/opt/plant-ui
     links:
       - postgres
       - redis
@@ -38,9 +38,9 @@ services:
       context: .
       dockerfile: ./Dockerfile.nginx
     links:
-      - plant-ui
+      - app
     ports:
-      - '8020:8020'
+      - '3010:3010'
 
 volumes:
   plant-ui-postgres:
