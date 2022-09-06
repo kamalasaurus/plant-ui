@@ -19,7 +19,6 @@ default: &default
 
 development:
   <<: *default
-  database: plant_ui_development
   url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
 
 
@@ -55,7 +54,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: plant_ui_test
   url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -80,5 +78,4 @@ test:
 #
 production:
   <<: *default
-  database: plant_ui_production
   url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>

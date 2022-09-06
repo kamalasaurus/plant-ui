@@ -17,7 +17,7 @@ class GenerateCsvController < ApplicationController
   private
 
   def tube_params
-    params.require(:generate_csv).permit(:title, selected_tubes: [:id, :item])
+    params.require(:generate_csv).permit(:title, selected_tubes: [:id, :item, :is_empty])
   end
 
   def tubes

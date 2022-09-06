@@ -5,6 +5,7 @@ ENV INSTALL_PATH=/opt/plant-ui REPO=https://github.com/kamalasaurus/plant-ui.git
 RUN apt-get -y update
 RUN apt-get -y install git
 RUN cd /opt && git clone $REPO
+RUN chown -R /opt/plant-ui/bin/entry
 
 WORKDIR $INSTALL_PATH
 

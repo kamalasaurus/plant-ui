@@ -29,16 +29,28 @@ class GenerateCsv
       @tubes.each do |tube|
         id = tube['id']
         item = tube['item']
-        *, position = id.split('-')
-        genus, species, seedbox, label, * = item.split(' ')
-        *, pop1, pop2, accession = label.split('-')
-        name = "#{genus} #{species}"
-        population = "#{pop1}-#{pop2}"
-        row = [name, seedbox, position, population, accession]
+        is_empty = tube['is_empty']
+        # if is_empty use a different parser!!! -- different fields to generate
+        # update fixture :/
+        *, seedbox, position = id.split('-')
+        if is_empty
+          row = ['empty', seedbox, position]
+        else
+          [name, seedbox, population, accession] = parse(item)
+          row = [name, seedbox, position, population, accession]
+        end
         csv << row
       end
     end
 
     @file = csv
+  end
+
+  def parse(item)
+    genus, species, _, label, * = item.split(' ')
+    *, pop1, pop2, accession = label.split('-')
+    name = "#{genus} #{species}"
+    population = "#{pop1}-#{pop2}"
+    [name, population, accession]
   end
 end
