@@ -101,7 +101,7 @@ rails db:drop
 
 ## Seeding The Database
 
-Currently the database will be seeded with the csvs starting with dates located at `lib/assets/` in chronological order.  If you want to update the database with a new master list, simply create a new csv in the same directory with the same column schema with the name formatted as `yyyy_mm_dd_whatever_additional_words_you_want.csv`.  The `db:seed` script will grab the last file by sorted order, and the naming scheme proposed above will guarantee that the file you create will be in the correct order.
+Currently the database will be seeded with the csvs starting with dates located at `lib/assets/seed_tubes` in chronological order.  If you want to update the database with a new master list, simply create a new csv in the same directory with the same column schema with the name formatted as `yyyy_mm_dd_whatever_additional_words_you_want.csv`.  The `db:seed` script will grab the last file by sorted order, and the naming scheme proposed above will guarantee that the file you create will be in the correct order.
 
 The database is updated via an `upsert` call to postgres.  This means the data will be either inserted or updated depending on whether it exists or not.  As a result, if the csvs uploaded over time are partial state updates, files must be run to recreate the present database state.  Also, direct manipulation of the database via the web app will not be reflected in the csvs.  To restore database state, you will need to use the conventional restoration pathway at ???
 
