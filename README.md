@@ -101,11 +101,11 @@ rails db:drop
 
 ## Seeding The Database
 
-Currently the database will be seeded with the csv located at `lib/assets/2022_08_23_all_seed_tubes.csv`, as you can intuit from the name of the file, it will insert the seed tube state of August 23, 2022.  If you want to reset the database with a new master list, simply create a new csv in the same directory with the same column schema with the name formatted as `yyyy_mm_dd_whatever_additional_words_you_want.csv`.  The `db:seed` script will grab the last file by sorted order, and the naming scheme proposed above will guarantee that the file you create will be in the correct order.
+Currently the database will be seeded with the csvs starting with dates located at `lib/assets/` in chronological order.  If you want to update the database with a new master list, simply create a new csv in the same directory with the same column schema with the name formatted as `yyyy_mm_dd_whatever_additional_words_you_want.csv`.  The `db:seed` script will grab the last file by sorted order, and the naming scheme proposed above will guarantee that the file you create will be in the correct order.
 
-If the database is empty or `rails db:drop` is run before `rails db:seed`, then the csv will be equal the exact state of the database.  If, however there is pre-existing state in the database, only the relevant tubes listed in the csv will be updated to the new state and the previous tubes will remain as such.  It is recommended to do complete state resets with csv's in `lib/assets` and leave partial state updates to the web application, either via the bulk upload action or individual tube modification.
+The database is updated via an `upsert` call to postgres.  This means the data will be either inserted or updated depending on whether it exists or not.  As a result, if the csvs uploaded over time are partial state updates, files must be run to recreate the present database state.  Also, direct manipulation of the database via the web app will not be reflected in the csvs.  To restore database state, you will need to use the conventional restoration pathway at ???
 
-To extract the current state of the database, click the `Generate Csv` button on the `/tubes` interface.  Currently, the column names will not match the schema expected by the bulk upload action.
+To extract the current state of the database, click the `Generate Csv` button on the `/tubes` interface with no query.  Currently, the column names will not match the schema expected by the bulk upload action.
 
 ### Bulk Upload
 
