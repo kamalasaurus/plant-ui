@@ -23,8 +23,6 @@ services:
   plant-ui:
     build:
       context: .
-    entrypoint:
-      [bin/entry]
     volumes:
       - ./plant-ui:/opt/plant-ui
     links:
