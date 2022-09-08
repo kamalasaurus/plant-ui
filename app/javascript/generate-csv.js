@@ -43,7 +43,8 @@ function getBody(title) {
     .map(tube => {
       return {
         id: tube.id,
-        item: tube.getAttribute('data-item')
+        item: tube.getAttribute('data-item'),
+        is_empty: tube.classList.length === 1
       }
     })
     .reduce((collection, tube) => {

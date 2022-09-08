@@ -36,7 +36,7 @@ class BulkUpload
   end
 
   def copy
-    name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload"
+    name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 

@@ -13,7 +13,7 @@ class SearchBar extends HTMLElement {
     this.shadow.appendChild(this.input)
 
     // initialize index
-    this.index = new FlexSearch.Index({tokenize: 'full'})
+    this.index = new FlexSearch.Index({tokenize: 'full', matcher: 'simple'})
   }
 
   // add data to index and keyup data to input when element attached to DOM
@@ -77,7 +77,7 @@ class SearchBar extends HTMLElement {
   }
 
   value() {
-    
+    return this.input.value;
   }
 }
 

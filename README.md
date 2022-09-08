@@ -1,6 +1,6 @@
 # Plant UI
 
-Welcome!  This is the central seed inventory management system for the Bergelson Lab.  Currently being piloted for CompRgene project.  This document will tell you how to setup the project locally for development.
+Welcome!  This is the central seed inventory management system for the Bergelson Lab.  Currently being piloted for compRgene project.  This document will tell you how to setup the project locally for development.
 
 ## Introduction
 
@@ -17,11 +17,22 @@ docker run ???
 
 And all the dependencies and development requirements will be good to go.
 
+The general reasoning for the `docker-compose` arrangement can be found at this informative blogpost: [Dockerizing a Ruby on Rails Application](https://semaphoreci.com/community/tutorials/dockerizing-a-ruby-on-rails-application)
+
 ## Configuration
 
 Feel free to use [direnv](https://direnv.net) to manage your environment on a per-project basis.  In lieu of that you may add the following to your `~/.zshrc` or `~/.bashrc` depending on which shell you're using:
 
-`export PLANT_UI_DATABASE_PASSWORD="whatever-password-you-want"`
+```
+export SECRET_TOKEN=9fb231bd5fdb9bae9c7b81889181900140be89862b7045a97ad8374b130b22d7caa5300102dde4a96ff72567e616a4850d039c29b391cbb20391a510447ff73e
+
+export WORKER_PROCESSES=1
+export LISTEN_ON=0.0.0.0:3000
+export DATABASE_URL=postgres://plant_ui:<password of choice>@postgres:5432/plant_ui?encoding=utf8&pool=5&timeout=5000
+export CACHE_URL=redis://redis:6379/0
+export JOB_WORKER_URL=redis://redis:6379/0
+export PLANT_UI_DATABASE_PASSWORD=<password of choice>
+```
 
 Be sure to use the same password you used to setup your local postgres installation.  If you are editing your `~/.zshrc` or `~/.bashrc`, be sure to `source ~/.zshrc` or `source ~/.bashrc` or to open a new shell window to initialize the environment variable.
 
@@ -60,19 +71,33 @@ First install [postgresql](https://www.postgresql.org) and perform some rudiment
 brew install postgresql
 brew services start postgresql # start postgres server for mac -- for linux, there is documentation elsewhere
 psql postgres
-createuser -P -d plant-ui
-... what else did I do?
+create user plant_ui with password 'password of your choice';
+alter user plant_ui with superuser;
 ```
 
+This may seem like a risky pattern, and it would be if we all shared passwords.  The user `plant_ui` will act as an agent on behalf of your rails application to drop, create, update, read tables of arbitrary description via ActiveRecord.  Since we don't have a devops team, we're a bit time-bound in maintaining parallel environments, so the local development path is adulterated with some requirements for Docker.
+
+One final caveat since rails is communicating across the `postgresql` protocol as it would expect to in a Docker container is to map that to localhost (for local development).  You may do so via:
+
 ```
-$ rails db:create
-$ rails db:migrate
-$ rails db:seed
+sudo -- sh -c -e "echo '127.0.0.1 postgres' >> /etc/hosts";
+```
+
+This is necessary due to some quirks of the Rails' server runtime not defaulting to localhost for general security reasons.
+
+After this, you may actually create the database with the following commands:
+
+```
+rails db:create
+rails db:migrate
+rails db:seed
 ```
 
 ## Database Reset
 
-`$ rails db:drop`
+```
+rails db:drop
+```
 
 ## Seeding The Database
 
