@@ -1,32 +1,93 @@
 #!/usr/bin/env rails runner
 # frozen_string_literal: true
 
-# must run from root directory as ./lib/assets/accession_ranker so rails runner is correctly invoked
+# must run from project root directory as ./lib/tasks/accession_ranker/draba_accession_ranker
+# so rails runner is correctly invoked
+#
+# samples ranking by amount
+# amount --> 
+# 0: no material left in envelope
+# 1: < 0.5 rosette of material left in envelope
+# 2: > 0.5 rosette left in envelope
+#
+# seeds ranking by number of non-critical tubes
+# ??? -->
+# at least one tube > 500 seeds
+# at least one tube < 500 seeds, but no tube with more than 500
+# all tubes are empty
 
 require 'csv'
 
-schema = ['population', 'accession', 'rank', 'cytometrized']
+# convenience fxn to get file path relative to working directory
+def get(name)
+  Rails.root.join('lib', 'tasks', 'accession_ranker', name)
+end
 
-freeze_dried_samples = CSV.read('freeze_dried_samples.tsv', headers: true, header_converters: %i[downcase symbol])
-minus_80_samples = CSV.read('minus_80_samples.csv', headers: true, header_converters: %i[downcase symbol])
-silica_samples = CSV.read('silica_samples.csv', headers: true, header_converters: %i[downcase symbol])
+# open relevant sample information files
+# -80 samples are the highest quality
+# ['accession', 'label', 'amount', 'source'] --> filter out discarded
+draba_minus_80_samples = CSV.read(get('minus_80_samples.csv'), \
+  headers: true, header_converters: %i[downcase symbol])
+  .filter { |row| row[:discarded].nil? }
+  .map do |row|
+    [
+      row[:accession],
+      "#{row[:tray_id]}-#{row[:tray_rep]}-#{row[:row]}-#{row[:column]}-#{row[:dedicated_box]}-#{row[:dedicated_position]}",
+      row[:nb_samples],
+      'minus-80'
+    ]
+  end
 
+# freeze dried samples are medium quality
+# ['accession', 'label', 'amount', 'source']
+draba_freeze_dried_samples = CSV.read(get('freeze_dried_samples.tsv'), \
+  headers: true, header_converters: %i[downcase symbol], col_sep: "\t")
+  .map do |row|
+    [
+      row[:individual],
+      "#{row[:label_p1]}-#{row[:label_p2]}-#{row[:label_p3]}-#{row[:label_p4]}-#{row[:label_p5]}-#{row[:cohort]}",
+      row[:amount],
+      'freeze-dried'
+    ]
+  end
+
+# silica samples are lowest quality
+# ['accession', 'label', 'amount', 'source']
+draba_silica_samples = CSV.read(get('silica_samples.csv'), \
+  headers: true, header_converters: %i[downcase symbol])
+  .map do |row|
+    [
+      row[:individual],
+      "#{row[:flat]}-#{row[:nos]}-#{row[:trayid]}-#{row[:plate]}-#{row[:platerow]}-#{row[:platecol]}",
+      row[:plant_material_available],
+      'silica'
+    ]
+  end
+
+  
+# this list indicates whether the sample has existing flow cytometry information or not
+# [accession, ...]
+draba_cytometry_samples = CSV.read(get('cytometry_samples.tsv'), \
+  headers: true, header_converters: %i[downcase symbol], col_sep: "\t")
+  .pluck(:individual)
+
+
+# collect all draba tubes that are not criticial
 draba_tubes = Tube.joins(:seed)
   .where("seeds.species = 'draba-verna'")
   .reject(&:critical?)
   .map do |tube|
     [
       "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}",
-      "#{tube.seed.accession}",
+      "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}-#{tube.seed.accession}",
       "#{tube.seed.species}",
       "#{tube.seedbox.position}"
     ]
   end
 
 
-# Plate_outlineFC is silica
-# Harvest_overview is -80
-# collapse the label fragments + cohort from Dve_freeze_dry_sample_info.tsv
+
+schema = ['population', 'accession', 'rank', 'cytometrized']
 
 CSV.open('./draba-verna-ranked.csv', 'wb') do |csv|
   csv << schema
@@ -34,3 +95,8 @@ CSV.open('./draba-verna-ranked.csv', 'wb') do |csv|
     csv << tube
   end
 end
+
+
+# Plate_outlineFC is silica -> renamed to silica_samples.csv
+# Harvest_overview is -80 -> renamed to minus_80.csv
+# collapse the label fragments + cohort from Dve_freeze_dry_sample_info.tsv -> renamed to freeze_dried_samples.tsv
