@@ -1,0 +1,36 @@
+#!/usr/bin/env rails runner
+# frozen_string_literal: true
+
+# must run from root directory as ./lib/assets/accession_ranker so rails runner is correctly invoked
+
+require 'csv'
+
+schema = ['population', 'accession', 'rank', 'cytometrized']
+
+freeze_dried_samples = CSV.read('freeze_dried_samples.tsv', headers: true, header_converters: %i[downcase symbol])
+minus_80_samples = CSV.read('minus_80_samples.csv', headers: true, header_converters: %i[downcase symbol])
+silica_samples = CSV.read('silica_samples.csv', headers: true, header_converters: %i[downcase symbol])
+
+draba_tubes = Tube.joins(:seed)
+  .where("seeds.species = 'draba-verna'")
+  .reject(&:critical?)
+  .map do |tube|
+    [
+      "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}",
+      "#{tube.seed.accession}",
+      "#{tube.seed.species}",
+      "#{tube.seedbox.position}"
+    ]
+  end
+
+
+# Plate_outlineFC is silica
+# Harvest_overview is -80
+# collapse the label fragments + cohort from Dve_freeze_dry_sample_info.tsv
+
+CSV.open('./draba-verna-ranked.csv', 'wb') do |csv|
+  csv << schema
+  draba_tubes.each do |tube|
+    csv << tube
+  end
+end
