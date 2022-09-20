@@ -87,7 +87,8 @@ draba_tubes = Tube.joins(:seed)
     ]
   end
 
-
+# make all the csvs into hashes based on accession for easy merging
+# use reduce or [[acc, [...]], ...].to_h
 
 schema = ['population', 'accession', 'rank', 'cytometrized']
 
