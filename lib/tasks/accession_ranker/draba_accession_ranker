@@ -64,7 +64,7 @@ draba_silica_samples = CSV.read(get('silica_samples.csv'), \
     ]
   end
 
-  
+
 # this list indicates whether the sample has existing flow cytometry information or not
 # [accession, ...]
 draba_cytometry_samples = CSV.read(get('cytometry_samples.tsv'), \
@@ -73,15 +73,17 @@ draba_cytometry_samples = CSV.read(get('cytometry_samples.tsv'), \
 
 
 # collect all draba tubes that are not criticial
+# ['population', 'accession', 'species', 'cytometrized']
 draba_tubes = Tube.joins(:seed)
   .where("seeds.species = 'draba-verna'")
   .reject(&:critical?)
   .map do |tube|
+    accession = "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}-#{tube.seed.accession}"
     [
       "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}",
-      "#{tube.seed.population.name}-#{tube.seed.population.subpopulation}-#{tube.seed.accession}",
-      "#{tube.seed.species}",
-      "#{tube.seedbox.position}"
+      accession,
+      "#{tube.seed.species}", 
+      draba_cytometry_samples.include? accession
     ]
   end
 
