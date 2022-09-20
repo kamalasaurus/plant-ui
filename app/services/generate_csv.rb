@@ -36,7 +36,7 @@ class GenerateCsv
         if is_empty
           row = ['empty', seedbox, position]
         else
-          [name, seedbox, population, accession] = parse(item)
+          name, population, accession = parse(item)
           row = [name, seedbox, position, population, accession]
         end
         csv << row

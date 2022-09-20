@@ -1,6 +1,6 @@
 export default function generateCsv(search_bar) {
   const csrfToken = getCSRFToken()
-  const title = search_bar.input.value
+  const title = search_bar.input.value || ''
   const body = getBody(title)
   
   fetch('/generate_csv', {
