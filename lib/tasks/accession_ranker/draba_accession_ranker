@@ -99,15 +99,18 @@ draba_tubes_by_population = draba_tubes
   .each_with_object({}, &tube_collector)
 
 
-def ranking(m80, frz, sil, ath, chi, dve)
-  viable = [ath, chi, dve].all? { |pop| pop >= 2 } ? 1 : 0
-
-  viable * [
+def weighted_rank(m80, frz, sil)
+  [
     m80 * 1,
     frz * 0.8,
     sil * 0.5,
   ].reduce(:+)
   .truncate(1)
+end
+
+def ranking(w_rank, ath, chi, dve)
+  viable = [ath, chi, dve].all? { |pop| pop >= 2 } ? 1 : 0
+  viable * w_rank
 end
 
 
@@ -128,13 +131,15 @@ ranked_draba_tubes = draba_tubes
 
     cytometrized = draba_cytometry_samples.include? accession
 
-    rank = ranking(minus_80_quality, freeze_dried_quality, silica_quality, \
-      ath_tube_count, chi_tube_count, dve_tube_count)
+    w_rank = weighted_rank(minus_80_quality, freeze_dried_quality, silica_quality)
+
+    rank = ranking(w_rank, ath_tube_count, chi_tube_count, dve_tube_count)
 
     [
       population,
       accession,
       rank,
+      w_rank,
       minus_80_quality,
       freeze_dried_quality,
       silica_quality,
@@ -145,9 +150,10 @@ ranked_draba_tubes = draba_tubes
     ]
   end
   .group_by { |row| row[1] }
-  .transform_values { |val| val.sort_by { |row| row[2] } }
+  .transform_values { |val| val.sort_by { |row| -row[2] } }
   .values
   .flatten(1)
+  .sort_by { |row| -row[2] }
 
 # make all the csvs into hashes based on accession for easy merging
 # use reduce or [[acc, [...]], ...].to_h
@@ -156,6 +162,7 @@ schema = %w[
   population
   accession
   rank
+  w_rank
   minus_80_quality
   freeze_dried_quality
   silica_quality
