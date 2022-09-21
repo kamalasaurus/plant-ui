@@ -25,7 +25,7 @@ class GenerateCsv
 
   def generate
     csv = CSV.generate do |csv|
-      csv << ['name', 'seedbox', 'position', 'population', 'accession'] # headers
+      csv << ['name', 'seedbox', 'position', 'population', 'accession', 'critical'] # headers
       @tubes.each do |tube|
         id = tube['id']
         item = tube['item']
@@ -36,8 +36,8 @@ class GenerateCsv
         if is_empty
           row = ['empty', seedbox, position]
         else
-          [name, seedbox, population, accession] = parse(item)
-          row = [name, seedbox, position, population, accession]
+          name, population, accession, critical = parse(item)
+          row = [name, seedbox, position, population, accession, critical]
         end
         csv << row
       end
@@ -48,9 +48,11 @@ class GenerateCsv
 
   def parse(item)
     genus, species, _, label, * = item.split(' ')
+    *, crit = item.split(' ')
+    critical = crit == 'critical'
     *, pop1, pop2, accession = label.split('-')
     name = "#{genus} #{species}"
     population = "#{pop1}-#{pop2}"
-    [name, population, accession]
+    [name, population, accession, critical]
   end
 end

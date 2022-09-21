@@ -35,6 +35,10 @@ class BulkUpload
     str == 'NA' ? nil : str
   end
 
+  def pad(str)
+    str.rjust(2, '0')
+  end
+
   def copy
     name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
@@ -59,13 +63,13 @@ class BulkUpload
     Seed.upsert({
       species: SPECIES[h[:species]],
       generation: h[:generation],
-      accession: h[:accid],
+      accession: pad(h[:accid]),
       population_id: population.id
     }, unique_by: :uniqueness_index)
     Seed.find_by(
       species: SPECIES[h[:species]],
       generation: h[:generation],
-      accession: h[:accid],
+      accession: pad(h[:accid]),
       population_id: population.id
     )
   end

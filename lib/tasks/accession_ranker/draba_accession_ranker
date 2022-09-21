@@ -1,0 +1,185 @@
+#!/usr/bin/env rails runner
+# frozen_string_literal: true
+
+# must run from project root directory as ./lib/tasks/accession_ranker/draba_accession_ranker
+# so rails runner is correctly invoked
+#
+# samples ranking by amount
+# amount --> 
+# 0: no material left in envelope
+# 1: < 0.5 rosette of material left in envelope
+# 2: > 0.5 rosette left in envelope
+#
+# seeds ranking by number of non-critical tubes
+# ??? -->
+# at least one tube > 500 seeds
+# at least one tube < 500 seeds, but no tube with more than 500
+# all tubes are empty
+
+require 'csv'
+
+# convenience fxn to get file path relative to working directory
+def path(name)
+  Rails.root.join('lib', 'tasks', 'accession_ranker', name)
+end
+
+# Can have more thabn one envelope of the same accession -- sum the scores?
+
+sample_collector = -> (sample, obj) {
+  accession = sample[:accession] || sample[:individual]
+  amount = sample[:nb_samples] || sample[:amount_plant_material] || sample[:plant_material_available] || 0
+
+  return obj if accession.blank?
+
+  if obj[accession]
+    obj[accession] += amount.to_i
+  else
+    obj[accession] = amount.to_i
+  end
+}
+
+# open relevant sample information files and collect accessions by amount
+# -80 samples are the highest quality
+# row: accession, tray_id, tray_rep, row, column, dedicated_box, dedicated_position, nb_samples
+# {accession: amount} --> filter out discarded
+draba_minus_80_samples_by_accession = CSV.read(path('minus_80_samples.csv'), \
+  headers: true, header_converters: %i[downcase symbol])
+  .filter { |row| row[:discarded].nil? }
+  .each_with_object({}, &sample_collector)
+
+# freeze dried samples are medium quality
+# row: individual, label_p1, label_p2, label_p3, label_p4, label_p5, cohort, amount
+# {accession: amount}
+draba_freeze_dried_samples_by_accession = CSV.read(path('freeze_dried_samples.tsv'), \
+  headers: true, header_converters: %i[downcase symbol], col_sep: "\t")
+  .each_with_object({}, &sample_collector)
+
+# silica samples are lowest quality
+# row: individual, flat, nos, trayid, plate, platerow, platecol, plant_material_available
+draba_silica_samples_by_accession = CSV.read(path('silica_samples.csv'), \
+  headers: true, header_converters: %i[downcase symbol])
+  .each_with_object({}, &sample_collector)
+
+# this list indicates whether the sample has existing flow cytometry information or not
+# [accession, ...]
+draba_cytometry_samples = CSV.read(path('cytometry_samples.tsv'), \
+  headers: true, header_converters: %i[downcase symbol], col_sep: "\t")
+  .pluck(:individual)
+
+
+
+tube_collector = -> (tube, obj) {
+  population = tube.seed.population.label
+  if obj[population]
+    obj[population] += 1
+  else
+    obj[population] = 1
+  end
+}
+
+# collect all arabidopsis tubes
+arabidopsis_tubes_by_population = Tube.joins(:seed)
+  .where("seeds.species = 'arabidopsis-thaliana'")
+  .reject(&:critical?)
+  .each_with_object({}, &tube_collector)
+  
+# collect all cardamine tubes
+caradamine_tubes_by_population = Tube.joins(:seed)
+  .where("seeds.species = 'cardamine-hirsuta'")
+  .reject(&:critical?)
+  .each_with_object({}, &tube_collector)
+
+# collect all draba tubes
+draba_tubes = Tube.joins(:seed)
+  .where("seeds.species = 'draba-verna'")
+  .reject(&:critical?)
+
+
+draba_tubes_by_population = draba_tubes
+  .each_with_object({}, &tube_collector)
+
+
+def weighted_rank(m80, frz, sil)
+  [
+    m80 * 1,
+    frz * 0.8,
+    sil * 0.5,
+  ].reduce(:+)
+  .truncate(1)
+end
+
+def ranking(w_rank, ath, chi, dve)
+  viable = [ath, chi, dve].all? { |pop| pop >= 2 } ? 1 : 0
+  viable * w_rank
+end
+
+
+# ['population', 'accession', 'rank', 'minus_80_quality','freeze_dried_quality', \
+# 'silica_quality', 'ath_tube_count', 'chi_tube_count', 'dve_tube_count', 'cytometrized']
+ranked_draba_tubes = draba_tubes
+  .map do |tube|
+    population = tube.seed.population.label
+    accession = "#{population}-#{tube.seed.accession}"
+
+    minus_80_quality = draba_minus_80_samples_by_accession[accession] || 0
+    freeze_dried_quality = draba_freeze_dried_samples_by_accession[accession] || 0
+    silica_quality = draba_silica_samples_by_accession[accession] || 0
+
+    ath_tube_count = arabidopsis_tubes_by_population[population] || 0
+    chi_tube_count = caradamine_tubes_by_population[population] || 0
+    dve_tube_count = draba_tubes_by_population[population] || 0
+
+    cytometrized = draba_cytometry_samples.include? accession
+
+    w_rank = weighted_rank(minus_80_quality, freeze_dried_quality, silica_quality)
+
+    rank = ranking(w_rank, ath_tube_count, chi_tube_count, dve_tube_count)
+
+    [
+      population,
+      accession,
+      rank,
+      w_rank,
+      minus_80_quality,
+      freeze_dried_quality,
+      silica_quality,
+      ath_tube_count,
+      chi_tube_count,
+      dve_tube_count,
+      cytometrized
+    ]
+  end
+  .group_by { |row| row[1] }
+  .transform_values { |val| val.sort_by { |row| -row[2] } }
+  .values
+  .flatten(1)
+  .sort_by { |row| -row[2] }
+
+# make all the csvs into hashes based on accession for easy merging
+# use reduce or [[acc, [...]], ...].to_h
+
+schema = %w[
+  population
+  accession
+  rank
+  w_rank
+  minus_80_quality
+  freeze_dried_quality
+  silica_quality
+  ath_tube_count
+  chi_tube_count
+  dve_tube_count
+  cytometrized
+]
+
+CSV.open(path('./draba-verna-ranked.csv'), 'wb') do |csv|
+  csv << schema
+  ranked_draba_tubes.each do |row|
+    csv << row
+  end
+end
+
+
+# Plate_outlineFC is silica -> renamed to silica_samples.csv
+# Harvest_overview is -80 -> renamed to minus_80.csv
+# collapse the label fragments + cohort from Dve_freeze_dry_sample_info.tsv -> renamed to freeze_dried_samples.tsv
