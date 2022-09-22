@@ -35,7 +35,8 @@ module EcoUpload
       # rename phosphore to phosphorus
       # whc, oc, som
       ActiveRecord::Base.transaction do
-        Population.find_by(name: name, subpopulation: subpopulation)
+        Population
+          .find_by(name: name, subpopulation: subpopulation)
           .tap { |pop| pop.update! attrs }
       rescue StandardError => e
         puts e
