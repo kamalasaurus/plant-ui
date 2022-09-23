@@ -20,7 +20,7 @@ module EcoUpload
         nitrogen
         cn
         ph
-        phosphorus
+        phosphore
         calcium
         magnesium
         sodium
@@ -32,14 +32,27 @@ module EcoUpload
         som
         manganese
       ])
+      .transform_keys({
+        mat: :mean_annual_temperature,
+        mcmt: :mean_coldest_month_temperature,
+        ppt_wt: :winter_precipitations,
+        ppt_sm: :summer_precipitations,
+        ppt_at: :autumn_precipitations,
+        ppt_sp: :spring_precipitations,
+        cn: :carbon_nitrogen_ratio,
+        phosphore: :phosphorus,
+        whc: :water_holding_capacity,
+        oc: :organic_carbon,
+        som: :soil_organic_matter
+      })
       # replace cn with cyanide if that is the full name
       # rename phosphore to phosphorus
       # whc, oc, som
       # Frachon 2019, supplementary dataset 5, MBE
       ActiveRecord::Base.transaction do
-        Population
-          .find_by(name: name, subpopulation: subpopulation)
-          .tap { |pop| pop.update! attrs }
+        population_id = Population.find_by(name: name, subpopulation: subpopulation).id
+        attrs.merge({population_id: population_id}) 
+        Location.upsert(attrs)
       rescue StandardError => e
         puts e
         puts h
