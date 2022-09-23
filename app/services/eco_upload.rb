@@ -45,14 +45,10 @@ module EcoUpload
         oc: :organic_carbon,
         som: :soil_organic_matter
       })
-      # replace cn with cyanide if that is the full name
-      # rename phosphore to phosphorus
-      # whc, oc, som
       # Frachon 2019, supplementary dataset 5, MBE
       ActiveRecord::Base.transaction do
         population_id = Population.find_by(name: name, subpopulation: subpopulation).id
-        attrs.merge({population_id: population_id}) 
-        Location.upsert(attrs)
+        Location.upsert(attrs.merge({population_id: population_id}))
       rescue StandardError => e
         puts e
         puts h
