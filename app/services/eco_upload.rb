@@ -16,6 +16,7 @@ module EcoUpload
         ppt_wt
         ppt_sm
         ppt_at
+        ppt_sp
         nitrogen
         cn
         ph
@@ -34,6 +35,7 @@ module EcoUpload
       # replace cn with cyanide if that is the full name
       # rename phosphore to phosphorus
       # whc, oc, som
+      # Frachon 2019, supplementary dataset 5, MBE
       ActiveRecord::Base.transaction do
         Population
           .find_by(name: name, subpopulation: subpopulation)

@@ -10,9 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_24_171828) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_164405) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "elevation"
+    t.float "mean_annual_temperature"
+    t.float "mean_coldest_month_temperature"
+    t.float "winter_precipitations"
+    t.float "summer_precipitations"
+    t.float "autumn_precipitations"
+    t.float "spring_precipitations"
+    t.float "nitrogen"
+    t.float "carbon_nitrogen_ratio"
+    t.float "ph"
+    t.float "phosphorus"
+    t.float "calcium"
+    t.float "magnesium"
+    t.float "sodium"
+    t.float "potassium"
+    t.float "iron"
+    t.float "aluminium"
+    t.float "water_holding_capacity"
+    t.float "organic_carbon"
+    t.float "soil_organic_matter"
+    t.float "manganese"
+    t.bigint "population_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["population_id"], name: "index_locations_on_population_id"
+  end
 
   create_table "populations", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_171828) do
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
+  add_foreign_key "locations", "populations"
   add_foreign_key "seeds", "populations"
   add_foreign_key "seeds", "seeds", column: "parent_id"
   add_foreign_key "tubes", "seedboxes"
