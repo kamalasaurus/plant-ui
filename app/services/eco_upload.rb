@@ -5,7 +5,7 @@ require 'csv'
 module EcoUpload
   def self.parse(file)
     CSV.parse(file, headers: true, header_converters: %i[downcase]) do |row|
-      h = row.to_h.deep_symbolize_keys
+      h = row.to_h.deep_symbolize_keys!
       name, subpopulation = h[:population].split('-')
       attrs = h.slice(*%i[
         latitude
