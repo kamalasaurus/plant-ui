@@ -178,6 +178,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_163626) do
     t.boolean "root_otu_258"
     t.boolean "root_otu_284"
     t.boolean "root_otu_989"
+    t.float "root_microbiota_richness"
+    t.float "root_microbiota_shannon"
+    t.float "root_microbiota_pcoa1"
+    t.float "root_microbiota_pcoa2"
+    t.float "root_pathobiota_richness"
+    t.float "root_pathobiota_shannon"
+    t.float "root_pathobiota_pcoa2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["population_id"], name: "index_roots_on_population_id"
