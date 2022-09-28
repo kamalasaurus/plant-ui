@@ -14,6 +14,14 @@ class CreateRoots < ActiveRecord::Migration[7.0]
         t.boolean :"root_otu_#{number}"
       end
 
+      other_columns = headers.filter { |header| /_root$/ =~ header }
+
+      other_columns.each do |column|
+        name = column.split('_').rotate(-1)
+        name[1], name[2] = name[2], name[1]
+        t.float :"#{name.join('_')}"
+      end
+
       t.timestamps
     end
   end
