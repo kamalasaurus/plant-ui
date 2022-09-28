@@ -8,13 +8,39 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Dir.new(Rails.root.join('lib','assets', 'seed_tubes'))
-  .entries
-  .select { |s| /\d/ =~ s }
-  .sort
-  .each do |csv|
-    BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
-    puts "seeded #{csv}"
-  end
+def ingest(directory)
+  Dir.new(directory)
+    .entries
+    .select { |path| /\d/ =~ path }
+    .sort
+    .each do |csv|
+      yield csv
+      puts "seeded #{csv}"
+    end
+end  
+
+ingest(Rails.root.join('lib', 'assets', 'seed_tubes')) do |csv|
+  BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
+end
+
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  LocationUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "location: "
+end
+
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  LeafUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "leaves: "
+end
+
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  RootUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "roots: "
+end
+
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  PlantNeighborhoodUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "plant neighborhoods: "
+end
 
 puts 'all data seeded!'

@@ -2,6 +2,10 @@
 
 class Population < ApplicationRecord
   has_many :seeds
+  has_one :location
+  has_one :leaf
+  has_one :root
+  has_one :plant_neighborhood
 
   def label
     "#{name}-#{subpopulation}"

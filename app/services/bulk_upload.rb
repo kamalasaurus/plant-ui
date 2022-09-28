@@ -102,7 +102,7 @@ class BulkUpload
         tube = create_or_update_tube(h, seed, seedbox)
       rescue StandardError => e
         puts e
-        puts row.to_h
+        puts h
         @errors.push([e, row])
       end
     end
