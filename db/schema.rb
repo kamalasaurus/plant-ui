@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_163626) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,6 +124,62 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_163626) do
     t.index ["population_id"], name: "index_locations_on_population_id"
   end
 
+  create_table "plant_neighborhoods", force: :cascade do |t|
+    t.bigint "population_id", null: false
+    t.integer "plant_otu_1"
+    t.integer "plant_otu_3"
+    t.integer "plant_otu_4"
+    t.integer "plant_otu_7"
+    t.integer "plant_otu_8"
+    t.integer "plant_otu_10"
+    t.integer "plant_otu_15"
+    t.integer "plant_otu_16"
+    t.integer "plant_otu_18"
+    t.integer "plant_otu_20"
+    t.integer "plant_otu_27"
+    t.integer "plant_otu_46"
+    t.integer "plant_otu_49"
+    t.integer "plant_otu_65"
+    t.integer "plant_otu_67"
+    t.integer "plant_otu_71"
+    t.integer "plant_otu_72"
+    t.integer "plant_otu_78"
+    t.integer "plant_otu_83"
+    t.integer "plant_otu_87"
+    t.integer "plant_otu_88"
+    t.integer "plant_otu_100"
+    t.integer "plant_otu_109"
+    t.integer "plant_otu_113"
+    t.integer "plant_otu_114"
+    t.integer "plant_otu_132"
+    t.integer "plant_otu_136"
+    t.integer "plant_otu_143"
+    t.integer "plant_otu_145"
+    t.integer "plant_otu_146"
+    t.integer "plant_otu_147"
+    t.integer "plant_otu_149"
+    t.integer "plant_otu_154"
+    t.integer "plant_otu_159"
+    t.integer "plant_otu_179"
+    t.integer "plant_otu_192"
+    t.integer "plant_otu_196"
+    t.integer "plant_otu_198"
+    t.integer "plant_otu_202"
+    t.integer "plant_otu_203"
+    t.integer "plant_otu_204"
+    t.integer "plant_otu_216"
+    t.integer "plant_otu_223"
+    t.integer "plant_otu_234"
+    t.float "plant_richness"
+    t.float "plant_shannon"
+    t.float "plant_pcoa1"
+    t.float "plant_pcoa2"
+    t.float "plant_pcoa3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["population_id"], name: "index_plant_neighborhoods_on_population_id"
+  end
+
   create_table "populations", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -225,6 +281,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_163626) do
 
   add_foreign_key "leafs", "populations"
   add_foreign_key "locations", "populations"
+  add_foreign_key "plant_neighborhoods", "populations"
   add_foreign_key "roots", "populations"
   add_foreign_key "seeds", "populations"
   add_foreign_key "seeds", "seeds", column: "parent_id"
