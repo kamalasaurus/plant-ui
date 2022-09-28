@@ -35,7 +35,6 @@ module LeafUpload
           else
             nil
           end
-
         end
 
       other_attrs = h

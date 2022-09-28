@@ -35,7 +35,6 @@ module RootUpload
           else
             nil
           end
-
         end
 
       other_attrs = h

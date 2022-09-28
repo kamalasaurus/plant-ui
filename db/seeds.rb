@@ -38,4 +38,9 @@ ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   print "roots: "
 end
 
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  PlantNeighborhoodUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "plant neighborhoods: "
+end
+
 puts 'all data seeded!'
