@@ -9,18 +9,18 @@ module LeafUpload
       name, subpopulation = h[:population].split('-')
 
       transform = h.keys.select { |key, _| /^leaf_otu/ =~ key.to_s }
-        .map do |key, val|
+        .map do |key|
           number = key.match(/\d+$/).to_s.to_i
           val = :"leaf_otu_#{number}"
           [key, val]
         end
         .to_h
 
-      other_transform = h.keys.selet { |key, _| /_leaf$/ =~ key.to_s }
-        .map do |key, val|
-          name = val.split('_').rotate(-1)
-          name[1], name[2] = name[2], name[1]
-          [key, name.join('_').to_sym]
+      other_transform = h.keys.select { |key, _| /_leaf$/ =~ key.to_s }
+        .map do |key|
+          split_key = key.to_s.split('_').rotate(-1)
+          split_key[1], split_key[2] = split_key[2], split_key[1]
+          [key, split_key.join('_').to_sym]
         end
         .to_h
 
@@ -38,7 +38,7 @@ module LeafUpload
 
         end
 
-      other_attrs = has_many
+      other_attrs = h
         .select { |key, _| /_leaf$/ =~ key.to_s }
         .transform_keys(other_transform)
 

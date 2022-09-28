@@ -81,6 +81,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_163626) do
     t.boolean "leaf_otu_179"
     t.boolean "leaf_otu_246"
     t.boolean "leaf_otu_365"
+    t.float "leaf_microbiota_richness"
+    t.float "leaf_microbiota_shannon"
+    t.float "leaf_microbiota_pcoa1"
+    t.float "leaf_microbiota_pcoa2"
+    t.float "leaf_pathobiota_richness"
+    t.float "leaf_pathobiota_shannon"
+    t.float "leaf_pathobiota_pcoa1"
+    t.float "leaf_pathobiota_pcoa2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["population_id"], name: "index_leafs_on_population_id"
