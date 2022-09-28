@@ -24,13 +24,18 @@ ingest(Rails.root.join('lib', 'assets', 'seed_tubes')) do |csv|
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
-  EcoUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "ecology: "
+  LocationUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "location: "
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   LeafUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
   print "leaves: "
+end
+
+ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
+  RootUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "roots: "
 end
 
 puts 'all data seeded!'

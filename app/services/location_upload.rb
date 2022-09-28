@@ -2,7 +2,7 @@
 
 require 'csv'
 
-module EcoUpload
+module LocationUpload
   def self.parse(file)
     CSV.parse(file, headers: true, header_converters: %i[downcase]) do |row|
       h = row.to_h.deep_symbolize_keys!
