@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "leafs", force: :cascade do |t|
+  create_table "leaf_communities", force: :cascade do |t|
     t.bigint "population_id", null: false
     t.boolean "leaf_otu_1"
     t.boolean "leaf_otu_2"
@@ -91,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.float "leaf_pathobiota_pcoa2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["population_id"], name: "index_leafs_on_population_id"
+    t.index ["population_id"], name: "index_leaf_communities_on_population_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -188,7 +188,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.index ["name", "subpopulation"], name: "index_populations_on_name_and_subpopulation", unique: true
   end
 
-  create_table "roots", force: :cascade do |t|
+  create_table "root_communities", force: :cascade do |t|
     t.bigint "population_id", null: false
     t.boolean "root_otu_1"
     t.boolean "root_otu_2"
@@ -243,7 +243,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.float "root_pathobiota_pcoa2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["population_id"], name: "index_roots_on_population_id"
+    t.index ["population_id"], name: "index_root_communities_on_population_id"
   end
 
   create_table "seedboxes", force: :cascade do |t|
@@ -279,10 +279,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
-  add_foreign_key "leafs", "populations"
+  add_foreign_key "leaf_communities", "populations"
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"
-  add_foreign_key "roots", "populations"
+  add_foreign_key "root_communities", "populations"
   add_foreign_key "seeds", "populations"
   add_foreign_key "seeds", "seeds", column: "parent_id"
   add_foreign_key "tubes", "seedboxes"

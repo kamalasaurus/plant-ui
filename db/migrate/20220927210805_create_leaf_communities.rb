@@ -1,8 +1,8 @@
 require 'csv'
 
-class CreateLeafs < ActiveRecord::Migration[7.0]
+class CreateLeafCommunities < ActiveRecord::Migration[7.0]
   def change
-    create_table :leafs do |t|
+    create_table :leaf_communities do |t|
       t.references :population, null: false, foreign_key: true
 
       headers = CSV.read(Rails.root.join('lib', 'assets', 'eco_characterization', \

@@ -1,4 +1,4 @@
-class Leaf < ApplicationRecord
+class LeafCommunity < ApplicationRecord
   belongs_to :population
 
   def otus

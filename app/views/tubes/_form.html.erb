@@ -13,27 +13,27 @@
 
   <div>
     <%= form.label :seed_id, style: "display: block" %>
-    <%= form.collection_select :seed_id, Seed.all, :id, :abbreviation %>
+    <%= form.collection_select :seed_id, Seed.all, :id, :abbreviation, selected: tube&.seed&.id %>
   </div>
 
   <div>
     <%= form.label :seedbox_id, style: "display: block" %>
-    <%= form.collection_select :seedbox_id, Seedbox.all, :id, :name, selected: params[:seedbox_id] %>
+    <%= form.collection_select :seedbox_id, Seedbox.all, :id, :name, selected: params[:seedbox_id] || tube&.seedbox&.id %>
   </div>
 
   <div>
     <%= form.label :position, style: "display: block" %>
-    <%= form.number_field :position, min: 1, max: 100, value: params[:position] %>
+    <%= form.number_field :position, min: 1, max: 100, value: params[:position] || tube&.position %>
   </div>
 
   <div>
     <%= form.label :volume, style: "display: block" %>
-    <%= form.number_field :volume %>
+    <%= form.number_field :volume, value: tube&.volume %>
   </div>
 
   <div>
     <%= form.label :count, style: "display: block" %>
-    <%= form.number_field :count %>
+    <%= form.number_field :count, value: tube&.count %>
   </div>
 
   <div>
