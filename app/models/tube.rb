@@ -6,16 +6,13 @@ class Tube < ApplicationRecord
 
   validates :position, inclusion: { in: 1..100 }
 
-  scope :by_seedbox, -> { joins(:seed).select('tubes.*, seeds.*') }
 
   def self.grouped_by_seedbox
-    by_seedbox.each_with_object({}) do |tube, hsh|
-      if hsh[tube.seedbox]
-        hsh[tube.seedbox][tube.position] = tube
-      else
-        hsh[tube.seedbox] = { tube.position => tube }
-      end
-    end.sort_by { |seedbox, _| seedbox.name.to_i }
+    Seedbox.all.map.with_object({}) do |seedbox, hsh|
+      hsh[seedbox] = seedbox.tubes.sort_by { |tube| tube.position }
+    end
+    .sort_by { |seedbox, _| seedbox.name.to_i }
+    .to_h
   end
 
   def abbreviation
