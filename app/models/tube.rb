@@ -6,15 +6,6 @@ class Tube < ApplicationRecord
 
   validates :position, inclusion: { in: 1..100 }
 
-
-  def self.grouped_by_seedbox
-    Seedbox.all.map.with_object({}) do |seedbox, hsh|
-      hsh[seedbox] = seedbox.tubes.sort_by { |tube| tube.position }
-    end
-    .sort_by { |seedbox, _| seedbox.name.to_i }
-    .to_h
-  end
-
   def abbreviation
     seed.abbreviation
   end

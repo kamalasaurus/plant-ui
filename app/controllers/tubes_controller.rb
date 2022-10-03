@@ -6,7 +6,7 @@ class TubesController < ApplicationController
   # GET /tubes or /tubes.json
   def index
     @tubes = Tube.all
-    @grouped_tubes = Tube.grouped_by_seedbox
+    @grouped_tubes = Seedbox.grouped_tubes 
   end
 
   # GET /tubes/1 or /tubes/1.json
