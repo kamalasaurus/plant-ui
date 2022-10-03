@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :plant_samples
   resources :tubes, :populations, :seedboxes, :seeds
 
   resources :bulk_upload, only: %i[index create]

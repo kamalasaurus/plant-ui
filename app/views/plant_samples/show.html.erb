@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @plant_sample %>
+
+<div>
+  <%= link_to "Edit this plant sample", edit_plant_sample_path(@plant_sample) %> |
+  <%= link_to "Back to plant samples", plant_samples_path %>
+
+  <%= button_to "Destroy this plant sample", @plant_sample, method: :delete %>
+</div>
