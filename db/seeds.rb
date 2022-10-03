@@ -43,4 +43,16 @@ ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   print "plant neighborhoods: "
 end
 
+ingest(Rails.root.join('lib', 'assets', 'samples')) do |csv|
+  case csv
+  when /freeze/
+    PlantSampleUpload.parse_freeze_dried(File.read(Rails.root.join('lib', 'assets', 'samples', csv)))
+  when /minus/
+    PlantSampleUpload.parse_minus_80(File.read(Rails.root.join('lib', 'assets', 'samples', csv)))
+  when /silica/
+    PlantSampleUpload.parse_silica(File.read(Rails.root.join('lib', 'assets', 'samples', csv)))
+  end
+  print "plant sample: "
+end
+
 puts 'all data seeded!'
