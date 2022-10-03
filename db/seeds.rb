@@ -29,13 +29,13 @@ ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
-  LeafUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "leaves: "
+  LeafCommunityUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "leaf communities: "
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
-  RootUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "roots: "
+  RootCommunityUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
+  print "root communities: "
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
