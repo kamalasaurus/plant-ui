@@ -21,6 +21,7 @@ end
 
 ingest(Rails.root.join('lib', 'assets', 'seed_tubes')) do |csv|
   BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
+  print "tubes: "
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|

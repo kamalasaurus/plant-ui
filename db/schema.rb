@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -180,6 +180,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.index ["population_id"], name: "index_plant_neighborhoods_on_population_id"
   end
 
+  create_table "plant_samples", force: :cascade do |t|
+    t.string "species", null: false
+    t.string "label", null: false
+    t.string "storage_method", null: false
+    t.integer "quantity", null: false
+    t.string "accession_tray"
+    t.integer "replication_tray"
+    t.string "row"
+    t.integer "column"
+    t.date "sowing_date"
+    t.date "harvest_date"
+    t.bigint "population_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["population_id"], name: "index_plant_samples_on_population_id"
+  end
+
   create_table "populations", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -266,6 +283,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
     t.index ["species", "generation", "accession", "population_id"], name: "uniqueness_index", unique: true
   end
 
+  create_table "seeds_plant_samples", id: false, force: :cascade do |t|
+    t.bigint "seed_id"
+    t.bigint "plant_sample_id"
+    t.index ["plant_sample_id"], name: "index_seeds_plant_samples_on_plant_sample_id"
+    t.index ["seed_id"], name: "index_seeds_plant_samples_on_seed_id"
+  end
+
   create_table "tubes", force: :cascade do |t|
     t.bigint "seed_id", null: false
     t.bigint "seedbox_id", null: false
@@ -282,6 +306,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_181826) do
   add_foreign_key "leaf_communities", "populations"
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"
+  add_foreign_key "plant_samples", "populations"
   add_foreign_key "root_communities", "populations"
   add_foreign_key "seeds", "populations"
   add_foreign_key "seeds", "seeds", column: "parent_id"

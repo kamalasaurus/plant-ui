@@ -3,14 +3,14 @@
 require 'csv'
 
 module PlantSampleUpload
+
+  SPECIES = {
+    'Eve_' => 'draba-verna'.freeze
+  }.freeze
+
   def self.parse_freeze_dried(file)
     col_sep = (file =~ /\t/ ? "\t" : ",")
     CSV.parse(file, headers: true, header_converters: %i[downcase symbol], col_sep: col_sep) do |row|
-
-      SPECIES = {
-        'Eve_' => 'draba-verna'
-      }.freeze
-
       h = row.to_h
 
       label_keys = %i[
@@ -25,7 +25,7 @@ module PlantSampleUpload
 
       label = h
         .select { |key, _| label_keys.include? key }
-        .values.map(:to_s)
+        .values.map(&:to_s)
         .join("-")
 
       attrs = h
@@ -41,7 +41,7 @@ module PlantSampleUpload
           storage_method: 'freeze-dried'
         })
       
-      attrs[:species] = SPECIES[attrs[:species]]
+      attrs[:species] = PlantSampleUpload::SPECIES[attrs[:species]]
 
       name, subpopulation, accession = h[:individual].split('-')
       generation = h[:label_g].match(/(?<generation>\d)/)[:generation]
@@ -53,7 +53,7 @@ module PlantSampleUpload
         plant_sample_id = PlantSample.find_by(full_attrs).id
         Seed.where(population_id: population_id, accession: accession, generation: generation)
           .each do |seed|
-            SeedsPlantSamples.upsert({
+            ::SeedsPlantSamples.upsert({
               seed_id: seed.id,
               plant_sample_id: plant_sample_id
             })
