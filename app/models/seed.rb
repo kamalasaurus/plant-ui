@@ -7,7 +7,7 @@ class Seed < ApplicationRecord
   has_many :tubes
   has_many :children, class_name: 'Seed', foreign_key: 'parent_id'
 
-  has_many: :plant_samples
+  has_and_belongs_to_many :plant_samples
 
   def label
     "#{species}-#{population.label}-#{accession}"

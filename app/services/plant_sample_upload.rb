@@ -11,33 +11,57 @@ module PlantSampleUpload
         'Eve_' => 'draba-verna'
       }.freeze
 
-      row.to_h
+      h = row.to_h
 
-      binding.pry
-      # name, subpopulation = h[:population].split('-')
+      label_keys = %i[
+        label_p1
+        label_p2
+        label_p3
+        label_p4
+        label_g
+        label_p5
+        cohort
+      ]
 
-      # transform = h.keys.select { |key, _| /^plant_otu/ =~ key.to_s }
-      #   .map do |key, val|
-      #     number = key.match(/\d+$/).to_s.to_i
-      #     val = :"plant_otu_#{number}"
-      #     [key, val]
-      #   end
-      #   .to_h
+      label = h
+        .select { |key, _| label_keys.include? key }
+        .values.map(:to_s)
+        .join("-")
 
-      # attrs = h
-      #   .select { |key, _| /^plant_otu/ =~ key.to_s }
-      #   .transform_keys(transform)
+      attrs = h
+        .slice(*%i[
+          species
+          amount_plant_material
+        ])
+        .transform_keys({
+          amount_plant_material: :quantity
+        })
+        .merge({
+          label: label,
+          storage_method: 'freeze-dried'
+        })
+      
+      attrs[:species] = SPECIES[attrs[:species]]
 
-      # other_attrs = h
-      #   .select { |key, _| /^plant_(?!otu)/ =~ key.to_s }
+      name, subpopulation, accession = h[:individual].split('-')
+      generation = h[:label_g].match(/(?<generation>\d)/)[:generation]
 
-      # ActiveRecord::Base.transaction do
-      #   # seed_id = Population.create_or_find_by().id
-      #   PlantSample.upsert(attrs.merge(other_attrs).merge({seed_id: seed_id}))
-      # rescue StandardError => e
-      #   puts e
-      #   puts h
-      # end
+      ActiveRecord::Base.transaction do
+        population_id = Population.find_by(name: name, subpopulation: subpopulation).id
+        full_attrs = attrs.merge({population_id: population_id})
+        PlantSample.upsert(full_attrs)
+        plant_sample_id = PlantSample.find_by(full_attrs).id
+        Seed.where(population_id: population_id, accession: accession, generation: generation)
+          .each do |seed|
+            SeedsPlantSamples.upsert({
+              seed_id: seed.id,
+              plant_sample_id: plant_sample_id
+            })
+          end
+      rescue StandardError => e
+        puts e
+        puts h
+      end
     end
   end
 
