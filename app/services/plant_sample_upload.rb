@@ -52,7 +52,9 @@ module PlantSampleUpload
         full_attrs = attrs.merge({population_id: population_id})
         PlantSample.upsert(full_attrs)
 
-        # do the full attrs guarantee uniqueness?
+        # the full_attrs do not guarantee uniqueness
+        # this call to last would be unsafe in multi-threaded ingestion
+        # but since single-threaded, it's probably fine for this scale
         plant_sample_id = PlantSample.where(full_attrs).last.id
 
         seed_attrs = {
@@ -72,12 +74,6 @@ module PlantSampleUpload
           end
         if seeds.length == 0
           puts 'NO SEEDS'
-          puts SeedsPlantSample.where(plant_sample_id: plant_sample_id).map(&:id).join(' ')
-          puts plant_sample_id
-        end
-
-        if seeds.length > 1
-          puts seeds.map(&:id).join(' ')
           puts SeedsPlantSample.where(plant_sample_id: plant_sample_id).map(&:id).join(' ')
           puts plant_sample_id
         end
