@@ -1,9 +1,10 @@
 class PlantSample < ApplicationRecord
-  has_and_belongs_to_many :seed
+  has_many :seeds_plant_samples
+  has_many :seeds, through: :seeds_plant_samples
   belongs_to :population
 
   def seed
-    seeds.length == 1 ? seeds.pop : seeds
+    seeds.length == 1 ? seeds.first : seeds
   end
 
   def accession

@@ -287,6 +287,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
     t.bigint "seed_id"
     t.bigint "plant_sample_id"
     t.index ["plant_sample_id"], name: "index_seeds_plant_samples_on_plant_sample_id"
+    t.index ["seed_id", "plant_sample_id"], name: "index_seeds_plant_samples_on_seed_id_and_plant_sample_id", unique: true
     t.index ["seed_id"], name: "index_seeds_plant_samples_on_seed_id"
   end
 

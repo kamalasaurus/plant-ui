@@ -44,7 +44,7 @@ module PlantSampleUpload
       attrs[:species] = PlantSampleUpload::SPECIES[attrs[:species]]
 
       name, subpopulation, accession = h[:individual].split('-')
-      generation = h[:label_g]&.match(/(?<generation>\d)/)&.[](:generation)
+      generation = h[:label_g]&.to_s&.match(/(?<generation>\d+)/)&.[](:generation)&.to_i
 
       ActiveRecord::Base.transaction do
         population_id = Population.find_by(name: name, subpopulation: subpopulation).id
@@ -53,6 +53,7 @@ module PlantSampleUpload
         plant_sample_id = PlantSample.find_by(full_attrs).id
 
         seed_attrs = {
+          species: attrs[:species],
           population_id: population_id,
           accession: accession
         }.tap do |hash|
@@ -61,10 +62,10 @@ module PlantSampleUpload
 
         Seed.where(seed_attrs)
           .each do |seed|
-            SeedsPlantSample.find_or_create_by(
+            SeedsPlantSample.upsert({
               seed_id: seed.id,
               plant_sample_id: plant_sample_id
-            )
+            }, unique_by: %i[seed_id plant_sample_id])
           end
       rescue StandardError => e
         puts e
