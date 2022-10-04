@@ -19,8 +19,6 @@ class CreatePlantSamples < ActiveRecord::Migration[7.0]
     create_table :seeds_plant_samples, id: false do |t|
       t.belongs_to :seed
       t.belongs_to :plant_sample
-
-      t.timestamps
     end
   end
 end
