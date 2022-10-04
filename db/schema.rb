@@ -283,7 +283,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
     t.index ["species", "generation", "accession", "population_id"], name: "uniqueness_index", unique: true
   end
 
-  create_table "seeds_plant_samples", id: false, force: :cascade do |t|
+  create_table "seeds_plant_samples", force: :cascade do |t|
     t.bigint "seed_id"
     t.bigint "plant_sample_id"
     t.index ["plant_sample_id"], name: "index_seeds_plant_samples_on_plant_sample_id"

@@ -45,11 +45,14 @@ module PlantSampleUpload
 
       name, subpopulation, accession = h[:individual].split('-')
       generation = h[:label_g]&.to_s&.match(/(?<generation>\d+)/)&.[](:generation)&.to_i
+      accession = accession.rjust(2, '0')
 
       ActiveRecord::Base.transaction do
         population_id = Population.find_by(name: name, subpopulation: subpopulation).id
         full_attrs = attrs.merge({population_id: population_id})
         PlantSample.upsert(full_attrs)
+
+        # do the full attrs guarantee uniqueness?
         plant_sample_id = PlantSample.find_by(full_attrs).id
 
         seed_attrs = {
@@ -60,13 +63,24 @@ module PlantSampleUpload
           hash[:generation] = generation if generation.present?
         end
 
-        Seed.where(seed_attrs)
-          .each do |seed|
+        seeds = Seed.where(seed_attrs)
+        seeds.each do |seed|
             SeedsPlantSample.upsert({
               seed_id: seed.id,
               plant_sample_id: plant_sample_id
-            }, unique_by: %i[seed_id plant_sample_id])
+            })
           end
+        if seeds.length == 0
+          puts 'NO SEEDS'
+          puts SeedsPlantSample.where(plant_sample_id: plant_sample_id).map(&:id).join(' ')
+          puts plant_sample_id
+        end
+
+        if seeds.length > 1
+          puts seeds.map(&:id).join(' ')
+          puts SeedsPlantSample.where(plant_sample_id: plant_sample_id).map(&:id).join(' ')
+          puts plant_sample_id
+        end
       rescue StandardError => e
         puts e
         puts seed_attrs

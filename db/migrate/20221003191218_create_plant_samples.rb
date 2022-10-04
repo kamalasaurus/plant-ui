@@ -16,7 +16,7 @@ class CreatePlantSamples < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :seeds_plant_samples, id: false do |t|
+    create_table :seeds_plant_samples do |t|
       t.belongs_to :seed
       t.belongs_to :plant_sample
       t.index %i[seed_id plant_sample_id], unique: true
