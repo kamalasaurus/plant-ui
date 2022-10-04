@@ -53,7 +53,7 @@ module PlantSampleUpload
         PlantSample.upsert(full_attrs)
 
         # do the full attrs guarantee uniqueness?
-        plant_sample_id = PlantSample.find_by(full_attrs).id
+        plant_sample_id = PlantSample.where(full_attrs).last.id
 
         seed_attrs = {
           species: attrs[:species],
