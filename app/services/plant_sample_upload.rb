@@ -208,6 +208,8 @@ module PlantSampleUpload
         name, subpopulation, accession = h[:individual].split('-')
         accession = accession.rjust(2, '0')
 
+        attrs[:quantity] = 2 if attrs[:quantity].nil?
+
         ActiveRecord::Base.transaction do
           population_id = Population.find_by(name: name, subpopulation: subpopulation).id
           full_attrs = attrs.merge({population_id: population_id})
