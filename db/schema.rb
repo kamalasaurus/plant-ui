@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_202744) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_202744) do
     t.datetime "updated_at", null: false
     t.index ["population_id", "accession_number"], name: "index_accessions_on_population_id_and_accession_number", unique: true
     t.index ["population_id"], name: "index_accessions_on_population_id"
+  end
+
+  create_table "cytometry_readings", force: :cascade do |t|
+    t.bigint "accession_id", null: false
+    t.integer "minimum_peak"
+    t.float "mean_f2"
+    t.integer "peak_pattern", default: [], array: true
+    t.integer "chromosome_count", default: [], array: true
+    t.boolean "chromosome_count_certain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["accession_id"], name: "index_cytometry_readings_on_accession_id"
   end
 
   create_table "leaf_communities", force: :cascade do |t|
@@ -313,6 +325,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_202744) do
   end
 
   add_foreign_key "accessions", "populations"
+  add_foreign_key "cytometry_readings", "accessions"
   add_foreign_key "leaf_communities", "populations"
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"

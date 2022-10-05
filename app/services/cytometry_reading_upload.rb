@@ -9,7 +9,7 @@ module CytometryReadingUpload
       h = row.to_h
 
       attrs = h
-        .except(:accession)
+        .except(:individual)
         .tap do |hash|
           hash[:peak_pattern] = hash[:peak_pattern].split(',')
           hash[:chromosome_count] = hash[:chromosome_count]&.scan(/(\d+)/)&.map(&:pop)&.map(&:to_i)
@@ -17,7 +17,7 @@ module CytometryReadingUpload
         end
 
       ActiveRecord::Base.transaction do
-        accession_id = Accession.get(h[:accession])&.id
+        accession_id = Accession.get(h[:individual])&.id
         CytometryReading.upsert(attrs.merge({
           accession_id: accession_id
         }))
