@@ -8,7 +8,7 @@ class Population < ApplicationRecord
   has_one :root_community
   has_one :plant_neighborhood
 
-  def label
-    "#{name}-#{subpopulation}"
+  def name
+    "#{population_name}-#{subpopulation}"
   end
 end

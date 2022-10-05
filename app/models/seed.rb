@@ -11,11 +11,11 @@ class Seed < ApplicationRecord
   has_many :plant_samples, through: :seeds_plant_samples
 
   def label
-    "#{species}-#{population.label}-#{accession}"
+    "#{species}-#{population.name}-#{accession}"
   end
 
   def abbreviation
-    "#{trunc_name.upcase}-#{population.label.upcase}-#{accession}"
+    "#{trunc_name.upcase}-#{population.name.upcase}-#{accession}"
   end
 
   private

@@ -45,12 +45,12 @@ module PlantSampleUpload
       
       attrs[:species] = PlantSampleUpload::SPECIES[attrs[:species]]
 
-      name, subpopulation, accession = h[:individual].split('-')
+      population_name, subpopulation, accession = h[:individual].split('-')
       generation = h[:label_g]&.to_s&.match(/(?<generation>\d+)/)&.[](:generation)&.to_i
       accession = accession.rjust(2, '0')
 
       ActiveRecord::Base.transaction do
-        population_id = Population.find_by(name: name, subpopulation: subpopulation).id
+        population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
         full_attrs = attrs.merge({population_id: population_id})
         PlantSample.upsert(full_attrs)
 
@@ -121,11 +121,11 @@ module PlantSampleUpload
           storage_method: 'minus-80'
         })
       
-      name, subpopulation, accession = h[:accession].split('-')
+      population_name, subpopulation, accession = h[:accession].split('-')
       accession = accession.rjust(2, '0')
 
       ActiveRecord::Base.transaction do
-        population_id = Population.find_by(name: name, subpopulation: subpopulation).id
+        population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
         full_attrs = attrs.merge({population_id: population_id})
         PlantSample.upsert(full_attrs)
 
@@ -205,13 +205,13 @@ module PlantSampleUpload
           end
           
           
-        name, subpopulation, accession = h[:individual].split('-')
+        population_name, subpopulation, accession = h[:individual].split('-')
         accession = accession.rjust(2, '0')
 
         attrs[:quantity] = 2 if attrs[:quantity].nil?
 
         ActiveRecord::Base.transaction do
-          population_id = Population.find_by(name: name, subpopulation: subpopulation).id
+          population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
           full_attrs = attrs.merge({population_id: population_id})
           PlantSample.upsert(full_attrs)
   

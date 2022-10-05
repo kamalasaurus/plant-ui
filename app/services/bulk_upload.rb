@@ -53,10 +53,10 @@ class BulkUpload
 
   def create_or_update_population(h)
     Population.upsert({
-      name: h[:popid1],
+      population_name: h[:popid1],
       subpopulation: h[:popid2]
-    }, unique_by: %i[name subpopulation])
-    Population.find_by(name: h[:popid1], subpopulation: h[:popid2])
+    }, unique_by: %i[population_name subpopulation])
+    Population.find_by(population_name: h[:popid1], subpopulation: h[:popid2])
   end
 
   def create_or_update_seed(h, population)

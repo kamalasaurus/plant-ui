@@ -8,7 +8,7 @@ class PlantSample < ApplicationRecord
   end
 
   def accession
-    "#{population.label}-#{seeds.first.accession}"
+    "#{population.name}-#{seeds.first.accession}"
   end
 
   def generation
