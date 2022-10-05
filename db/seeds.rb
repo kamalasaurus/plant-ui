@@ -56,4 +56,10 @@ ingest(Rails.root.join('lib', 'assets', 'samples')) do |csv|
   print "plant sample: "
 end
 
+
+ingest(Rails.root.join('lib', 'assets', 'cytometry')) do |csv|
+  CytometryReadingUpload.parse(File.read(Rails.root.join('lib', 'assets', 'cytometry', csv)))
+  print "cytometry readings: "
+end
+
 puts 'all data seeded!'

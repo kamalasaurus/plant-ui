@@ -11,4 +11,8 @@ class PlantSample < ApplicationRecord
   def generation
     seeds.length == 1 ? seed.generation : nil
   end
+
+  def cytometrized?
+    accession.cytometry_reading.present?
+  end
 end

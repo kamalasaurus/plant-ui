@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accession: one
+  minimum_peak: 1
+  mean_f2: 1.5
+  peak_pattern: 1
+  chromosome_count: 1
+  chromosome_count_certain: false
+
+two:
+  accession: two
+  minimum_peak: 1
+  mean_f2: 1.5
+  peak_pattern: 1
+  chromosome_count: 1
+  chromosome_count_certain: false
