@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Seed < ApplicationRecord
-  belongs_to :population
+  belongs_to :accession
+  delegate :population, to: :accession
+  
   belongs_to :parent, class_name: 'Seed', optional: true
 
   has_many :tubes
@@ -11,11 +13,11 @@ class Seed < ApplicationRecord
   has_many :plant_samples, through: :seeds_plant_samples
 
   def label
-    "#{species}-#{population.label}-#{accession}"
+    "#{species}-#{accession.name}"
   end
 
   def abbreviation
-    "#{trunc_name.upcase}-#{population.label.upcase}-#{accession}"
+    "#{trunc_name.upcase}-#{accession.name}"
   end
 
   private

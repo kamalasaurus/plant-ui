@@ -66,6 +66,6 @@ class PopulationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def population_params
-    params.require(:population).permit(:name, :location)
+    params.require(:population).permit(:population_name, :location)
   end
 end

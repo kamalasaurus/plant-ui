@@ -6,7 +6,7 @@ module RootCommunityUpload
   def self.parse(file)
     CSV.parse(file, headers: true, header_converters: %i[downcase]) do |row|
       h = row.to_h.deep_symbolize_keys!
-      name, subpopulation = h[:population].split('-')
+      population_name, subpopulation = h[:population].split('-')
 
       transform = h.keys.select { |key, _| /^root_otu/ =~ key.to_s }
         .map do |key, val|
@@ -43,7 +43,7 @@ module RootCommunityUpload
 
       # Frachon 2019, supplementary dataset 5, MBE
       ActiveRecord::Base.transaction do
-        population_id = Population.create_or_find_by(name: name, subpopulation: subpopulation).id
+        population_id = Population.create_or_find_by(population_name: population_name, subpopulation: subpopulation).id
         RootCommunity.upsert(attrs.merge(other_attrs).merge({population_id: population_id}))
       rescue StandardError => e
         puts e

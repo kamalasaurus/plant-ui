@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_202744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accessions", force: :cascade do |t|
+    t.bigint "population_id", null: false
+    t.integer "accession_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["population_id", "accession_number"], name: "index_accessions_on_population_id_and_accession_number", unique: true
+    t.index ["population_id"], name: "index_accessions_on_population_id"
+  end
 
   create_table "leaf_communities", force: :cascade do |t|
     t.bigint "population_id", null: false
@@ -191,18 +200,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
     t.integer "column"
     t.date "sowing_date"
     t.date "harvest_date"
-    t.bigint "population_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["population_id"], name: "index_plant_samples_on_population_id"
+    t.bigint "accession_id"
+    t.index ["accession_id"], name: "index_plant_samples_on_accession_id"
   end
 
   create_table "populations", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "population_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "subpopulation", null: false
-    t.index ["name", "subpopulation"], name: "index_populations_on_name_and_subpopulation", unique: true
+    t.index ["population_name", "subpopulation"], name: "index_populations_on_population_name_and_subpopulation", unique: true
   end
 
   create_table "root_communities", force: :cascade do |t|
@@ -275,12 +284,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
     t.integer "generation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "accession", null: false
     t.bigint "parent_id"
-    t.bigint "population_id", null: false
+    t.bigint "accession_id"
+    t.index ["accession_id"], name: "index_seeds_on_accession_id"
     t.index ["parent_id"], name: "index_seeds_on_parent_id"
-    t.index ["population_id"], name: "index_seeds_on_population_id"
-    t.index ["species", "generation", "accession", "population_id"], name: "uniqueness_index", unique: true
+    t.index ["species", "generation", "accession_id"], name: "uniqueness_index", unique: true
   end
 
   create_table "seeds_plant_samples", force: :cascade do |t|
@@ -304,12 +312,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_191218) do
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
+  add_foreign_key "accessions", "populations"
   add_foreign_key "leaf_communities", "populations"
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"
-  add_foreign_key "plant_samples", "populations"
+  add_foreign_key "plant_samples", "accessions"
   add_foreign_key "root_communities", "populations"
-  add_foreign_key "seeds", "populations"
+  add_foreign_key "seeds", "accessions"
   add_foreign_key "seeds", "seeds", column: "parent_id"
   add_foreign_key "tubes", "seedboxes"
   add_foreign_key "tubes", "seeds"

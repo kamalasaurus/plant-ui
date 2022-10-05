@@ -20,7 +20,7 @@ def ingest(directory)
 end  
 
 ingest(Rails.root.join('lib', 'assets', 'seed_tubes')) do |csv|
-  BulkUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
+  TubeUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
   print "tubes: "
 end
 

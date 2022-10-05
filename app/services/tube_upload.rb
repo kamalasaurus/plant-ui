@@ -2,7 +2,7 @@
 
 require 'csv'
 
-class BulkUpload
+class TubeUpload
   private_class_method :new
   attr_reader :errors
 
@@ -35,10 +35,6 @@ class BulkUpload
     str == 'NA' ? nil : str
   end
 
-  def pad(str)
-    str.rjust(2, '0')
-  end
-
   def copy
     name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
@@ -53,24 +49,30 @@ class BulkUpload
 
   def create_or_update_population(h)
     Population.upsert({
-      name: h[:popid1],
-      subpopulation: h[:popid2]
-    }, unique_by: %i[name subpopulation])
-    Population.find_by(name: h[:popid1], subpopulation: h[:popid2])
+      population_name: h[:popid1].upcase,
+      subpopulation: h[:popid2].upcase
+    }, unique_by: %i[population_name subpopulation])
+    Population.find_by(population_name: h[:popid1], subpopulation: h[:popid2])
   end
 
-  def create_or_update_seed(h, population)
+  def create_or_update_accession(h, population)
+    Accession.upsert({
+      accession_number: h[:accid].to_i,
+      population_id: population.id
+    }, unique_by: %i[population_id accession_number])
+    Accession.find_by(population_id: population.id, accession_number: h[:accid])
+  end
+
+  def create_or_update_seed(h, accession)
     Seed.upsert({
       species: SPECIES[h[:species]],
       generation: h[:generation],
-      accession: pad(h[:accid]),
-      population_id: population.id
+      accession_id: accession.id
     }, unique_by: :uniqueness_index)
     Seed.find_by(
       species: SPECIES[h[:species]],
       generation: h[:generation],
-      accession: pad(h[:accid]),
-      population_id: population.id
+      accession_id: accession.id
     )
   end
 
@@ -98,9 +100,11 @@ class BulkUpload
       ActiveRecord::Base.transaction do
         seedbox = create_or_update_seedbox(h)
         population = create_or_update_population(h)
-        seed = create_or_update_seed(h, population)
+        accession = create_or_update_accession(h, population)
+        seed = create_or_update_seed(h, accession)
         tube = create_or_update_tube(h, seed, seedbox)
       rescue StandardError => e
+        binding.pry
         puts e
         puts h
         @errors.push([e, row])
