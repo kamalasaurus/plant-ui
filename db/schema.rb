@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_193351) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_195839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accessions", force: :cascade do |t|
+    t.bigint "population_id", null: false
+    t.integer "accession_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["population_id", "accession_number"], name: "index_accessions_on_population_id_and_accession_number", unique: true
+    t.index ["population_id"], name: "index_accessions_on_population_id"
+  end
 
   create_table "leaf_communities", force: :cascade do |t|
     t.bigint "population_id", null: false
@@ -304,6 +313,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_193351) do
     t.index ["seedbox_id"], name: "index_tubes_on_seedbox_id"
   end
 
+  add_foreign_key "accessions", "populations"
   add_foreign_key "leaf_communities", "populations"
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"

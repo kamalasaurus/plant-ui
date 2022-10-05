@@ -45,13 +45,12 @@ module PlantSampleUpload
       
       attrs[:species] = PlantSampleUpload::SPECIES[attrs[:species]]
 
-      population_name, subpopulation, accession = h[:individual].split('-')
       generation = h[:label_g]&.to_s&.match(/(?<generation>\d+)/)&.[](:generation)&.to_i
-      accession = accession.rjust(2, '0')
 
       ActiveRecord::Base.transaction do
-        population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
-        full_attrs = attrs.merge({population_id: population_id})
+        accession_id = Accession.get(h[:individual])&.id
+        
+        full_attrs = attrs.merge({accession_id: accession_id})
         PlantSample.upsert(full_attrs)
 
         # the full_attrs do not guarantee uniqueness
@@ -61,8 +60,7 @@ module PlantSampleUpload
 
         seed_attrs = {
           species: attrs[:species],
-          population_id: population_id,
-          accession: accession
+          accession_id: accession_id
         }.tap do |hash|
           hash[:generation] = generation if generation.present?
         end
@@ -121,12 +119,10 @@ module PlantSampleUpload
           storage_method: 'minus-80'
         })
       
-      population_name, subpopulation, accession = h[:accession].split('-')
-      accession = accession.rjust(2, '0')
 
       ActiveRecord::Base.transaction do
-        population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
-        full_attrs = attrs.merge({population_id: population_id})
+        accession_id = Accession.get(h[:accession])&.id
+        full_attrs = attrs.merge({accession_id: accession_id})
         PlantSample.upsert(full_attrs)
 
         # the full_attrs do not guarantee uniqueness
@@ -136,8 +132,7 @@ module PlantSampleUpload
 
         seed_attrs = {
           species: attrs[:species],
-          population_id: population_id,
-          accession: accession
+          accession_id: accession_id
         }
 
         seeds = Seed.where(seed_attrs)
@@ -204,15 +199,11 @@ module PlantSampleUpload
             hash[:replication_tray] = tray_idx
           end
           
-          
-        population_name, subpopulation, accession = h[:individual].split('-')
-        accession = accession.rjust(2, '0')
-
         attrs[:quantity] = 2 if attrs[:quantity].nil?
 
         ActiveRecord::Base.transaction do
-          population_id = Population.find_by(population_name: population_name, subpopulation: subpopulation).id
-          full_attrs = attrs.merge({population_id: population_id})
+          accession_id = Accession.get(h[:individual])
+          full_attrs = attrs.merge({accession_id: accession_id})
           PlantSample.upsert(full_attrs)
   
           # the full_attrs do not guarantee uniqueness
@@ -222,8 +213,7 @@ module PlantSampleUpload
   
           seed_attrs = {
             species: attrs[:species],
-            population_id: population_id,
-            accession: accession
+            accession_id: accession_id
           }
   
           seeds = Seed.where(seed_attrs)
