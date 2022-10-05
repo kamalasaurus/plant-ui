@@ -8,7 +8,7 @@ module PlantSampleUpload
     'Eve_' => 'draba-verna'.freeze
   }.freeze
 
-  ALPH = ('a'..'z').to_a
+  ALPH = ('A'..'Z').to_a
 
   def self.parse_freeze_dried(file)
     col_sep = (file =~ /\t/ ? "\t" : ",")
@@ -188,7 +188,7 @@ module PlantSampleUpload
             flat: :accession_tray,
             trayid: :replication_tray,
             platerow: :row,
-            platecol: :col,
+            platecol: :column,
             plant_material_available: :quantity,
           })
           .merge({
@@ -197,10 +197,10 @@ module PlantSampleUpload
             storage_method: 'silica'
           })
           .transform_values { |v| (v == 'Placeholder' || v == 'NA') ? nil : v }
-          .tap |hash| do
-            flat_idx = hash[:accession_tray]&.match(/<flat>\d+/)&.[](:flat)&.to_i&.- 1
-            hash[:accession_tray] = ALPH[flat_idx]
-            tray_idx = hash[:replication_tray]&.match(/<rep>\d+/)&.[](:rep)&.to_i
+          .tap do |hash|
+            flat_idx = (hash[:accession_tray]&.match(/(?<flat>\d+)/)&.[](:flat)&.to_i)
+            hash[:accession_tray] = ALPH[flat_idx - 1]
+            tray_idx = (hash[:replication_tray]&.match(/(?<rep>\d+)/)&.[](:rep)&.to_i)
             hash[:replication_tray] = tray_idx
           end
           
