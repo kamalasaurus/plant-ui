@@ -202,7 +202,7 @@ module PlantSampleUpload
         attrs[:quantity] = 2 if attrs[:quantity].nil?
 
         ActiveRecord::Base.transaction do
-          accession_id = Accession.get(h[:individual])
+          accession_id = Accession.get(h[:individual])&.id
           full_attrs = attrs.merge({accession_id: accession_id})
           PlantSample.upsert(full_attrs)
   
@@ -229,7 +229,6 @@ module PlantSampleUpload
             puts plant_sample_id
           end
         rescue StandardError => e
-          binding.pry
           puts e
           puts seed_attrs
           puts attrs
