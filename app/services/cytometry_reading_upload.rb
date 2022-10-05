@@ -11,7 +11,7 @@ module CytometryReadingUpload
       attrs = h
         .except(:individual)
         .tap do |hash|
-          hash[:peak_pattern] = hash[:peak_pattern].split(',')
+          hash[:peak_pattern] = hash[:peak_pattern].split(',').map(&:to_i)
           hash[:chromosome_count] = hash[:chromosome_count]&.scan(/(\d+)/)&.map(&:pop)&.map(&:to_i)
           hash[:chromosome_count_certain] = hash[:chromosome_count_certain] !~ /\?/ || false
         end
