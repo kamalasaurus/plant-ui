@@ -10,12 +10,17 @@ module CytometryReadingUpload
 
       attrs = h
         .except(:individual)
+        .transform_keys({
+          min_peak: :minimum_peak,
+          meanf2: :mean_f2,
+          chr_count: :chromosome_count
+        })
         .tap do |hash|
           hash[:minimum_peak] = hash[:minimum_peak].to_i
           hash[:mean_f2] = hash[:mean_f2].to_f
           hash[:peak_pattern] = hash[:peak_pattern].split(',').map(&:to_i)
           hash[:chromosome_count] = hash[:chromosome_count]&.scan(/(\d+)/)&.map(&:pop)&.map(&:to_i)
-          hash[:chromosome_count_certain] = hash[:chromosome_count_certain] !~ /\?/ || false
+          hash[:chromosome_count_certain] = hash[:chromosome_count] !~ /\?/ || false
         end
 
       ActiveRecord::Base.transaction do
