@@ -2,7 +2,7 @@
 
 class Seed < ApplicationRecord
   belongs_to :accession
-  belongs_to :population, through: :accession
+  delegate :population, to: :accession
   
   belongs_to :parent, class_name: 'Seed', optional: true
 

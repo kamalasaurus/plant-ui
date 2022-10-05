@@ -229,6 +229,7 @@ module PlantSampleUpload
             puts plant_sample_id
           end
         rescue StandardError => e
+          binding.pry
           puts e
           puts seed_attrs
           puts attrs

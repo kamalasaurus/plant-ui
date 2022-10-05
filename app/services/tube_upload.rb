@@ -100,10 +100,11 @@ class TubeUpload
       ActiveRecord::Base.transaction do
         seedbox = create_or_update_seedbox(h)
         population = create_or_update_population(h)
-        accessoin = create_or_update_accession(h, population)
+        accession = create_or_update_accession(h, population)
         seed = create_or_update_seed(h, accession)
         tube = create_or_update_tube(h, seed, seedbox)
       rescue StandardError => e
+        binding.pry
         puts e
         puts h
         @errors.push([e, row])
