@@ -1,0 +1,163 @@
+tubes: seeded 2022_08_23_all_seed_tubes.csv
+tubes: seeded 2022_09_07_Found_seed_tubes.csv
+location: seeded 2022_09_08_eco_characterization.csv
+leaf communities: seeded 2022_09_08_eco_characterization.csv
+root communities: seeded 2022_09_08_eco_characterization.csv
+plant neighborhoods: seeded 2022_09_08_eco_characterization.csv
+NO SEEDS
+
+2
+NO SEEDS
+
+3
+NO SEEDS
+
+4
+NO SEEDS
+
+31
+NO SEEDS
+
+37
+NO SEEDS
+
+38
+NO SEEDS
+
+57
+NO SEEDS
+
+73
+NO SEEDS
+
+80
+NO SEEDS
+
+81
+NO SEEDS
+
+86
+NO SEEDS
+
+114
+NO SEEDS
+
+194
+NO SEEDS
+
+206
+NO SEEDS
+
+208
+NO SEEDS
+
+222
+NO SEEDS
+
+231
+NO SEEDS
+
+235
+NO SEEDS
+
+259
+NO SEEDS
+
+266
+NO SEEDS
+
+279
+NO SEEDS
+
+280
+NO SEEDS
+
+284
+NO SEEDS
+
+285
+NO SEEDS
+
+289
+NO SEEDS
+
+302
+NO SEEDS
+
+322
+NO SEEDS
+
+333
+NO SEEDS
+
+349
+NO SEEDS
+
+350
+NO SEEDS
+
+371
+NO SEEDS
+
+389
+NO SEEDS
+
+390
+NO SEEDS
+
+406
+NO SEEDS
+
+409
+NO SEEDS
+
+412
+NO SEEDS
+
+413
+NO SEEDS
+
+424
+NO SEEDS
+
+425
+NO SEEDS
+
+426
+NO SEEDS
+
+432
+NO SEEDS
+
+434
+NO SEEDS
+
+441
+NO SEEDS
+
+449
+NO SEEDS
+
+452
+NO SEEDS
+
+456
+NO SEEDS
+
+459
+NO SEEDS
+
+461
+NO SEEDS
+
+473
+NO SEEDS
+
+483
+NO SEEDS
+
+489
+plant sample: seeded 2022_08_09_freeze_dried_samples.tsv
+plant sample: seeded 2022_08_09_minus_80_samples.csv
+plant sample: seeded 2022_08_09_silica_samples.csv
+all data seeded!

@@ -2,6 +2,7 @@
 
 class Population < ApplicationRecord
   has_many :seeds
+  has_many :plant_samples
   has_one :location
   has_one :leaf_community
   has_one :root_community

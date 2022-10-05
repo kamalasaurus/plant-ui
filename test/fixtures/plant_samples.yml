@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  species: MyString
+  accession: MyString
+  label: MyString
+  storage_method: MyString
+  quantity: 1
+  generation: 1
+  accession_tray: MyString
+  replication_tray: 1
+  row: MyString
+  column: 1
+  sowing_date: 2022-10-03
+  harvest_date: 2022-10-03
+  seed: one
+
+two:
+  species: MyString
+  accession: MyString
+  label: MyString
+  storage_method: MyString
+  quantity: 1
+  generation: 1
+  accession_tray: MyString
+  replication_tray: 1
+  row: MyString
+  column: 1
+  sowing_date: 2022-10-03
+  harvest_date: 2022-10-03
+  seed: two

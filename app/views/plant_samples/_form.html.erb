@@ -1,0 +1,82 @@
+<%= form_with(model: plant_sample) do |form| %>
+  <% if plant_sample.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(plant_sample.errors.count, "error") %> prohibited this plant_sample from being saved:</h2>
+
+      <ul>
+        <% plant_sample.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :species, style: "display: block" %>
+    <%= form.text_field :species %>
+  </div>
+
+  <div>
+    <%= form.label :accession, style: "display: block" %>
+    <%= form.text_field :accession %>
+  </div>
+
+  <div>
+    <%= form.label :label, style: "display: block" %>
+    <%= form.text_field :label %>
+  </div>
+
+  <div>
+    <%= form.label :storage_method, style: "display: block" %>
+    <%= form.text_field :storage_method %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :generation, style: "display: block" %>
+    <%= form.number_field :generation %>
+  </div>
+
+  <div>
+    <%= form.label :accession_tray, style: "display: block" %>
+    <%= form.text_field :accession_tray %>
+  </div>
+
+  <div>
+    <%= form.label :replication_tray, style: "display: block" %>
+    <%= form.number_field :replication_tray %>
+  </div>
+
+  <div>
+    <%= form.label :row, style: "display: block" %>
+    <%= form.text_field :row %>
+  </div>
+
+  <div>
+    <%= form.label :column, style: "display: block" %>
+    <%= form.number_field :column %>
+  </div>
+
+  <div>
+    <%= form.label :sowing_date, style: "display: block" %>
+    <%= form.date_field :sowing_date %>
+  </div>
+
+  <div>
+    <%= form.label :harvest_date, style: "display: block" %>
+    <%= form.date_field :harvest_date %>
+  </div>
+
+  <div>
+    <%= form.label :seed_id, style: "display: block" %>
+    <%= form.text_field :seed_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
