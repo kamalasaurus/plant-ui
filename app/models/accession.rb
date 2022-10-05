@@ -4,7 +4,7 @@ class Accession < ApplicationRecord
   belongs_to :population
   has_many :seeds
   has_many :plant_samples
-  # has_many :flow_cytometry
+  has_one :cytometry_reading
 
   # assume format AMBR-A-01
   def self.get(dasherized_string)
