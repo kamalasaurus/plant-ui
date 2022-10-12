@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :tubes_by_accessions, only: %i[index create]
   resources :plant_samples
   resources :tubes, :populations, :seedboxes, :seeds
 

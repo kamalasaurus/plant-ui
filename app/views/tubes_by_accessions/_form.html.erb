@@ -1,0 +1,9 @@
+<%= javascript_include_tag "tubes-by-accession.js", type: "module"%>
+
+<div>
+  <div>
+    <textarea id='text' name='text' rows=10 cols=60></textarea>
+  </div>
+
+  <%= button_tag 'Submit', onclick: "window.getTubes()" %>
+</div>
