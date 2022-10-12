@@ -13,7 +13,7 @@ class TubesByAccessionsController < ApplicationController
       if tubes.success?
         format.csv { send_data tubes.csv, filename: filename, disposition: 'attachment', type: 'text/csv' }
       else
-        format.html { render :index, status: :unprocessable_entity }
+        format.html { redirect_to tubes_by_accessions_path, status: :unprocessable_entity }
         format.json { render json: tubes.errors, status: :unprocessable_entity }
       end
     end

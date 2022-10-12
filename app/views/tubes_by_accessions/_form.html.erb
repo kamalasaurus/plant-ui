@@ -1,9 +1,9 @@
-<%= form_with url: tubes_by_accessions_path, method: :post do |form| %>
+<%= javascript_include_tag "tubes-by-accession.js", type: "module"%>
+
+<div>
   <div>
-    <%= form.text_area :text, size:"60x10" %>
+    <textarea id='text' name='text' rows=10 cols=60></textarea>
   </div>
 
-  <div>
-    <%= form.submit "submit" %>
-  </div>
-<% end %>
+  <%= button_tag 'Submit', onclick: "window.getTubes()" %>
+</div>

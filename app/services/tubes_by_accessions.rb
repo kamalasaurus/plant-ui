@@ -40,14 +40,15 @@ class TubesByAccessions
 
   def parse
     @tubes
-      .map do |s|
-        species_abbr, accession, generation_abbr = s.split('_')
+      .map do |str|
+        species_abbr, accession, generation_abbr = str.split('_')
         species = SPECIES[species_abbr.downcase.to_sym]
         generation = generation_abbr.match(/(?<ge>\d$)/)[:ge]
         {
           species: species,
           accession: accession,
-          generation: generation
+          generation: generation,
+          string: str
         }
       end.map do |blob|
         acc = Accession.get(blob[:accession])
@@ -58,16 +59,20 @@ class TubesByAccessions
         b = b.empty? ?
           acc.seeds.where(species: blob[:species]) :
           b
-        b.map(&:tubes)
-      end.flatten.map do |tube|
-        {
-          seedbox: tube.seedbox.name,
-          species: tube.seed.species,
-          accession: tube.seed.accession.name,
-          generation: tube.seed.generation,
-          position: tube.position
-        }
-      end
+        b.map do |acc|
+          tubes = acc.tubes
+          tubes.map do |tube|
+            {
+              seedbox: tube.seedbox.name,
+              species: tube.seed.species,
+              accession: tube.seed.accession.name,
+              generation: tube.seed.generation,
+              position: tube.position,
+              submission: blob[:string]
+            }
+          end
+        end
+      end.flatten.sort_by { |c| c[:submission] }
   rescue StandardError => e
     @errors << e
   ensure
