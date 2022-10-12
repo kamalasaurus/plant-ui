@@ -41,6 +41,8 @@ class GenerateCsv
         end
         csv << row
       end
+    rescue StandardError => e
+      @errors << e
     end
 
     @file = csv
@@ -54,5 +56,7 @@ class GenerateCsv
     name = "#{genus} #{species}"
     population = "#{pop1}-#{pop2}"
     [name, population, accession, critical]
+  rescue StandardError => e
+    @errors << e
   end
 end
