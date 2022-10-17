@@ -36,6 +36,7 @@ class TubeUpload
   end
 
   def copy
+    return if Rails.env.production?
     name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
