@@ -78,4 +78,11 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: "<%= ENV['PRODUCTION_DB_USERNAME'] %>"
+  # password: "<%= ENV['PLANT_UI_DATABASE_PASSWORD'] %>"
+  password: <%= Rails.application.credentials.gcp[:db_password] %>
+  database: "<%= ENV['PRODUCTION_DB_NAME'] %>"
+  host: "/cloudsql/<%= ENV['CLOUD_SQL_CONNECTION_NAME'] %>"
