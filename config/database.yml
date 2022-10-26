@@ -16,11 +16,15 @@
 #
 default: &default
   adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *default
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
-
+  username: <%= ENV.fetch('PRODUCTION_DB_USERNAME') %>
+  password: <%= ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
+  database: <%= ENV.fetch('DEVELOPMENT_DB_NAME') %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -54,7 +58,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
+  username: <%= ENV.fetch('PRODUCTION_DB_USERNAME') %>
+  password: <%= ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
+  database: <%= ENV.fetch('TEST_DB_NAME') %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -78,10 +84,7 @@ test:
 #
 production:
   <<: *default
-  encoding: unicode
-  pool: 5
-  timeout: 5000
-  username: "<%= ENV['PRODUCTION_DB_USERNAME'] %>"
-  password: <%= Rails.application&.credentials.dig(:gcp, :db_password) || ENV['PLANT_UI_DATABASE_PASSWORD'] %>
-  database: "<%= ENV['PRODUCTION_DB_NAME'] %>"
-  host: "<%= ENV['CLOUD_SQL_IP'] || '' %>/cloudsql/<%= ENV['CLOUD_SQL_CONNECTION_NAME'] %>"
+  username: <%= ENV.fetch('PRODUCTION_DB_USERNAME') %>
+  password: <%= Rails.application&.credentials.dig(:gcp, :db_password) || ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
+  database: "<%= ENV.fetch('PRODUCTION_DB_NAME') %>"
+  host: "<%= ENV.fetch('CLOUD_SQL_IP') || '' %>/cloudsql/<%= ENV.fetch('CLOUD_SQL_CONNECTION_NAME') %>"
