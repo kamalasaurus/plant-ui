@@ -15,4 +15,5 @@ RUN bundle _2.3.3_ install
 RUN bundle config --global frozen 1
 RUN bundle install
 
-CMD rails server -p 8080 -b '0.0.0.0' &
+EXPOSE 8080
+CMD rails server -p 8080 -b '0.0.0.0'

@@ -82,7 +82,6 @@ production:
   pool: 5
   timeout: 5000
   username: "<%= ENV['PRODUCTION_DB_USERNAME'] %>"
-  # password: "<%= ENV['PLANT_UI_DATABASE_PASSWORD'] %>"
-  password: <%= Rails.application.credentials.gcp[:db_password] %>
+  password: <%= Rails.application&.credentials.dig(:gcp, :db_password) || ENV['PLANT_UI_DATABASE_PASSWORD'] %>
   database: "<%= ENV['PRODUCTION_DB_NAME'] %>"
-  host: "/cloudsql/<%= ENV['CLOUD_SQL_CONNECTION_NAME'] %>"
+  host: "<%= ENV['CLOUD_SQL_IP'] || '' %>/cloudsql/<%= ENV['CLOUD_SQL_CONNECTION_NAME'] %>"
