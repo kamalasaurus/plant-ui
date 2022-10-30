@@ -95,4 +95,5 @@ Rails.application.configure do
 
   # Production URL
   config.hosts << "plant-ui.com"
+  config.active_record.cache_versioning = false
 end
