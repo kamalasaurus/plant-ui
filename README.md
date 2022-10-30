@@ -136,3 +136,14 @@ redis?  Will see if production requires that
 NYU hosts its tenant web applications in an [Apptainer](https://apptainer.org) environment as specified in ...
 
 Apptainer images are compatible with Docker images.  As a result, and given Docker's superior support for non-`x86`/`amd64` architectures (such as an `arm64` M1 Mac) this project exists in a docker container.
+
+
+### Database Upload
+
+```
+pg_dump -U plant_ui --no-owner --no-acl plant_ui_development > plant_ui_production.sql
+```
+
+upload to bucket at https://console.cloud.google.com/storage/browser/seed-inventory-manager-0f6a-bucket;tab=objects?forceOnBucketsSortingFiltering=false&project=seed-inventory-manager-0f6a&prefix=&forceOnObjectsSortingFiltering=false
+
+import data at https://console.cloud.google.com/sql/instances/plant-ui/overview?project=seed-inventory-manager-0f6a&cloudshell=true
