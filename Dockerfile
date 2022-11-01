@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM ruby:3.1.2-bullseye AS plant-ui
 
-ENV RAILS_ENV=production
 ENV RAILS_LOG_TO_STDOUT=true
 ENV INSTALL_PATH=/opt/plant-ui REPO=https://github.com/kamalasaurus/plant-ui.git
 RUN apt-get -y update
@@ -19,4 +18,4 @@ RUN bundle config --global frozen 1
 RUN bundle install
 
 EXPOSE 8080 5432 6379
-CMD rails server -p 8080 -b '0.0.0.0'
+CMD RAILS_ENV=production rails server -p 8080 -b '0.0.0.0'
