@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ruby:3.1.2-bullseye AS plant-ui
 
+ENV RAILS_ENV=production
 ENV RAILS_LOG_TO_STDOUT=true
 ENV INSTALL_PATH=/opt/plant-ui REPO=https://github.com/kamalasaurus/plant-ui.git
 RUN apt-get -y update

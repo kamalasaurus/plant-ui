@@ -85,6 +85,7 @@ test:
 production:
   <<: *default
   username: <%= ENV.fetch('PRODUCTION_DB_USERNAME') %>
-  password: <%= Rails.application&.credentials.dig(:gcp, :db_password) || ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
-  database: "<%= ENV.fetch('PRODUCTION_DB_NAME') %>"
-  host: "<%= ENV.fetch('CLOUD_SQL_IP') || '' %>/cloudsql/<%= ENV.fetch('CLOUD_SQL_CONNECTION_NAME') %>"
+  # password: <%= Rails.application&.credentials.dig(:gcp, :db_password) || ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
+  password: <%= ENV.fetch('PLANT_UI_DATABASE_PASSWORD') %>
+  database: <%= ENV.fetch('PRODUCTION_DB_NAME') %>
+  host: "<%= ENV.fetch('CLOUD_SQL_IP') %>/cloudsql/<%= ENV.fetch('CLOUD_SQL_CONNECTION_NAME') %>"
