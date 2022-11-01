@@ -2,6 +2,7 @@
 FROM ruby:3.1.2-bullseye AS plant-ui
 
 ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_SERVE_STATIC_FILES=true
 ENV INSTALL_PATH=/opt/plant-ui REPO=https://github.com/kamalasaurus/plant-ui.git
 RUN apt-get -y update
 RUN apt-get -y install git
