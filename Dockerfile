@@ -18,4 +18,4 @@ RUN bundle config --global frozen 1
 RUN bundle install
 
 EXPOSE 8080 5432 6379
-CMD RAILS_ENV=production rails server -p 8080 -b '0.0.0.0'
+CMD rails server -p 8080 -b '0.0.0.0'

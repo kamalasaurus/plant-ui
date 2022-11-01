@@ -95,5 +95,6 @@ Rails.application.configure do
 
   # Production URL
   config.hosts << "plant-ui.com"
+  config.hosts << "34.117.64.217"
   config.active_record.cache_versioning = false
 end
