@@ -6,6 +6,7 @@ ENV RAILS_SERVE_STATIC_FILES=true
 ENV INSTALL_PATH=/opt/plant-ui REPO=https://github.com/kamalasaurus/plant-ui.git
 RUN apt-get -y update
 RUN apt-get -y install git
+RUN apt-get -y install yarn
 
 RUN cd /opt && git clone $REPO
 
