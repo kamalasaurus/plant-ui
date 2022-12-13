@@ -2,7 +2,6 @@
 
 class Accession < ApplicationRecord
   belongs_to :population
-  belongs_to :species
   has_many :seeds
   has_many :plant_samples
   has_one :cytometry_reading
