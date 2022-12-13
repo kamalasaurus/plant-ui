@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Population < ApplicationRecord
-  has_many :seeds
-  has_many :plant_samples
+  has_many :accessions
+  has_many :seeds, through: :accessions
+  has_many :plant_samples, through: :accessions
   has_one :location
   has_one :leaf_community
   has_one :root_community
