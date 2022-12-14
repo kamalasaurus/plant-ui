@@ -64,7 +64,7 @@ class TubesByAccessions
           tubes.map do |tube|
             {
               seedbox: tube.seedbox.name,
-              species: tube.seed.species,
+              species: tube.seed.species.name,
               accession: tube.seed.accession.name,
               generation: tube.seed.generation,
               position: tube.position,
