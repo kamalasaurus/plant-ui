@@ -14,20 +14,10 @@ class Seed < ApplicationRecord
   has_many :plant_samples, through: :seeds_plant_samples
 
   def label
-    "#{species}-#{accession.name}"
+    "#{species.name}-#{accession.name}"
   end
 
   def abbreviation
-    "#{trunc_name.upcase}-#{accession.name}"
-  end
-
-  private
-
-  def trunc_name
-    species.split('-')
-           .map.with_index do |stem, i|
-      i.zero? ? stem[0, 1] : stem[0, 2]
-    end
-           .join
+    "#{species.abbreviation}-#{accession.name}"
   end
 end
