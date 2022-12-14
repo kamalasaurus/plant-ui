@@ -4,7 +4,7 @@ class Seedbox < ApplicationRecord
   has_many :tubes
 
   def self.grouped_tubes
-    all.map.with_object({}) do |seedbox, hsh|
+    all.includes(:tubes).map.with_object({}) do |seedbox, hsh|
       hsh[seedbox] = seedbox.tubes.map.with_object({}) do |tube, box|
         box[tube.position] = tube
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_184225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -202,7 +202,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
   end
 
   create_table "plant_samples", force: :cascade do |t|
-    t.string "species", null: false
     t.string "label", null: false
     t.string "storage_method", null: false
     t.integer "quantity", null: false
@@ -215,7 +214,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "accession_id"
+    t.bigint "species_id"
     t.index ["accession_id"], name: "index_plant_samples_on_accession_id"
+    t.index ["species_id"], name: "index_plant_samples_on_species_id"
   end
 
   create_table "populations", force: :cascade do |t|
@@ -292,15 +293,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
   end
 
   create_table "seeds", force: :cascade do |t|
-    t.string "species", null: false
     t.integer "generation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
     t.bigint "accession_id"
+    t.bigint "species_id"
     t.index ["accession_id"], name: "index_seeds_on_accession_id"
     t.index ["parent_id"], name: "index_seeds_on_parent_id"
-    t.index ["species", "generation", "accession_id"], name: "uniqueness_index", unique: true
+    t.index ["species_id", "generation", "accession_id"], name: "uniqueness_index", unique: true
+    t.index ["species_id"], name: "index_seeds_on_species_id"
   end
 
   create_table "seeds_plant_samples", force: :cascade do |t|
@@ -309,6 +311,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
     t.index ["plant_sample_id"], name: "index_seeds_plant_samples_on_plant_sample_id"
     t.index ["seed_id", "plant_sample_id"], name: "index_seeds_plant_samples_on_seed_id_and_plant_sample_id", unique: true
     t.index ["seed_id"], name: "index_seeds_plant_samples_on_seed_id"
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string "genus"
+    t.string "species"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genus", "species"], name: "index_species_on_genus_and_species", unique: true
   end
 
   create_table "tubes", force: :cascade do |t|
@@ -330,9 +340,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_213854) do
   add_foreign_key "locations", "populations"
   add_foreign_key "plant_neighborhoods", "populations"
   add_foreign_key "plant_samples", "accessions"
+  add_foreign_key "plant_samples", "species"
   add_foreign_key "root_communities", "populations"
   add_foreign_key "seeds", "accessions"
   add_foreign_key "seeds", "seeds", column: "parent_id"
+  add_foreign_key "seeds", "species"
   add_foreign_key "tubes", "seedboxes"
   add_foreign_key "tubes", "seeds"
 end
