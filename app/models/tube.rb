@@ -25,7 +25,7 @@ class Tube < ApplicationRecord
   # name of the project group to easily filter by concerns
   def flex_item
     <<~ITEM.chomp
-      #{seed.species.name.split('-').join(' ')} \
+      #{seed.species.genus} #{seed.species.species} \
       #{seedbox.name} \
       #{abbreviation} \
       compRgene

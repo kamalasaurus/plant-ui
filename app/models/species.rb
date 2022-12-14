@@ -7,6 +7,6 @@ class Species < ApplicationRecord
   end
 
   def abbreviation
-    "#{genus[0]}#{species[0,2]}"
+    "#{genus[0]}#{species[0,2]}".upcase
   end
 end
