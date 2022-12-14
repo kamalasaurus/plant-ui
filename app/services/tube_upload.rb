@@ -41,6 +41,15 @@ class TubeUpload
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 
+  def create_or_update_species(h)
+    genus, species = SPECIES[h[:species]].split('-')
+    Species.upsert({
+      genus: genus,
+      species: species
+    }, unique_by: %i[genus species])
+    Species.find_by(genus: genus, species: species)
+  end
+
   def create_or_update_seedbox(h)
     Seedbox.upsert({
       name: h[:seedbox]
@@ -64,14 +73,14 @@ class TubeUpload
     Accession.find_by(population_id: population.id, accession_number: h[:accid])
   end
 
-  def create_or_update_seed(h, accession)
+  def create_or_update_seed(h, accession, species)
     Seed.upsert({
-      species: SPECIES[h[:species]],
+      species_id: species.id,
       generation: h[:generation],
       accession_id: accession.id
     }, unique_by: :uniqueness_index)
     Seed.find_by(
-      species: SPECIES[h[:species]],
+      species_id: species.id,
       generation: h[:generation],
       accession_id: accession.id
     )
@@ -99,13 +108,13 @@ class TubeUpload
       seedbox, population, seed, tube = nil
       h = row.to_h
       ActiveRecord::Base.transaction do
+        species = create_or_update_species(h)
         seedbox = create_or_update_seedbox(h)
         population = create_or_update_population(h)
         accession = create_or_update_accession(h, population)
-        seed = create_or_update_seed(h, accession)
+        seed = create_or_update_seed(h, accession, species)
         tube = create_or_update_tube(h, seed, seedbox)
       rescue StandardError => e
-        binding.pry
         puts e
         puts h
         @errors.push([e, row])

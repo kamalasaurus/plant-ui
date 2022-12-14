@@ -43,7 +43,10 @@ module PlantSampleUpload
           storage_method: 'freeze-dried'
         })
       
-      attrs[:species] = PlantSampleUpload::SPECIES[attrs[:species]]
+      genus, species = PlantSampleUpload::SPECIES[attrs[:species]].split('-')
+
+      attrs[:species_id] = Species.find_by(genus: genus, species: species).id 
+      attrs = attrs.reject { |k, _| k == :species }
 
       generation = h[:label_g]&.to_s&.match(/(?<generation>\d+)/)&.[](:generation)&.to_i
 
@@ -59,7 +62,7 @@ module PlantSampleUpload
         plant_sample_id = PlantSample.where(full_attrs).last.id
 
         seed_attrs = {
-          species: attrs[:species],
+          species_id: attrs[:species_id],
           accession_id: accession_id
         }.tap do |hash|
           hash[:generation] = generation if generation.present?
@@ -114,7 +117,7 @@ module PlantSampleUpload
           nb_samples: :quantity
         })
         .merge({
-          species: 'draba-verna',
+          species_id: Species.find_by(genus: 'draba', species: 'verna').id,
           label: label,
           storage_method: 'minus-80'
         })
@@ -131,7 +134,7 @@ module PlantSampleUpload
         plant_sample_id = PlantSample.where(full_attrs).last.id
 
         seed_attrs = {
-          species: attrs[:species],
+          species_id: attrs[:species_id],
           accession_id: accession_id
         }
 
@@ -187,7 +190,7 @@ module PlantSampleUpload
             plant_material_available: :quantity,
           })
           .merge({
-            species: 'draba-verna',
+            species_id: Species.find_by(genus: 'draba', species: 'verna').id,
             label: label,
             storage_method: 'silica'
           })
@@ -212,7 +215,7 @@ module PlantSampleUpload
           plant_sample_id = PlantSample.where(full_attrs).last.id
   
           seed_attrs = {
-            species: attrs[:species],
+            species_id: attrs[:species_id],
             accession_id: accession_id
           }
   
