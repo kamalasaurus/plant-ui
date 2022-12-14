@@ -53,9 +53,15 @@ module Types
     end
 
     field :seeds, [Types::SeedType], null: false,
-      description: "Return a list of seeds"
-    def seeds
-      Seed.all
+      description: "Return a list of seeds" do
+        argument :genus, String, required: false
+      end
+    def seeds(genus:)
+      if genus.present?
+        Seed.includes(:species).where('species.genus' => genus)
+      else
+        Seed.all
+      end
     end
 
     field :seedboxes, [Types::SeedboxType], null: false,
