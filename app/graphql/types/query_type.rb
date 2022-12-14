@@ -64,7 +64,7 @@ module Types
       Seedbox.all
     end
 
-    field :seeds_plant_samples, [Types::SeedsPlantSample], null: false,
+    field :seeds_plant_samples, [Types::SeedsPlantSampleType], null: false,
       description: "Return a list of seeds to plant sample relations"
     def seeds_plant_samples
       SeedsPlantSample.all
