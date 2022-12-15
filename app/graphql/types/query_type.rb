@@ -10,6 +10,19 @@ module Types
       Accession.all
     end
 
+    field :accession, Types::AccessionType,
+      description: "Return an accession" do
+        argument :id, ID, required: false
+        argument :name, String, required: false
+      end
+    def accession(*args)
+      if args.first[:id]
+        Accession.find(args.first[:id])
+      elsif args.first[:name]
+        Accession.get(args.first[:name])
+      end
+    end
+
     field :cytometry_readings, [Types::CytometryReadingType], null: false,
       description: "Return a list of cytometry readings"
     def cytometry_readings
@@ -44,6 +57,14 @@ module Types
       description: "Return a list of populations"
     def populations
       Population.all
+    end
+
+    field :population, Types::PopulationType,
+      description: "Return a population" do
+        argument :id, ID, required: true
+      end
+    def population(id:)
+      Population.find(id)
     end
 
     field :root_communities, [Types::RootCommunityType], null: false,
