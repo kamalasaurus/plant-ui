@@ -10,10 +10,10 @@ module Types
         argument :name, String, required: false
       end
     def accessions(*args)
-      if args.first.dig(:id)
-        [Accession.find(args.first[:id])]
-      elsif args.first.dig(:name)
-        [Accession.get(args.first[:name])]
+      if args.dig(0, :id)
+        [Accession.find(args.dig(0, :id))]
+      elsif args.dig(0, :name)
+        [Accession.get(args.dig(0, :name))]
       else
         Accession.all
       end
@@ -24,8 +24,8 @@ module Types
         argument :id, ID, required: false
       end
     def cytometry_readings(*args)
-      if args.first.dig(:id)
-        [CytometryReading.find(args.first[:id])]
+      if args.dig(0, :id)
+        [CytometryReading.find(args.dig(0, :id))]
       else
         CytometryReading.all
       end
@@ -36,8 +36,8 @@ module Types
         argument :id, ID, required: false
       end
     def leaf_communities(*args)
-      if args.first.dig(:id)
-        [LeafCommunity.find(args.first[:id])]
+      if args.dig(0, :id)
+        [LeafCommunity.find(args.dig(0, :id))]
       else
         LeafCommunity.all
       end
@@ -48,8 +48,8 @@ module Types
         argument :id, ID, required: false
       end
     def locations(*args)
-      if args.first.dig(:id)
-        [Location.find(args.first[:id])]
+      if args.dig(0, :id)
+        [Location.find(args.dig(0, :id))]
       else
         Location.all
       end
@@ -60,8 +60,8 @@ module Types
         argument :id, ID, required: false
       end
     def plant_neighborhoods(*args)
-      if args.first.dig(:id)
-        [PlantNeighborhood.find(args.first[:id])]
+      if args.dig(0, :id)
+        [PlantNeighborhood.find(args.dig(0, :id))]
       else
         PlantNeighborhood.all
       end
@@ -72,8 +72,8 @@ module Types
         argument :id, ID, required: false
       end
     def plant_samples(*args)
-      if args.first.dig(:id)
-        [PlantSample.find(args.first[:id])]
+      if args.dig(0, :id)
+        [PlantSample.find(args.dig(0, :id))]
       else
         PlantSample.all
       end
@@ -84,8 +84,8 @@ module Types
         argument :id, ID, required: false
       end
     def populations(*args)
-      if args.first.dig(:id)
-        [Population.find(args.first[:id])]
+      if args.dig(0, :id)
+        [Population.find(args.dig(0, :id))]
       else
         Population.all
       end
@@ -96,8 +96,8 @@ module Types
         argument :id, ID, required: false
       end
     def root_communities(*args)
-      if args.first.dig(:id)
-        [RootCommunity.find(args.first[:id])]
+      if args.dig(0, :id)
+        [RootCommunity.find(args.dig(0, :id))]
       else
         RootCommunity.all
       end
@@ -109,10 +109,10 @@ module Types
         argument :genus, String, required: false
       end
     def seeds(*args)
-      if args.first.dig(:id)
-        [Seed.find(args.first[:id])]
-      elsif args.first.dig(:genus)
-        Seed.includes(:species).where('species.genus' => args.first[:genus])
+      if args.dig(0, :id)
+        [Seed.find(args.dig(0, :id))]
+      elsif args.dig(0, :genus)
+        Seed.includes(:species).where('species.genus' => args.dig(0, :genus))
       else
         Seed.all
       end
@@ -123,8 +123,8 @@ module Types
         argument :id, ID, required: false
       end
     def seedboxes(*args)
-      if args.first.dig(:id)
-        [Seedbox.find(args.first[:id])]
+      if args.dig(0, :id)
+        [Seedbox.find(args.dig(0, :id))]
       else
         Seedbox.all
       end
@@ -135,8 +135,8 @@ module Types
         argument :id, ID, required: false
       end
     def seeds_plant_samples(*args)
-      if args.first.dig(:id)
-        [SeedsPlantSample.find(args.first[:id])]
+      if args.dig(0, :id)
+        [SeedsPlantSample.find(args.dig(0, :id))]
       else
         SeedsPlantSample.all
       end
@@ -147,8 +147,8 @@ module Types
         argument :id, ID, required: false
       end
     def species(*args)
-      if args.first.dig(:id)
-        [Species.find(args.first[:id])]
+      if args.dig(0, :id)
+        [Species.find(args.dig(0, :id))]
       else
         Species.all
       end
@@ -159,8 +159,8 @@ module Types
         argument :id, ID, required: false
       end
     def tubes(*args)
-      if args.first.dig(:id)
-        [Tube.find(args.first[:id])]
+      if args.dig(0, :id)
+        [Tube.find(args.dig(0, :id))]
       else
         Tube.all
       end
