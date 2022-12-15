@@ -79,5 +79,7 @@ module Types
     field :leaf_pathobiota_pcoa2, Float
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    field :population, Types::PopulationType, null: false
   end
 end

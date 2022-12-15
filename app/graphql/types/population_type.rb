@@ -9,5 +9,6 @@ module Types
     field :subpopulation, String, null: false
 
     field :accessions, [Types::AccessionType], null: false
+    field :leaf_communities, [Types::LeafCommunityType]
   end
 end

@@ -97,7 +97,7 @@ module Types
       end
     def root_communities(*args)
       if args.first.dig(:id)
-          [RootCommunity.find(args.first[:id])]
+        [RootCommunity.find(args.first[:id])]
       else
         RootCommunity.all
       end
