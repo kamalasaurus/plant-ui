@@ -57,5 +57,23 @@ module Types
     field :root_pathobiota_pcoa2, Float
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    field :population, Types::PopulationType, null: false
+
+    field :otus, [String]
+    field :pathobiota, GraphQL::Types::JSON
+    field :microbiota, GraphQL::Types::JSON
+
+    def otus
+      object.otus
+    end
+
+    def pathobiota
+      object.pathobiota
+    end
+
+    def microbiota
+      object.microbiota
+    end
   end
 end

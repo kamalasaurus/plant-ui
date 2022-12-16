@@ -55,5 +55,18 @@ module Types
     field :plant_pcoa3, Float
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    field :population, Types::PopulationType, null: false
+
+    field :otus, GraphQL::Types::JSON
+    field :biota, GraphQL::Types::JSON
+
+    def otus
+      object.otus
+    end
+
+    def biota
+      object.biota
+    end
   end
 end

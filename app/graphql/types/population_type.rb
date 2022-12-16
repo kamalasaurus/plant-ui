@@ -9,6 +9,12 @@ module Types
     field :subpopulation, String, null: false
 
     field :accessions, [Types::AccessionType], null: false
-    field :leaf_communities, [Types::LeafCommunityType]
+    field :leaf_community, Types::LeafCommunityType
+    field :location, Types::LocationType
+    field :plant_neighborhood, Types::PlantNeighborhoodType
+    field :root_community, Types::RootCommunityType
+
+    field :plant_samples, [Types::PlantSampleType]
+    field :seeds, [Types::SeedType]
   end
 end
