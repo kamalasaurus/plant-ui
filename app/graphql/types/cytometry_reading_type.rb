@@ -11,5 +11,7 @@ module Types
     field :chromosome_count_certain, Boolean
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    field :accession, Types::AccessionType, null: false
   end
 end

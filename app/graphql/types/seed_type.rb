@@ -9,5 +9,28 @@ module Types
     field :parent_id, Integer
     field :accession_id, Integer
     field :species_id, Integer
+
+    field :accession, Types::AccessionType
+    field :species, Types::SpeciesType
+    field :population, Types::PopulationType
+
+    field :parent, Types::SeedType
+
+    field :tubes, [Types::TubeType]
+    field :children, [Types::SeedType]
+
+    field :seeds_plant_samples, [Types::SeedsPlantSampleType]
+    field :plant_samples, [Types::PlantSampleType]
+
+    field :label, String, null: false
+    field :abbreviation, String, null: false
+
+    def label
+      object.label
+    end
+
+    def abbreviation
+      object.abbreviation
+    end
   end
 end

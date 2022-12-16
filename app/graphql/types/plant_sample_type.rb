@@ -16,5 +16,17 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :accession_id, Integer
     field :species_id, Integer
+
+    field :seeds_plant_samples, [Types::SeedsPlantSampleType]
+    field :seeds, [Types::SeedType]
+    field :accession, Types::AccessionType
+    field :population, Types::PopulationType
+    field :species, Types::SpeciesType
+
+    field :hasCytometry, Boolean
+
+    def hasCytometry
+      object.cytometrized?
+    end
   end
 end
