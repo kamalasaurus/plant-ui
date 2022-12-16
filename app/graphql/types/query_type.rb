@@ -82,10 +82,13 @@ module Types
     field :populations, [Types::PopulationType], null: false,
       description: "Return a list of populations" do
         argument :id, ID, required: false
+        argument :name, String, required: false
       end
     def populations(*args)
       if args.dig(0, :id)
         [Population.find(args.dig(0, :id))]
+      elsif args.dig(0, :name)
+        [Population.get(args.dig(0, :name))]
       else
         Population.all
       end

@@ -16,5 +16,11 @@ module Types
 
     field :plant_samples, [Types::PlantSampleType]
     field :seeds, [Types::SeedType]
+
+    field :name, String
+
+    def name
+      object.name
+    end
   end
 end
