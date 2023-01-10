@@ -1,3 +1,5 @@
+import graphqlToCsvRequest from "./graphql-to-csv-request.js"
+
 export default function graphqlToCsvButton() {
   const output = document.querySelector('iframe')
     .contentWindow.document.body
@@ -7,13 +9,8 @@ export default function graphqlToCsvButton() {
     Array.from(output)
       .map(e => e.textContent.replace(/\s+/g, '').replace(/xxxxxxxxxx/, '')).pop()
   )
-  // const responseNode = document.querySelector("#graphiql-container > div > div > div.editorBar > div.resultWrap > section > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div")
-  // const responseString = JSON.parse(
-  //   Array.from(response.children)
-  //     .filter(el => el.style.display !== 'none')
-  //     .map(e => e.textContent.replace(/\s+/g, ''))
-  //     .join('')
-  // )
+
+  graphqlToCsvRequest(response)
 }
 
 void function() {
