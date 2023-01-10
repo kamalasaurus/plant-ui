@@ -1,6 +1,6 @@
-import graphqlToCsvRequest from "./graphql-to-csv-request.js"
+import graphqlToCsvRequest from "./graphql-to-csv-request"
 
-export default function graphqlToCsvButton() {
+function graphqlToCsvButton() {
   const output = document.querySelector('iframe')
     .contentWindow.document.body
     .querySelectorAll('#graphiql-container .CodeMirror-lines')

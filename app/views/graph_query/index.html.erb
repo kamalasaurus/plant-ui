@@ -1,5 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
+<%= javascript_import_module_tag "graphql-to-csv-request" %>
+<%= javascript_import_module_tag "graphql-to-csv" %>
+
 <h1>Graph Query</h1>
 
 <div id="graph_query">
@@ -11,4 +14,3 @@
 
 </div>
 
-<%= javascript_include_tag "graphql-to-csv.js", type: "module" %>

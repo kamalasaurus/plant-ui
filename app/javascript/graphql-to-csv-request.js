@@ -2,7 +2,7 @@ export default function graphqlToCsvRequest(json) {
   const csrfToken = getCSRFToken()
   const body = JSON.stringify(json)
   
-  fetch('/graph_to_csv', {
+  fetch('/graph_query', {
     method: 'post',
     credentials: 'same-origin',
     headers: {
