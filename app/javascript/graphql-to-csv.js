@@ -10,6 +10,13 @@ function graphqlToCsvButton() {
       .map(e => e.textContent.replace(/\s+/g, '').replace(/xxxxxxxxxx/, '')).pop()
   )
 
+  const query = JSON.stringify({
+    "query": JSON.parse(document.querySelector('#text').textContent // replace whitespaces here!!!)
+  })
+  document.querySelector('#text').textContent
+
+  debugger
+
   graphqlToCsvRequest(response)
 }
 
