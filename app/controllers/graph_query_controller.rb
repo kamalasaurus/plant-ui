@@ -8,7 +8,7 @@ class GraphQueryController < ApplicationController
   def to_csv
     respond_to do |format|
       jsonConverter = JsonConverter.new
-      csv = json_converter.generate_csv json
+      csv = jsonConverter.generate_csv json
     rescue => error
       format.html { redirect_to graph_query_path, status: :unprocessable_entity }
       format.json { render json: error.message, status: :unprocessable_entity }
@@ -18,7 +18,7 @@ class GraphQueryController < ApplicationController
   end
 
   def json
-    params.require(:graph_to_csv).permit(:data)
+    params.require(:query).require(:data).to_json
   end
 
   def filename
