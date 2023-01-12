@@ -20,6 +20,15 @@
   }
 }
 
+button {
+  background-color: purple;
+  color: white;
+}
+
+a {
+  color: purple;
+}
+
 .hidden {
   display: none !important;
 }
@@ -31,17 +40,19 @@
 }
 
 #root nav {
-  background-color: orange;
   font-size: 0;
 }
 
 #root nav > a {
-  display: inline-block;
-  color: #333;
+  background-color: purple;
+  color: white;
+  display: block;
+  text-align: center;
   text-decoration: none;
-  padding: 0.5em 1em;
-  border-right: solid 1px dimgray;
-  font-size: clamp(10px, 2.5vw, 18px);
+  margin-bottom: 0.5em;
+  padding: 6vh;
+  font-size: clamp(10px, 2.5vw, 36px);
+  border-radius: 5px;
 }
 
 #tubes > .seedbox {
@@ -135,11 +146,10 @@
 #tubes .tube .position {
   display: inline-block;
   text-align: center;
-  color: #ffb300;
+  color: purple;
   font-size: clamp(4px, 4vw, 30px);
   vertical-align: bottom;
 }
-
 
 #tubes .tube.no-click .position {
   font-size: 0;
