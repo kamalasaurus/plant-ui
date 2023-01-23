@@ -2,6 +2,10 @@
 
 Welcome!  This is the central seed inventory management system for the Bergelson Lab.  Currently being piloted for compRgene project.  This document will tell you how to setup the project locally for development.
 
+## Entity Relationship Diagram
+
+![Entity Relationship Diagram](erd.png)
+
 ## Introduction
 
 As you may have noted, this is a [Ruby on Rails](https://rubyonrails.org) project.  For the unfamiliar, Rails is an opinionated web development framework for the [Ruby](https://www.ruby-lang.org/en/) programming language that allows you to create transactional, database-oriented web applications with ease.  The motivation for this application was to create a UI that conveys the state of the seed inventory in an interactive and obvious manner.  No more munging spreadsheets and propagating typos!  The `/tubes` interface is the heart of this solution with its tactile representation of the <em>seed boxes</em> and their inventory state.
@@ -147,3 +151,10 @@ pg_dump -U plant_ui --no-owner --no-acl plant_ui_development > plant_ui_producti
 upload to bucket at https://console.cloud.google.com/storage/browser/seed-inventory-manager-0f6a-bucket;tab=objects?forceOnBucketsSortingFiltering=false&project=seed-inventory-manager-0f6a&prefix=&forceOnObjectsSortingFiltering=false
 
 import data at https://console.cloud.google.com/sql/instances/plant-ui/overview?project=seed-inventory-manager-0f6a&cloudshell=true
+
+
+## Automated Entity Relationship Diagram
+
+`rails create_erd`
+
+This will create an updated entity relationship diagram if you ever add new models or relationships to the application.  It will also convert it to a png so it can be displayed in the README.  You have to install [ImageMagick](https://imagemagick.org/script/download.php) for the image conversion to work.
