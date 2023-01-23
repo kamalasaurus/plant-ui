@@ -147,3 +147,12 @@ pg_dump -U plant_ui --no-owner --no-acl plant_ui_development > plant_ui_producti
 upload to bucket at https://console.cloud.google.com/storage/browser/seed-inventory-manager-0f6a-bucket;tab=objects?forceOnBucketsSortingFiltering=false&project=seed-inventory-manager-0f6a&prefix=&forceOnObjectsSortingFiltering=false
 
 import data at https://console.cloud.google.com/sql/instances/plant-ui/overview?project=seed-inventory-manager-0f6a&cloudshell=true
+
+
+### Automated Entity Relationship Diagram
+
+`rails create_erd`
+
+This will create an updated entity relationship diagram if you ever add new models or relationships to the application.  It will also convert it to a png so it can be displayed in the README.  You have to install [ImageMagick](https://imagemagick.org/script/download.php) for the image conversion to work.
+
+![Entity Relationship Diagram](erd.png)
