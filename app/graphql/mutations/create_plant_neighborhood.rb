@@ -105,7 +105,7 @@ module Mutations
       plant_shannon: nil,
       plant_pcoa1: nil,
       plant_pcoa2: nil,
-      plant_pcoa3: nil,
+      plant_pcoa3: nil
     )
       PlantNeighborhood.create!(
         population_id: population_id,
@@ -157,7 +157,7 @@ module Mutations
         plant_shannon: plant_shannon,
         plant_pcoa1: plant_pcoa1,
         plant_pcoa2: plant_pcoa2,
-        plant_pcoa3: plant_pcoa3,
+        plant_pcoa3: plant_pcoa3
       )
     end
   end

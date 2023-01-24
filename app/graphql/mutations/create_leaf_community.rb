@@ -229,7 +229,7 @@ module Mutations
         leaf_pathobiota_richness: leaf_pathobiota_richness,
         leaf_pathobiota_shannon: leaf_pathobiota_shannon,
         leaf_pathobiota_pcoa1: leaf_pathobiota_pcoa1,
-        leaf_pathobiota_pcoa2: leaf_pathobiota_pcoa2,
+        leaf_pathobiota_pcoa2: leaf_pathobiota_pcoa2
       )
     end
   end

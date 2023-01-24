@@ -10,5 +10,6 @@ module Types
     field :create_root_community, mutation: Mutations::CreateRootCommunity
     field :create_leaf_community, mutation: Mutations::CreateLeafCommunity
     field :create_plant_neighborhood, mutation: Mutations::CreatePlantNeighborhood
+    field :create_cytometry_reading, mutation: Mutations::CreateCytometryReading
   end
 end
