@@ -11,5 +11,8 @@ module Types
     field :create_leaf_community, mutation: Mutations::CreateLeafCommunity
     field :create_plant_neighborhood, mutation: Mutations::CreatePlantNeighborhood
     field :create_cytometry_reading, mutation: Mutations::CreateCytometryReading
+    field :create_seed, mutation: Mutations::CreateSeed
+    field :create_plant_sample, mutation: Mutations::CreatePlantSample
+    field :create_tube, mutation: Mutations::CreateTube
   end
 end
