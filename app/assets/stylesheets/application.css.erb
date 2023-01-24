@@ -41,16 +41,20 @@ a {
 
 #root nav {
   font-size: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 #root nav > a {
   background-color: purple;
   color: white;
-  display: block;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  margin-bottom: 0.5em;
-  padding: 6vh;
+  width: 45%;
+  aspect-ratio: 1/1;
   font-size: clamp(10px, 2.5vw, 36px);
   border-radius: 5px;
 }
