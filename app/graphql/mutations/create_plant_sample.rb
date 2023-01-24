@@ -29,7 +29,7 @@ module Mutations
       column: nil,
       sowing_date: nil,
       harvest_date: nil,
-      seed_ids: [],
+      seed_ids: []
     )
       plant_sample = PlantSample.create!(
         accession_id: accession_id,
@@ -42,7 +42,7 @@ module Mutations
         row: row,
         column: column,
         sowing_date: sowing_date,
-        harvest_date: harvest_date,
+        harvest_date: harvest_date
       )
 
       seed_ids.each do |seed_id|

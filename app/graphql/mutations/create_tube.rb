@@ -15,14 +15,14 @@ module Mutations
       seedbox_id: nil,
       position: nil,
       volume: nil,
-      count: nil,
+      count: nil
     )
       Tube.create!(
         seed_id: seed_id,
         seedbox_id: seedbox_id,
         position: position,
         volume: volume,
-        count: count,
+        count: count
       )
     end
   end

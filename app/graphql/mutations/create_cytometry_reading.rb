@@ -17,7 +17,7 @@ module Mutations
       mean_f2: nil,
       peak_pattern: nil,
       chromosome_count: nil,
-      chromosome_count_certain: nil,
+      chromosome_count_certain: nil
     )
       CytometryReading.create!(
         accession_id: accession_id,
