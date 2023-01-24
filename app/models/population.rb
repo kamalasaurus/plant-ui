@@ -11,7 +11,7 @@ class Population < ApplicationRecord
 
   def self.get(dasherized_string)
     population_name, subpopulation, * = dasherized_string.split('-')
-    Population.find_by(population_name: population_name, subpopulation: subpopulation)
+    Population.find_by(population_name:, subpopulation:)
   end
 
   def name

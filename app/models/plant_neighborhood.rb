@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class PlantNeighborhood < ApplicationRecord
   belongs_to :population
 
   def otus
-    attributes.select { |key, _| /^plant_otu/ =~ key }.select { |_, v| v && (v > 0)}
+    attributes.select { |key, _| /^plant_otu/ =~ key }.select { |_, v| v&.positive? }
   end
 
   def biota

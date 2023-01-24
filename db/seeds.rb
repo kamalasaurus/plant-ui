@@ -10,38 +10,38 @@
 
 def ingest(directory)
   Dir.new(directory)
-    .entries
-    .select { |path| /\d/ =~ path }
-    .sort
-    .each do |csv|
-      yield csv
-      puts "seeded #{csv}"
-    end
-end  
+     .entries
+     .grep(/\d/)
+     .sort
+     .each do |csv|
+    yield csv
+    puts "seeded #{csv}"
+  end
+end
 
 ingest(Rails.root.join('lib', 'assets', 'seed_tubes')) do |csv|
   TubeUpload.parse(File.read(Rails.root.join('lib', 'assets', 'seed_tubes', csv)))
-  print "tubes: "
+  print 'tubes: '
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   LocationUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "location: "
+  print 'location: '
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   LeafCommunityUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "leaf communities: "
+  print 'leaf communities: '
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   RootCommunityUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "root communities: "
+  print 'root communities: '
 end
 
 ingest(Rails.root.join('lib', 'assets', 'eco_characterization')) do |csv|
   PlantNeighborhoodUpload.parse(File.read(Rails.root.join('lib', 'assets', 'eco_characterization', csv)))
-  print "plant neighborhoods: "
+  print 'plant neighborhoods: '
 end
 
 ingest(Rails.root.join('lib', 'assets', 'samples')) do |csv|
@@ -53,13 +53,12 @@ ingest(Rails.root.join('lib', 'assets', 'samples')) do |csv|
   when /silica/
     PlantSampleUpload.parse_silica(File.read(Rails.root.join('lib', 'assets', 'samples', csv)))
   end
-  print "plant sample: "
+  print 'plant sample: '
 end
-
 
 ingest(Rails.root.join('lib', 'assets', 'cytometry')) do |csv|
   CytometryReadingUpload.parse(File.read(Rails.root.join('lib', 'assets', 'cytometry', csv)))
-  print "cytometry readings: "
+  print 'cytometry readings: '
 end
 
 puts 'all data seeded!'

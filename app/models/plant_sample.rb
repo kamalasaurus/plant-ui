@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlantSample < ApplicationRecord
   has_many :seeds_plant_samples
   has_many :seeds, through: :seeds_plant_samples

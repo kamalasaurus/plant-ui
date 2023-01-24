@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 
 class GenerateCsvController < ApplicationController
@@ -6,7 +7,7 @@ class GenerateCsvController < ApplicationController
     respond_to do |format|
       csv = GenerateCsv.generate(tubes)
       if csv.success?
-        format.csv { send_data csv.file, filename: filename, disposition: 'attachment', type: 'text/csv'}
+        format.csv { send_data csv.file, filename:, disposition: 'attachment', type: 'text/csv' }
       else
         format.html { redirect_to tubes_index_path, status: :unprocessable_entity }
         format.json { render json: csv.errors, status: :unprocessable_entity }
@@ -17,7 +18,7 @@ class GenerateCsvController < ApplicationController
   private
 
   def tube_params
-    params.require(:generate_csv).permit(:title, selected_tubes: [:id, :item, :is_empty])
+    params.require(:generate_csv).permit(:title, selected_tubes: %i[id item is_empty])
   end
 
   def tubes

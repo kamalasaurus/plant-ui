@@ -32,7 +32,7 @@ class JsonCsvConverter
   def recurse(node, key, depth_counter)
     case node
     when String, Numeric, TrueClass, FalseClass, NilClass
-      Hash[key, node]
+      { key => node }
     when Hash
       @depth_counters << depth_counter if node.length > 1
       node.entries.map do |inner_key, val|
@@ -50,8 +50,8 @@ class JsonCsvConverter
     rows = json.map do |(key, node)|
       recurse(node, key, 1).flatten(@depth_counters.min)
     end
-      .flatten(1)
-      .map { |node| node.flatten.reduce Hash.new, :merge }
+               .flatten(1)
+               .map { |node| node.flatten.reduce({}, :merge) }
 
     generate_csv(rows)
   end

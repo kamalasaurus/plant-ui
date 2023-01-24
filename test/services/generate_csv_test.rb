@@ -12,7 +12,7 @@ class GenerateCsvTest < ActiveSupport::TestCase
     csv = GenerateCsv.generate(@tubes)
     assert_instance_of String, csv.file
     assert_equal csv.file.split(/\n/).count, @tubes.length + 1
-    assert_equal csv.file.split(/\n/).first, "name,seedbox,position,population,accession"
+    assert_equal csv.file.split(/\n/).first, 'name,seedbox,position,population,accession'
     assert_empty csv.errors
   end
 end

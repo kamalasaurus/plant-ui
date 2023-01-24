@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCytometryReadings < ActiveRecord::Migration[7.0]
   def change
     create_table :cytometry_readings do |t|

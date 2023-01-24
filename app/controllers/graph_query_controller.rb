@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class GraphQueryController < ApplicationController
-  def index
-  end
+  def index; end
 
   def to_csv
     respond_to do |format|
       csv = JsonCsvConverter.call(json)
-    rescue => error
+    rescue StandardError => e
       format.html { redirect_to graph_query_path, status: :unprocessable_entity }
-      format.json { render json: error.message, status: :unprocessable_entity }
+      format.json { render json: e.message, status: :unprocessable_entity }
     else
-      format.csv { send_data csv.file, filename: filename, disposition: 'attachment', type: 'text/csv'}
+      format.csv { send_data csv.file, filename:, disposition: 'attachment', type: 'text/csv' }
     end
   end
 
@@ -22,5 +21,4 @@ class GraphQueryController < ApplicationController
   def filename
     "#{DateTime.now.strftime '%Y_%m_%d'}_graph_query.csv"
   end
-
 end

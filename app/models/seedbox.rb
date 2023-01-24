@@ -9,7 +9,7 @@ class Seedbox < ApplicationRecord
         box[tube.position] = tube
       end
     end
-    .sort_by { |seedbox, _| seedbox.name.to_i }
-    .to_h
+       .sort_by { |seedbox, _| seedbox.name.to_i }
+       .to_h
   end
 end

@@ -25,7 +25,7 @@ class GenerateCsv
 
   def generate
     csv = CSV.generate do |csv|
-      csv << ['name', 'seedbox', 'position', 'population', 'accession', 'critical'] # headers
+      csv << %w[name seedbox position population accession critical] # headers
       @tubes.each do |tube|
         id = tube['id']
         item = tube['item']
@@ -49,8 +49,8 @@ class GenerateCsv
   end
 
   def parse(item)
-    genus, species, _, label, * = item.split(' ')
-    *, crit = item.split(' ')
+    genus, species, _, label, * = item.split
+    *, crit = item.split
     critical = crit == 'critical'
     *, pop1, pop2, accession = label.split('-')
     name = "#{genus} #{species}"

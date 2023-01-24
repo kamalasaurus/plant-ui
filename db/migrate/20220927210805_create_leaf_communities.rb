@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class CreateLeafCommunities < ActiveRecord::Migration[7.0]
@@ -6,7 +8,7 @@ class CreateLeafCommunities < ActiveRecord::Migration[7.0]
       t.references :population, null: false, foreign_key: true
 
       headers = CSV.read(Rails.root.join('lib', 'assets', 'eco_characterization', \
-        '2022_09_08_eco_characterization.csv'), headers: true, header_converters: :downcase).headers
+                                         '2022_09_08_eco_characterization.csv'), headers: true, header_converters: :downcase).headers
       columns = headers.filter { |header| /^leaf_otu/ =~ header }
 
       columns.each do |column|

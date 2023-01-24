@@ -9,10 +9,10 @@ class Accession < ApplicationRecord
   # assume format AMBR-A-01
   def self.get(dasherized_string)
     population_name, subpopulation, accession_str = dasherized_string.split('-')
-    population_id = Population.find_by(population_name: population_name,\
-      subpopulation: subpopulation)&.id
+    population_id = Population.find_by(population_name:, \
+                                       subpopulation:)&.id
     accession_number = accession_str.to_i
-    Accession.find_by(population_id: population_id, accession_number: accession_number)
+    Accession.find_by(population_id:, accession_number:)
   end
 
   def name

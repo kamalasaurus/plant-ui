@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RootCommunity < ApplicationRecord
   belongs_to :population
 

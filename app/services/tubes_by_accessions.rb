@@ -45,9 +45,9 @@ class TubesByAccessions
         species = SPECIES[species_abbr.downcase.to_sym]
         generation = generation_abbr.match(/(?<ge>\d$)/)[:ge]
         {
-          species: species,
-          accession: accession,
-          generation: generation,
+          species:,
+          accession:,
+          generation:,
           string: str
         }
       end.map do |blob|
@@ -56,9 +56,11 @@ class TubesByAccessions
           species: blob[:species],
           generation: blob[:generation]
         )
-        b = b.empty? ?
-          acc.seeds.where(species: blob[:species]) :
-          b
+        b = if b.empty?
+              acc.seeds.where(species: blob[:species])
+            else
+              b
+            end
         b.map do |acc|
           tubes = acc.tubes
           tubes.map do |tube|

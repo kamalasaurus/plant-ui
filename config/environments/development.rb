@@ -71,5 +71,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # whitelist for docker host
-  config.hosts << "plant-ui"
+  config.hosts << 'plant-ui'
 end

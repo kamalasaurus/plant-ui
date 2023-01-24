@@ -15,8 +15,8 @@ module PlantUi
 
     if Rails.env.production?
       config.log_level = :debug
-      config.log_tags  = [:subdomain, :uuid]
-      config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+      config.log_tags  = %i[subdomain uuid]
+      config.logger    = ActiveSupport::TaggedLogging.new(Logger.new($stdout))
     end
 
     config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }

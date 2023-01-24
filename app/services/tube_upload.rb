@@ -37,6 +37,7 @@ class TubeUpload
 
   def copy
     return if Rails.env.production?
+
     name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
@@ -44,41 +45,41 @@ class TubeUpload
   def create_or_update_species(h)
     genus, species = SPECIES[h[:species]].split('-')
     Species.upsert({
-      genus: genus,
-      species: species
-    }, unique_by: %i[genus species])
-    Species.find_by(genus: genus, species: species)
+                     genus:,
+                     species:
+                   }, unique_by: %i[genus species])
+    Species.find_by(genus:, species:)
   end
 
   def create_or_update_seedbox(h)
     Seedbox.upsert({
-      name: h[:seedbox]
-    }, unique_by: :name)
+                     name: h[:seedbox]
+                   }, unique_by: :name)
     Seedbox.find_by(name: h[:seedbox])
   end
 
   def create_or_update_population(h)
     Population.upsert({
-      population_name: h[:popid1].upcase,
-      subpopulation: h[:popid2].upcase
-    }, unique_by: %i[population_name subpopulation])
+                        population_name: h[:popid1].upcase,
+                        subpopulation: h[:popid2].upcase
+                      }, unique_by: %i[population_name subpopulation])
     Population.find_by(population_name: h[:popid1], subpopulation: h[:popid2])
   end
 
   def create_or_update_accession(h, population)
     Accession.upsert({
-      accession_number: h[:accid].to_i,
-      population_id: population.id
-    }, unique_by: %i[population_id accession_number])
+                       accession_number: h[:accid].to_i,
+                       population_id: population.id
+                     }, unique_by: %i[population_id accession_number])
     Accession.find_by(population_id: population.id, accession_number: h[:accid])
   end
 
   def create_or_update_seed(h, accession, species)
     Seed.upsert({
-      species_id: species.id,
-      generation: h[:generation],
-      accession_id: accession.id
-    }, unique_by: :uniqueness_index)
+                  species_id: species.id,
+                  generation: h[:generation],
+                  accession_id: accession.id
+                }, unique_by: :uniqueness_index)
     Seed.find_by(
       species_id: species.id,
       generation: h[:generation],
@@ -88,12 +89,12 @@ class TubeUpload
 
   def create_or_update_tube(h, seed, seedbox)
     Tube.upsert({
-      seed_id: seed.id,
-      seedbox_id: seedbox.id,
-      position: h[:position],
-      volume: h[:quantity_ml],
-      count: check(h[:quantity_seeds])
-    }, unique_by: %i[seedbox_id position])
+                  seed_id: seed.id,
+                  seedbox_id: seedbox.id,
+                  position: h[:position],
+                  volume: h[:quantity_ml],
+                  count: check(h[:quantity_seeds])
+                }, unique_by: %i[seedbox_id position])
     Tube.find_by(
       seed_id: seed.id,
       seedbox_id: seedbox.id,
