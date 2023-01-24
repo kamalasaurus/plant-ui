@@ -8,5 +8,7 @@ module Types
     field :create_accession, mutation: Mutations::CreateAccession
     field :crate_location, mutation: Mutations::CreateLocation
     field :create_root_community, mutation: Mutations::CreateRootCommunity
+    field :create_leaf_community, mutation: Mutations::CreateLeafCommunity
+    field :create_plant_neighborhood, mutation: Mutations::CreatePlantNeighborhood
   end
 end
