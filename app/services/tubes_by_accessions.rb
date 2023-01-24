@@ -61,8 +61,8 @@ class TubesByAccessions
             else
               b
             end
-        b.map do |acc|
-          tubes = acc.tubes
+        b.map do |accession|
+          tubes = accession.tubes
           tubes.map do |tube|
             {
               seedbox: tube.seedbox.name,

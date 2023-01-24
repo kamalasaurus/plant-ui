@@ -19,14 +19,14 @@ class JsonCsvConverter
   private
 
   def generate_csv(rows)
-    csv = CSV.generate do |csv|
+    output = CSV.generate do |csv|
       csv << rows.first.keys
       rows.each do |row|
         csv << row.values
       end
     end
 
-    @file = csv
+    @file = output
   end
 
   def recurse(node, key, depth_counter)

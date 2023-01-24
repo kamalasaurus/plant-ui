@@ -9,7 +9,7 @@ module PlantNeighborhoodUpload
       population_name, subpopulation = h[:population].split('-')
 
       transform = h.keys.select { |key, _| /^plant_otu/ =~ key.to_s }
-                   .to_h do |key, val|
+                   .to_h do |key, _|
         number = key.match(/\d+$/).to_s.to_i
         val = :"plant_otu_#{number}"
         [key, val]

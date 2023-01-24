@@ -9,7 +9,7 @@ module RootCommunityUpload
       population_name, subpopulation = h[:population].split('-')
 
       transform = h.keys.select { |key, _| /^root_otu/ =~ key.to_s }
-                   .to_h do |key, val|
+                   .to_h do |key, _|
         number = key.match(/\d+$/).to_s.to_i
         val = :"root_otu_#{number}"
         [key, val]

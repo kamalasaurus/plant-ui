@@ -24,7 +24,7 @@ class GenerateCsv
   private
 
   def generate
-    csv = CSV.generate do |csv|
+    output = CSV.generate do |csv|
       csv << %w[name seedbox position population accession critical] # headers
       @tubes.each do |tube|
         id = tube['id']
@@ -45,7 +45,7 @@ class GenerateCsv
       @errors << e
     end
 
-    @file = csv
+    @file = output
   end
 
   def parse(item)

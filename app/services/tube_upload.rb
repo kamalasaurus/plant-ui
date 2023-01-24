@@ -104,7 +104,7 @@ class TubeUpload
     )
   end
 
-  def parse # rubocop:disable Metrics/AbcSize
+  def parse
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
       seedbox, population, seed, tube = nil
       h = row.to_h

@@ -30,3 +30,31 @@ Lint/EmptyBlock:
 
 Style/MultilineBlockChain:
   Enabled: false
+
+Naming/VariableNumber:
+  Exclude:
+    - 'app/graphql/**/*'
+    - 'app/services/plant_sample_upload.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*'
+    - 'app/services/*.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/graphql/types/query_type.rb'
+    - 'app/services/tube_upload.rb'
+
+Naming/MethodParameterName:
+  Exclude:
+    - 'app/services/tube_upload.rb'
+    - 'app/controllers/graphql_controller.rb'
+
+Naming/MethodName:
+  Exclude:
+    - 'app/graphql/**/*'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'app/services/plant_sample_upload.rb'
