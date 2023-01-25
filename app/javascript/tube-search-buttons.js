@@ -1,4 +1,5 @@
 import generateCsv from "./generate-csv.js"
+import blankTubes from "./blank-tubes.js"
 
 void function() {
   const search_bar = document.querySelector('search-bar')
@@ -16,8 +17,13 @@ void function() {
   function csvButton() {
     generateCsv(search_bar)
   }
+
+  function blankTubesButton(json) {
+    blankTubes(json)
+  }
   
   window.criticalButton = criticalButton
   window.clearButton = clearButton
   window.csvButton = csvButton
+  window.blankTubesButton = blankTubesButton
 }()

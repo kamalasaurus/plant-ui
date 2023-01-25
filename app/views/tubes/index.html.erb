@@ -8,6 +8,7 @@
   <%= button_tag 'Show Critical', onclick: "window.criticalButton()" %>
   <%= button_tag 'Generate CSV', onclick: "window.csvButton()" %>
   <%= button_tag 'Clear Search', onclick: "window.clearButton()" %>
+  <%= button_tag 'Get Blank Tubes', onclick: "window.blankTubesButton(#{@grouped_blank_tubes.to_json})" %>
   <%= link_to "New tube", new_tube_path %>
 
   <% @grouped_tubes.each do |seedbox, tubes| %>
@@ -31,3 +32,4 @@
 <%= javascript_include_tag "search.js", type: "module" %>
 <%= javascript_include_tag "tube-search-buttons.js", type: "module" %>
 <%= javascript_include_tag "generate-csv.js", type: "module"%>
+<%= javascript_include_tag "blank-tubes.js", type: "module" %>
