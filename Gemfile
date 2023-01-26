@@ -83,3 +83,4 @@ end
 
 gem 'graphiql-rails'
 gem 'graphql', '~> 2.0'
+gem 'search_object_graphql', '~> 1.0', '>= 1.0.4'
