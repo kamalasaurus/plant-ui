@@ -1,6 +1,3 @@
-require 'search_object'
-require 'search_object/plugin/graphql'
-
 class TubeResolver < BaseResolver
   type [Types::TubeType], null: false
 

@@ -170,6 +170,6 @@ module Types
     #     Tube.all
     #   end
     # end
-    field :tubes, [Types::TubeType], resolver: TubeResolver, null: false, description: 'Return a list of tubes'
+    field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
   end
 end
