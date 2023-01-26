@@ -159,16 +159,17 @@ module Types
       end
     end
 
-    field :tubes, [Types::TubeType], null: false,
-                                     description: 'Return a list of tubes' do
-      argument :id, ID, required: false
-    end
-    def tubes(*args)
-      if args.dig(0, :id)
-        [Tube.find(args.dig(0, :id))]
-      else
-        Tube.all
-      end
-    end
+    # field :tubes, [Types::TubeType], null: false,
+    #                                  description: 'Return a list of tubes' do
+    #   argument :id, ID, required: false
+    # end
+    # def tubes(*args)
+    #   if args.dig(0, :id)
+    #     [Tube.find(args.dig(0, :id))]
+    #   else
+    #     Tube.all
+    #   end
+    # end
+    field :tubes, [Types::TubeType], resolver: TubeResolver, null: false, description: 'Return a list of tubes'
   end
 end
