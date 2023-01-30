@@ -4,12 +4,6 @@ class TubesByAccessions
   private_class_method :new
   attr_reader :errors, :csv
 
-  SPECIES = {
-    ath: 'arabidopsis-thaliana',
-    chi: 'cardamine-hirsuta',
-    dve: 'draba-verna'
-  }.freeze
-
   def self.parse(tube_string)
     new(tube_string)
   end
@@ -42,7 +36,7 @@ class TubesByAccessions
     @tubes
       .map do |str|
         species_abbr, accession, generation_abbr = str.split('_')
-        species = SPECIES[species_abbr.downcase.to_sym]
+        species = species_abbr.upcase
         generation = generation_abbr.match(/(?<ge>\d$)/)[:ge]
         {
           species:,
@@ -52,16 +46,19 @@ class TubesByAccessions
         }
       end.map do |blob|
         acc = Accession.get(blob[:accession])
-        b = acc.seeds.where(
-          species: blob[:species],
-          generation: blob[:generation]
-        )
-        b = if b.empty?
-              acc.seeds.where(species: blob[:species])
-            else
-              b
-            end
-        b.map do |accession|
+        b = acc.seeds.select do |seed|
+          seed.species_name == blob[:species]
+        end
+        c = b.select do |seed|
+          seed.generation == blob[:generation]
+        end
+
+        # this is terrible, the worst code I've ever written
+        d = (b.empty? && c.empty?) ? [] :
+          (!b.empty? && c.empty?) ? b :
+            c
+
+        d.map do |accession|
           tubes = accession.tubes
           tubes.map do |tube|
             {

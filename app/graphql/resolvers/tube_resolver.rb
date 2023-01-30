@@ -3,5 +3,7 @@ class TubeResolver < BaseResolver
 
   scope { Tube.all }
 
-  option(:id, type: ID)       { |scope, value| scope.where id: value }
+  option(:critical, type: Boolean, description: 'select if count is critical') do |scope, value|
+    scope.select { |tube| tube.critical? == value }
+  end
 end
