@@ -159,6 +159,7 @@ module Types
       end
     end
 
+    # field :species, resolver SpeciesResolver, description: 'Return a list of species'
     field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
   end
 end
