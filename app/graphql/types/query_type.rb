@@ -146,20 +146,8 @@ module Types
         SeedsPlantSample.all
       end
     end
-
-    field :species, [Types::SpeciesType], null: false,
-                                          description: 'Return a list of species or a single species' do
-      argument :id, ID, required: false
-    end
-    def species(*args)
-      if args.dig(0, :id)
-        [Species.find(args.dig(0, :id))]
-      else
-        Species.all
-      end
-    end
-
-    # field :species, resolver SpeciesResolver, description: 'Return a list of species'
+    
+    field :species, resolver: SpeciesResolver, description: 'Return a list of species'
     field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
   end
 end
