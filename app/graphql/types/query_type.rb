@@ -108,45 +108,24 @@ module Types
       end
     end
 
-    field :seeds, [Types::SeedType], null: false,
-                                     description: 'Return a list of seeds' do
-      argument :id, ID, required: false
-      argument :genus, String, required: false
-    end
-    def seeds(*args)
-      if args.dig(0, :id)
-        [Seed.find(args.dig(0, :id))]
-      elsif args.dig(0, :genus)
-        Seed.includes(:species).where('species.genus' => args.dig(0, :genus))
-      else
-        Seed.all
-      end
-    end
-
-    field :seedboxes, [Types::SeedboxType], null: false,
-                                            description: 'Return a list of seedboxes' do
-      argument :id, ID, required: false
-    end
-    def seedboxes(*args)
-      if args.dig(0, :id)
-        [Seedbox.find(args.dig(0, :id))]
-      else
-        Seedbox.all
-      end
+    # field :seeds, [Types::SeedType], null: false,
+    #                                  description: 'Return a list of seeds' do
+    #   argument :id, ID, required: false
+    #   argument :genus, String, required: false
+    # end
+    # def seeds(*args)
+    #   if args.dig(0, :id)
+    #     [Seed.find(args.dig(0, :id))]
+    #   elsif args.dig(0, :genus)
+    #     Seed.includes(:species).where('species.genus' => args.dig(0, :genus))
+    #   else
+    #     Seed.all
+    #   end
     end
 
-    field :seeds_plant_samples, [Types::SeedsPlantSampleType], null: false,
-                                                               description: 'Return a list of seeds to plant sample relations' do
-      argument :id, ID, required: false
-    end
-    def seeds_plant_samples(*args)
-      if args.dig(0, :id)
-        [SeedsPlantSample.find(args.dig(0, :id))]
-      else
-        SeedsPlantSample.all
-      end
-    end
-    
+    field :seeds, resolveer: SeedResolver, description: 'Return a list of seeds'
+    field :seedboxes, resolver: SeedboxResolver, description: 'Return a list of seedboxes'
+    field :seeds_plant_samples, resolver: SeedsPlantSampleResolver, description: 'Return a list of seeds to plant sample relations'
     field :species, resolver: SpeciesResolver, description: 'Return a list of species'
     field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
   end

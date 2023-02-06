@@ -24,4 +24,8 @@ class BaseResolver < GraphQL::Schema::Resolver
   option(:id, type: ID, description: 'select a single sample by id') do |scope, value|
     scope.where id: value
   end
+
+  option(:ids, type: [ID], description: 'select a multiple samples by id') do |scope, value|
+    scope.where id: value
+  end
 end

@@ -17,11 +17,23 @@ class TubeResolver < BaseResolver
     scope.where(seedbox_id: value)
   end
 
+  option(:seedbox_ids, type: [Integer], description: 'select by multiple seedbox ids') do |scope, value|
+    scope.where(seedbox_id: value)
+  end
+
   option(:seedbox_name, type: Integer, description: 'select by seedbox name') do |scope, value|
     scope.includes(:seedbox).where("seedbox.name is #{value}")
   end
 
+  option(:seedbox_names, type: [Integer], description: 'select by seedbox name') do |scope, value|
+    scope.includes(:seedbox).where("seedbox.name in #{value}")
+  end
+
   option(:position, type: Integer, description: 'select by position') do |scope, value|
+    scope.where(position: value)
+  end
+
+  option(:positions, type: [Integer], description: 'select by multiple positions') do |scope, value|
     scope.where(position: value)
   end
 
