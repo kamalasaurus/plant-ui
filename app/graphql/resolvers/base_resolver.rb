@@ -23,7 +23,7 @@ class BaseResolver < GraphQL::Schema::Resolver
     scope.where("updated_at between '#{lower_bound}' and '#{upper_bound}'")
   end
 
-  option(:id, type: ID, description: ) do |scope, value|
+  option(:id, type: ID, description: 'select a single sample by id') do |scope, value|
     scope.where id: value
   end
 end
