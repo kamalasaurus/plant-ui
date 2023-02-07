@@ -69,18 +69,19 @@ module Types
       end
     end
 
-    field :plant_samples, [Types::PlantSampleType], null: false,
-                                                    description: 'Return a list of plant samples' do
-      argument :id, ID, required: false
-    end
-    def plant_samples(*args)
-      if args.dig(0, :id)
-        [PlantSample.find(args.dig(0, :id))]
-      else
-        PlantSample.all
-      end
-    end
+    # field :plant_samples, [Types::PlantSampleType], null: false,
+    #                                                 description: 'Return a list of plant samples' do
+    #   argument :id, ID, required: false
+    # end
+    # def plant_samples(*args)
+    #   if args.dig(0, :id)
+    #     [PlantSample.find(args.dig(0, :id))]
+    #   else
+    #     PlantSample.all
+    #   end
+    # end
 
+    field :plant_samples, resolver: PlantSampleResolver, description: 'Return a list of plant samples'
     field :populations, resolver: PopulationResolver, description: 'Return a list of populations'
     field :root_communities, resolver: RootCommunityResolver, description: 'Return a list of root communities'
     field :seeds, resolver: SeedResolver, description: 'Return a list of seeds'

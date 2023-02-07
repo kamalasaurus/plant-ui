@@ -3,11 +3,11 @@ class RootCommunityResolver < BaseResolver
 
   scope { RootCommunity.all }
 
-  option(:population_id, type: Integer, description: 'select by population_id') do |scope, value|
+  option(:population_id, type: Integer, description: 'select by population id') do |scope, value|
     scope.where(population_id: value)
   end
 
-  option(:population_ids, type: [Integer], description: 'select by multiple population_ids') do |scope, value|
+  option(:population_ids, type: [Integer], description: 'select by multiple population ids') do |scope, value|
     scope.where(population_id: value)
   end
 

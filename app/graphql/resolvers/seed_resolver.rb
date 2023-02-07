@@ -35,11 +35,11 @@ class SeedResolver < BaseResolver
     scope.where(species_id: value)
   end
 
-  option(:population, type: String, description: 'select by population name') do |scope, value|
+  option(:population_name, type: String, description: 'select by population name') do |scope, value|
     scope.select { |seed| seed.population.name == value.upcase }
   end
 
-  option(:populations, type: [String], description: 'select by multiple population names') do |scope, value|
+  option(:population_names, type: [String], description: 'select by multiple population names') do |scope, value|
     scope.select { |seed| value.map(&:upcase).include? seed.population.name }
   end
 
