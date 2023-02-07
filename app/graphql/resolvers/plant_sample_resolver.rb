@@ -1,7 +1,15 @@
 class PlantSampleResolver < BaseResolver
   type [Types::PlantSampleType], null: false
 
-  scope { PlantSample.all }
+  scope do
+    object.blank? ?
+      PlantSample.all :
+      object.respond_to?(:plant_samples) ?
+        object.plant_samples :
+        object.respond_to?(:plant_sample) ?
+          object.plant_sample :
+          PlantSample.all
+  end
 
   option(:label, type: String, description: 'select by label') do |scope, value|
     scope.where(label: value)

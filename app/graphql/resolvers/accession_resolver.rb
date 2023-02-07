@@ -1,7 +1,15 @@
 class AccessionResolver < BaseResolver
   type [Types::AccessionType], null: false
 
-  scope { Accession.all }
+  scope do
+    object.blank? ?
+      Accession.all :
+      object.respond_to?(:accessions) ?
+        object.accessions :
+        object.respond_to?(:accession) ?
+          object.accession :
+          Accession.all
+  end
 
   option(:accession_number, type: Integer, description: 'select by accession number') do |scope, value|
     scope.where(accession_number: value)

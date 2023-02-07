@@ -1,7 +1,13 @@
 class CytometryReadingResolver < BaseResolver
   type [Types::CytometryReadingType], null: false
 
-  scope { CytometryReading.all }
+  scope do
+    object.blank? ?
+      CytometryReading.all :
+      object.respond_to?(:cytometry_reading) ?
+        object.cytometry_reading :
+        CytometryReading.all
+  end
 
   option :mean_f2, type: Float, description: 'select by mean f2' do |scope, value|
     scope.where(mean_f2: value)
