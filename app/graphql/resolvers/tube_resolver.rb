@@ -3,16 +3,6 @@ class TubeResolver < BaseResolver
 
   scope { Tube.all }
 
-  class CountFilter < ::Types::BaseInputObject
-    argument :gt, Integer
-    argument :lt, Integer
-  end
-
-  class VolumeFilter < ::Types::BaseInputObject
-    argument :gt, Float
-    argument :lt, Float
-  end
-
   option(:seedbox_id, type: Integer, description: 'select by seedbox id') do |scope, value|
     scope.where(seedbox_id: value)
   end
@@ -41,7 +31,7 @@ class TubeResolver < BaseResolver
     scope.where(count: value)
   end
 
-  option(:count_range, type: CountFilter, description: 'upper and lower bound for the count') do |scope, value|
+  option(:count_range, type: IntegerFilter, description: 'upper and lower bound for the count') do |scope, value|
     scope.where("count between #{value[:lt]} and #{value[:gt]}")
   end
 
@@ -49,7 +39,7 @@ class TubeResolver < BaseResolver
     scope.where(volume: value)
   end
 
-  option(:volume_range, type: VolumeFilter, description: 'upper and lower bound for the volume') do |scope, value|
+  option(:volume_range, type: FloatFilter, description: 'upper and lower bound for the volume') do |scope, value|
     scope.where("volume between #{value[:lt]} and #{value[:gt]}")
   end
 

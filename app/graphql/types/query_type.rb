@@ -45,18 +45,19 @@ module Types
       end
     end
 
-    field :locations, [Types::LocationType], null: false,
-                                             description: 'Return a list of locations' do
-      argument :id, ID, required: false
-    end
-    def locations(*args)
-      if args.dig(0, :id)
-        [Location.find(args.dig(0, :id))]
-      else
-        Location.all
-      end
-    end
+    # field :locations, [Types::LocationType], null: false,
+    #                                          description: 'Return a list of locations' do
+    #   argument :id, ID, required: false
+    # end
+    # def locations(*args)
+    #   if args.dig(0, :id)
+    #     [Location.find(args.dig(0, :id))]
+    #   else
+    #     Location.all
+    #   end
+    # end
 
+    field :locations, resolver: LocationResolver, description: 'Return a list of locations'
     field :plant_neighborhoods, resolver: PlantNeighborhoodResolver, description: 'Return a list of plant neighborhoods'
     field :plant_samples, resolver: PlantSampleResolver, description: 'Return a list of plant samples'
     field :populations, resolver: PopulationResolver, description: 'Return a list of populations'

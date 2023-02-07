@@ -4,6 +4,16 @@ require 'search_object/plugin/graphql'
 class BaseResolver < GraphQL::Schema::Resolver
   include SearchObject.module(:graphql)
 
+  class FloatFilter < ::Types::BaseInputObject
+    argument :gt, Float
+    argument :lt, Float
+  end
+
+  class IntegerFilter < ::Types::BaseInputObject
+    argument :gt, Integer
+    argument :lt, Integer
+  end
+
   class DateFilter < ::Types::BaseInputObject
     argument :gt, String
     argument :lt, String
