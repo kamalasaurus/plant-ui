@@ -6,33 +6,22 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :accessions, [Types::AccessionType], null: false,
-                                               description: 'Return a list of accessions' do
-      argument :id, ID, required: false
-      argument :name, String, required: false
-    end
-    def accessions(*args)
-      if args.dig(0, :id)
-        [Accession.find(args.dig(0, :id))]
-      elsif args.dig(0, :name)
-        [Accession.get(args.dig(0, :name))]
-      else
-        Accession.all
-      end
-    end
-
-    # field :cytometry_readings, [Types::CytometryReadingType], null: false,
-    #                                                           description: 'Return a list of cytometry readings' do
+    # field :accessions, [Types::AccessionType], null: false,
+    #                                            description: 'Return a list of accessions' do
     #   argument :id, ID, required: false
+    #   argument :name, String, required: false
     # end
-    # def cytometry_readings(*args)
+    # def accessions(*args)
     #   if args.dig(0, :id)
-    #     [CytometryReading.find(args.dig(0, :id))]
+    #     [Accession.find(args.dig(0, :id))]
+    #   elsif args.dig(0, :name)
+    #     [Accession.get(args.dig(0, :name))]
     #   else
-    #     CytometryReading.all
+    #     Accession.all
     #   end
     # end
 
+    field :accessions, resolver: AccessionResolver, description: 'Return a list of accessions'
     field :cytometry_readings, resolver: CytometryReadingResolver, description: 'Return a list of cytometry readings'
     field :leaf_communities, resolver: LeafCommunityResolver, description: 'Return a list of leaf communities'
     field :locations, resolver: LocationResolver, description: 'Return a list of locations'
