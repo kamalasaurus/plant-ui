@@ -52,11 +52,11 @@ class SeedResolver < BaseResolver
   end
 
   option(:accession_name, type: String, description: 'select by accession name') do |scope, value|
-    scope.select { |seed| seed.population.name == value.upcase }
+    scope.select { |seed| seed.accession.name == value.upcase }
   end
 
   option(:accession_names, type: [String], description: 'select by multiple accession names') do |scope, value|
-    scope.select { |seed| value.map(&:upcase).include? seed.population.name }
+    scope.select { |seed| value.map(&:upcase).include? seed.accession.name }
   end
 
   option(:label, type: String, description: 'select by label') do |scope, value|
