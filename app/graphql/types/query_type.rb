@@ -33,30 +33,19 @@ module Types
       end
     end
 
-    field :leaf_communities, [Types::LeafCommunityType], null: false,
-                                                         description: 'Return a list of leaf communities' do
-      argument :id, ID, required: false
-    end
-    def leaf_communities(*args)
-      if args.dig(0, :id)
-        [LeafCommunity.find(args.dig(0, :id))]
-      else
-        LeafCommunity.all
-      end
-    end
-
-    # field :locations, [Types::LocationType], null: false,
-    #                                          description: 'Return a list of locations' do
+    # field :leaf_communities, [Types::LeafCommunityType], null: false,
+    #                                                      description: 'Return a list of leaf communities' do
     #   argument :id, ID, required: false
     # end
-    # def locations(*args)
+    # def leaf_communities(*args)
     #   if args.dig(0, :id)
-    #     [Location.find(args.dig(0, :id))]
+    #     [LeafCommunity.find(args.dig(0, :id))]
     #   else
-    #     Location.all
+    #     LeafCommunity.all
     #   end
     # end
 
+    field :leaf_communities, resolver: LeafCommunityResolver, description: 'Return a list of leaf communities'
     field :locations, resolver: LocationResolver, description: 'Return a list of locations'
     field :plant_neighborhoods, resolver: PlantNeighborhoodResolver, description: 'Return a list of plant neighborhoods'
     field :plant_samples, resolver: PlantSampleResolver, description: 'Return a list of plant samples'
