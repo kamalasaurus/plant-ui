@@ -30,6 +30,6 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
-    field :population, resolver: PopulationResolver
+    field :population, Types::PopulationType, null: false
   end
 end
