@@ -96,18 +96,19 @@ module Types
       end
     end
 
-    field :root_communities, [Types::RootCommunityType], null: false,
-                                                         description: 'Return a list of root communities' do
-      argument :id, ID, required: false
-    end
-    def root_communities(*args)
-      if args.dig(0, :id)
-        [RootCommunity.find(args.dig(0, :id))]
-      else
-        RootCommunity.all
-      end
-    end
+    # field :root_communities, [Types::RootCommunityType], null: false,
+    #                                                      description: 'Return a list of root communities' do
+    #   argument :id, ID, required: false
+    # end
+    # def root_communities(*args)
+    #   if args.dig(0, :id)
+    #     [RootCommunity.find(args.dig(0, :id))]
+    #   else
+    #     RootCommunity.all
+    #   end
+    # end
 
+    field :root_communities, resolver: RootCommunityResolver, description: 'Return a list of root communities'
     field :seeds, resolver: SeedResolver, description: 'Return a list of seeds'
     field :seedboxes, resolver: SeedboxResolver, description: 'Return a list of seedboxes'
     field :seeds_plant_samples, resolver: SeedsPlantSampleResolver, description: 'Return a list of seeds to plant sample relations'
