@@ -1,13 +1,7 @@
 class PopulationResolver < BaseResolver
   type [Types::PopulationType], null: false
 
-  scope do
-    object.blank? ?
-      Population.all :
-      object.respond_to?(:population) ?
-        object.population :
-        Population.all
-  end
+  scope { Population.all }
 
   option(:name, type: String, description: 'select by name') do |scope, value|
     scope.select { |population| population.name == value.upcase }

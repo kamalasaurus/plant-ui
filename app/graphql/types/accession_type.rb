@@ -8,8 +8,8 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
-    field :population, resolver: PopulationResolver
-    field :cytometry_reading, resolver: CytometryReadingResolver
+    field :population, Types::PopulationType
+    field :cytometry_reading, Types::CytometryReadingType
     field :seeds, resolver: SeedResolver
     field :plant_samples, resolver: PlantSampleResolver
 
