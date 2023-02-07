@@ -3,15 +3,6 @@ class SeedResolver < BaseResolver
 
   scope { Seed.all }
 
-  field :accession, Types::AccessionType
-  field :species, Types::SpeciesType
-  field :population, Types::PopulationType
-
-  field :plant_samples, [Types::PlantSampleType]
-
-  field :label, String, null: false
-  field :abbreviation, String, null: false
-
   option(:generation, type: Integer, description: 'select by generation') do |scope, value|
     scope.where(generation: value)
   end
@@ -45,13 +36,42 @@ class SeedResolver < BaseResolver
   end
 
   option(:population, type: String, description: 'select by population name') do |scope, value|
-    scope.select { |seed| seed.population.name == value }
+    scope.select { |seed| seed.population.name == value.upcase }
   end
 
   option(:populations, type: [String], description: 'select by multiple population names') do |scope, value|
-    scope.select { |seed| value.include? seed.population.name }
+    scope.select { |seed| value.map(&:upcase).include? seed.population.name }
   end
 
-  ##TODO: more access methods!
+  option(:species_abbr, type: String, description: 'select by species abbreviation') do |scope, value|
+    scope.select { |seed| seed.species.abbreviation == value.upcase }
+  end
 
+  option(:species_abbr, type: [String], description: 'select by multiple species abbreviations') do |scope, value|
+    scope.select { |seed| value.map(&:upcase).include? seed.species.abbreviation }
+  end
+
+  option(:accession_name, type: String, description: 'select by accession name') do |scope, value|
+    scope.select { |seed| seed.population.name == value.upcase }
+  end
+
+  option(:accession_names, type: [String], description: 'select by multiple accession names') do |scope, value|
+    scope.select { |seed| value.map(&:upcase).include? seed.population.name }
+  end
+
+  option(:label, type: String, description: 'select by label') do |scope, value|
+    scope.select { |seed| seed.label == value }
+  end
+
+  option(:labels, type: [String], description: 'select by multiple labels') do |scope, value|
+    scope.select { |seed| value.include? seed.label }
+  end
+
+  option(:abbreviation, type: String, description: 'select by abbreviation') do |scope, value|
+    scope.select { |seed| seed.abbreviation == value.upcase }
+  end
+
+  option(:abbreviations, type: [String], description: 'select by multiple abbreviations') do |scope, value|
+    scope.select { |seed| value.map(&:upcase).include? seed.abbreviation }
+  end
 end
