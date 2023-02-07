@@ -47,7 +47,7 @@ class SeedResolver < BaseResolver
     scope.select { |seed| seed.species.abbreviation == value.upcase }
   end
 
-  option(:species_abbr, type: [String], description: 'select by multiple species abbreviations') do |scope, value|
+  option(:species_abbrs, type: [String], description: 'select by multiple species abbreviations') do |scope, value|
     scope.select { |seed| value.map(&:upcase).include? seed.species.abbreviation }
   end
 
