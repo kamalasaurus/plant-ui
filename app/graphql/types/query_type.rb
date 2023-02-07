@@ -81,33 +81,7 @@ module Types
       end
     end
 
-    field :populations, [Types::PopulationType], null: false,
-                                                 description: 'Return a list of populations' do
-      argument :id, ID, required: false
-      argument :name, String, required: false
-    end
-    def populations(*args)
-      if args.dig(0, :id)
-        [Population.find(args.dig(0, :id))]
-      elsif args.dig(0, :name)
-        [Population.get(args.dig(0, :name))]
-      else
-        Population.all
-      end
-    end
-
-    # field :root_communities, [Types::RootCommunityType], null: false,
-    #                                                      description: 'Return a list of root communities' do
-    #   argument :id, ID, required: false
-    # end
-    # def root_communities(*args)
-    #   if args.dig(0, :id)
-    #     [RootCommunity.find(args.dig(0, :id))]
-    #   else
-    #     RootCommunity.all
-    #   end
-    # end
-
+    field :populations, resolver: PopulationResolver, description: 'Return a list of populations'
     field :root_communities, resolver: RootCommunityResolver, description: 'Return a list of root communities'
     field :seeds, resolver: SeedResolver, description: 'Return a list of seeds'
     field :seedboxes, resolver: SeedboxResolver, description: 'Return a list of seedboxes'
