@@ -53,7 +53,7 @@ module Mutations
         ph:,
         phosphorus:,
         calcium:,
-        magnesium: manganese,
+        magnesium:,
         sodium:,
         potassium:,
         iron:,

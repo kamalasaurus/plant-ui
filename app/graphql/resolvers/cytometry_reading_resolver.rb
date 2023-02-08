@@ -30,11 +30,11 @@ class CytometryReadingResolver < BaseResolver
   end
 
   option(:peak_pattern, type: [Integer], description: 'select if peak pattern matches') do |scope, value|
-    scope.select { |cyt| !!cyt.peak_pattern.intersect?(value) }
+    scope.select { |cyt| cyt.peak_pattern.intersect?(value) }
   end
 
   option(:chromosome_count, type: [Integer], description: 'select if chromosome count matches') do |scope, value|
-    scope.select { |cyt| !!cyt.chromosome_count.intersect?(value) }
+    scope.select { |cyt| cyt.chromosome_count.intersect?(value) }
   end
 
   option(:chromosome_count_certain, type: Boolean, description: 'select if chromosome count is certain') do |scope, value|

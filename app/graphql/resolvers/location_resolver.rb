@@ -44,7 +44,7 @@ class LocationResolver < BaseResolver
     manganese
   ].each do |element|
     plural = if %i[latitude longitude mean_annual_temperature mean_coldest_month_temperature].include? element
-               "#{element}".pluralize.to_sym
+               element.to_s.pluralize.to_sym
              else
                "#{element}_amounts".to_sym
              end

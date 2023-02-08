@@ -26,6 +26,6 @@ class PlantNeighborhoodResolver < BaseResolver
   end
 
   option(:otus, type: [String], description: 'select by a list of otus') do |scope, value|
-    scope.select { |plant| !!plant.otus.keys.intersect?(value.map(&:downcase)) } # single ampersand intersects arrays in ruby!
+    scope.select { |plant| plant.otus.keys.intersect?(value.map(&:downcase)) }
   end
 end

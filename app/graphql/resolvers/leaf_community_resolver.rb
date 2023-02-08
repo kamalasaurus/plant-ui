@@ -26,6 +26,6 @@ class LeafCommunityResolver < BaseResolver
   end
 
   option(:otus, type: [String], description: 'select by a list of otus') do |scope, value|
-    scope.select { |leaf| !!leaf.otus.intersect?(value.map(&:downcase)) } # single ampersand intersects arrays in ruby!
+    scope.select { |leaf| leaf.otus.intersect?(value.map(&:downcase)) }
   end
 end

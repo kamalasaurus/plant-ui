@@ -46,6 +46,6 @@ class AccessionResolver < BaseResolver
   end
 
   option(:seeds, type: [String], description: 'select by multiple seed abbreviations') do |scope, value|
-    scope.select { |acc| !!acc.seeds.map(&:abbreviation).intersect?(value.map(&:upcase)) }
+    scope.select { |acc| acc.seeds.map(&:abbreviation).intersect?(value.map(&:upcase)) }
   end
 end

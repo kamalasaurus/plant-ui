@@ -90,7 +90,7 @@ class PlantSampleResolver < BaseResolver
   end
 
   option(:seed_abbreviations, type: [String], description: 'select by seed abbreviations') do |scope, value|
-    scope.select { |plant_sample| !!plant_sample.seeds.map(&:abbreviation).intersect?(value) }
+    scope.select { |plant_sample| plant_sample.seeds.map(&:abbreviation).intersect?(value) }
   end
 
   option(:population_name, type: String, description: 'select by population name') do |scope, value|
