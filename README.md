@@ -28,7 +28,7 @@ The general reasoning for the `docker-compose` arrangement can be found at this 
 Feel free to use [direnv](https://direnv.net) to manage your environment on a per-project basis.  In lieu of that you may add the following to your `~/.zshrc` or `~/.bashrc` depending on which shell you're using:
 
 ```
-export SECRET_TOKEN=9fb231bd5fdb9bae9c7b81889181900140be89862b7045a97ad8374b130b22d7caa5300102dde4a96ff72567e616a4850d039c29b391cbb20391a510447ff73e
+export SECRET_TOKEN=<whatever your app comes with>
 
 export WORKER_PROCESSES=1
 export LISTEN_ON=0.0.0.0:3000
