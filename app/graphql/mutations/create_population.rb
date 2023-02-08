@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreatePopulation < BaseMutation
     # arguments passed to the `resolve` method
@@ -9,8 +11,8 @@ module Mutations
 
     def resolve(population_name: nil, subpopulation: nil)
       Population.create!(
-        population_name: population_name,
-        subpopulation: subpopulation,
+        population_name:,
+        subpopulation:
       )
     end
   end

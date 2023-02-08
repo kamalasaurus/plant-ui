@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateCytometryReading < BaseMutation
     # arguments passed to the `resolve` method
@@ -20,12 +22,12 @@ module Mutations
       chromosome_count_certain: nil
     )
       CytometryReading.create!(
-        accession_id: accession_id,
-        minimum_peak: minimum_peak,
-        mean_f2: mean_f2,
-        peak_pattern: peak_pattern,
-        chromosome_count: chromosome_count,
-        chromosome_count_certain: chromosome_count_certain
+        accession_id:,
+        minimum_peak:,
+        mean_f2:,
+        peak_pattern:,
+        chromosome_count:,
+        chromosome_count_certain:
       )
     end
   end

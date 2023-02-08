@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateSpecies < BaseMutation
     # arguments passed to the `resolve` method
@@ -9,8 +11,8 @@ module Mutations
 
     def resolve(genus: nil, species: nil)
       Species.create!(
-        genus: genus,
-        species: species
+        genus:,
+        species:
       )
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateAccession < BaseMutation
     # arguments passed to the `resolve` method
@@ -9,8 +11,8 @@ module Mutations
 
     def resolve(population_id: nil, accession_number: nil)
       Accession.create!(
-        population_id: population_id,
-        accession_number: accession_number
+        population_id:,
+        accession_number:
       )
     end
   end

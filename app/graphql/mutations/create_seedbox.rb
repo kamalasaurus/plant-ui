@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateSeedbox < BaseMutation
     # arguments passed to the `resolve` method
@@ -8,7 +10,7 @@ module Mutations
 
     def resolve(name: nil)
       Seedbox.create!(
-        name: name
+        name:
       )
     end
   end

@@ -45,11 +45,13 @@ Metrics/ClassLength:
   Exclude:
     - 'app/graphql/types/query_type.rb'
     - 'app/services/tube_upload.rb'
+    - 'app/graphql/mutations/*.rb'
 
 Naming/MethodParameterName:
   Exclude:
     - 'app/services/tube_upload.rb'
     - 'app/controllers/graphql_controller.rb'
+    - 'app/graphql/mutations/create_location.rb'
 
 Naming/MethodName:
   Exclude:
@@ -58,3 +60,7 @@ Naming/MethodName:
 Metrics/ModuleLength:
   Exclude:
     - 'app/services/plant_sample_upload.rb'
+
+Metrics/ParameterLists:
+  Exclude:
+    - 'app/graphql/mutations/*.rb'

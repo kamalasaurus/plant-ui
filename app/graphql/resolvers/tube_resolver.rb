@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 class TubeResolver < BaseResolver
-  type "[Types::TubeType]", null: false
+  type '[Types::TubeType]', null: false
 
   scope do
-    object.blank? ?
-      Tube.all :
-      object.respond_to?(:tubes) ?
-        object.tubes :
-        []
+    if object.blank?
+      Tube.all
+    elsif object.respond_to?(:tubes)
+      object.tubes
+    else
+      []
+    end
   end
 
   option(:seedbox_id, type: Integer, description: 'select by seedbox id') do |scope, value|

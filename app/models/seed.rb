@@ -24,5 +24,4 @@ class Seed < ApplicationRecord
   def species_name
     species.abbreviation
   end
-
 end

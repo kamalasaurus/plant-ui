@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SpeciesResolver < BaseResolver
   type [Types::SpeciesType], null: false
 

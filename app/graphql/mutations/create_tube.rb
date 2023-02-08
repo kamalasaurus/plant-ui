@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateTube < BaseMutation
     # arguments passed to the `resolve` method
@@ -18,11 +20,11 @@ module Mutations
       count: nil
     )
       Tube.create!(
-        seed_id: seed_id,
-        seedbox_id: seedbox_id,
-        position: position,
-        volume: volume,
-        count: count
+        seed_id:,
+        seedbox_id:,
+        position:,
+        volume:,
+        count:
       )
     end
   end

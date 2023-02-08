@@ -54,9 +54,13 @@ class TubesByAccessions
         end
 
         # this is terrible, the worst code I've ever written
-        d = (b.empty? && c.empty?) ? [] :
-          (!b.empty? && c.empty?) ? b :
-            c
+        d = if b.empty? && c.empty?
+              []
+            elsif !b.empty? && c.empty?
+              b
+            else
+              c
+            end
 
         d.map do |accession|
           tubes = accession.tubes

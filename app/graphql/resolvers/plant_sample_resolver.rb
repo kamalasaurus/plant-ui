@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 class PlantSampleResolver < BaseResolver
   type [Types::PlantSampleType], null: false
 
   scope do
-    object.blank? ?
-      PlantSample.all :
-      object.respond_to?(:plant_samples) ?
-        object.plant_samples :
-        []
+    if object.blank?
+      PlantSample.all
+    elsif object.respond_to?(:plant_samples)
+      object.plant_samples
+    else
+      []
+    end
   end
 
   option(:label, type: String, description: 'select by label') do |scope, value|
@@ -86,7 +90,7 @@ class PlantSampleResolver < BaseResolver
   end
 
   option(:seed_abbreviations, type: [String], description: 'select by seed abbreviations') do |scope, value|
-    scope.select { |plant_sample| !(plant_sample.seeds.map(&:abbreviation) & value).empty? }
+    scope.select { |plant_sample| plant_sample.seeds.map(&:abbreviation).intersect?(value) }
   end
 
   option(:population_name, type: String, description: 'select by population name') do |scope, value|
