@@ -6,9 +6,7 @@ class AccessionResolver < BaseResolver
       Accession.all :
       object.respond_to?(:accessions) ?
         object.accessions :
-        object.respond_to?(:accession) ?
-          object.accession :
-          Accession.all
+        []
   end
 
   option(:accession_number, type: Integer, description: 'select by accession number') do |scope, value|

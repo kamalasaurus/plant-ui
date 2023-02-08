@@ -1,7 +1,13 @@
 class TubeResolver < BaseResolver
-  type [Types::TubeType], null: false
+  type "[Types::TubeType]", null: false
 
-  scope { Tube.all }
+  scope do
+    object.blank? ?
+      Tube.all :
+      object.respond_to?(:tubes) ?
+        object.tubes :
+        []
+  end
 
   option(:seedbox_id, type: Integer, description: 'select by seedbox id') do |scope, value|
     scope.where(seedbox_id: value)

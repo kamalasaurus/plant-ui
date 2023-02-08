@@ -16,11 +16,11 @@ module Types
 
     field :parent, Types::SeedType
 
-    field :tubes, [Types::TubeType]
-    field :children, [Types::SeedType]
+    field :tubes, resolver: TubeResolver
+    field :children, resolver: SeedResolver
 
-    field :seeds_plant_samples, [Types::SeedsPlantSampleType]
-    field :plant_samples, [Types::PlantSampleType]
+    field :seeds_plant_samples, resolver: SeedsPlantSampleResolver
+    field :plant_samples, resolver: PlantSampleResolver
 
     field :label, String, null: false
     field :abbreviation, String, null: false

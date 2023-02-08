@@ -1,14 +1,14 @@
 class SeedResolver < BaseResolver
-  type [Types::SeedType], null: false
+  type "[Types::SeedType]", null: false
 
   scope do
     object.blank? ? 
       Seed.all :
       object.respond_to?(:seeds) ?
         object.seeds :
-        object.respond_to?(:seed) ?
-          object.seed :
-          Seed.all
+        object.respond_to?(:children) ?
+          object.children :
+          []
   end
 
   option(:generation, type: Integer, description: 'select by generation') do |scope, value|

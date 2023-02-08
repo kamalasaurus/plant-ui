@@ -17,8 +17,8 @@ module Types
     field :accession_id, Integer
     field :species_id, Integer
 
-    field :seeds_plant_samples, [Types::SeedsPlantSampleType]
-    field :seeds, [Types::SeedType]
+    field :seeds_plant_samples, resolver: SeedsPlantSampleResolver
+    field :seeds, resolver: SeedResolver
     field :accession, Types::AccessionType
     field :population, Types::PopulationType
     field :species, Types::SpeciesType

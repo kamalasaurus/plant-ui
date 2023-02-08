@@ -8,8 +8,8 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
-    field :seeds, [Types::SeedType]
-    field :plant_samples, [Types::PlantSampleType]
+    field :seeds, resolver: SeedResolver
+    field :plant_samples, resolver: PlantSampleResolver
 
     field :name, String
     field :abbreviation, String

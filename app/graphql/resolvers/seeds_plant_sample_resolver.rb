@@ -1,6 +1,14 @@
 class SeedsPlantSampleResolver < BaseResolver
   type [Types::SeedsPlantSampleType], null: false
 
+  scope do
+    object.blank? ?
+      SeedsPlantSample.all :
+      object.respond_to?(:seeds_plant_samples) ?
+        object.seeds_plant_samples :
+        []
+  end
+
   scope { SeedsPlantSample.all }
 
   option(:seed_id, type: Integer, description: 'select by seed id') do |scope, value|
