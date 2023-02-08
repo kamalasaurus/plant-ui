@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TubeResolver < BaseResolver
   type '[Types::TubeType]', null: false
 

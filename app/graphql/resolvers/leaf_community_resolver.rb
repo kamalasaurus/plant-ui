@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LeafCommunityResolver < BaseResolver
   type [Types::LeafCommunityType], null: false
 

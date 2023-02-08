@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccessionResolver < BaseResolver
   type [Types::AccessionType], null: false
 

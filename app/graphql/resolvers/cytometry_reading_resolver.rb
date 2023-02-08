@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CytometryReadingResolver < BaseResolver
   type [Types::CytometryReadingType], null: false
 

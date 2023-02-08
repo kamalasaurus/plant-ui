@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlantNeighborhoodResolver < BaseResolver
   type [Types::PlantNeighborhoodType], null: false
 

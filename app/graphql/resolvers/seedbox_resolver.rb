@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeedboxResolver < BaseResolver
   type [Types::SeedboxType], null: false
 

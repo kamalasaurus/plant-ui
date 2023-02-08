@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeedResolver < BaseResolver
   type '[Types::SeedType]', null: false
 

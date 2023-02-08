@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlantSampleResolver < BaseResolver
   type [Types::PlantSampleType], null: false
 

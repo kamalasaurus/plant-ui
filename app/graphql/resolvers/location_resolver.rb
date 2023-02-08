@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LocationResolver < BaseResolver
   type [Types::LocationType], null: false
 

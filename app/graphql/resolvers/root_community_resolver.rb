@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RootCommunityResolver < BaseResolver
   type [Types::RootCommunityType], null: false
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PopulationResolver < BaseResolver
   type [Types::PopulationType], null: false
 

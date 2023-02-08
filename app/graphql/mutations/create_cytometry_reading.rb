@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreateCytometryReading < BaseMutation
     # arguments passed to the `resolve` method
