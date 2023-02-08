@@ -20,4 +20,9 @@ class Seed < ApplicationRecord
   def abbreviation
     "#{species.abbreviation}-#{accession.name}"
   end
+
+  def species_name
+    species.abbreviation
+  end
+
 end
