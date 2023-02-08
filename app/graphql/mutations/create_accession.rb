@@ -9,8 +9,8 @@ module Mutations
 
     def resolve(population_id: nil, accession_number: nil)
       Accession.create!(
-        population_id: population_id,
-        accession_number: accession_number
+        population_id:,
+        accession_number:
       )
     end
   end

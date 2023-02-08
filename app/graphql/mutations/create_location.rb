@@ -30,36 +30,36 @@ module Mutations
     type Types::LocationType
 
     def resolve(population_id: nil, latitude: nil, longitude: nil, elevation: nil, \
-      mean_annual_temperature: nil, mean_coldest_month_temperature: nil, winter_precipitations: nil, \
-      summer_precipitations: nil, autumn_precipitations: nil, spring_precipitations: nil, nitrogen: nil, \
-      carbon_nitrogen_ratio: nil, ph: nil, phosphorus: nil, calcium: nil, magnesium: nil, sodium: nil, \
-      potassium: nil, iron: nil, aluminium: nil, water_holding_capacity: nil, organic_carbon: nil, \
-      soil_organic_matter: nil, manganese: nil)
+                mean_annual_temperature: nil, mean_coldest_month_temperature: nil, winter_precipitations: nil, \
+                summer_precipitations: nil, autumn_precipitations: nil, spring_precipitations: nil, nitrogen: nil, \
+                carbon_nitrogen_ratio: nil, ph: nil, phosphorus: nil, calcium: nil, magnesium: nil, sodium: nil, \
+                potassium: nil, iron: nil, aluminium: nil, water_holding_capacity: nil, organic_carbon: nil, \
+                soil_organic_matter: nil, manganese: nil)
       Location.create!(
-        population_id: population_id,
-        latitude: latitude,
-        longitude: longitude,
-        elevation: elevation,
-        mean_annual_temperature: mean_annual_temperature,
-        mean_coldest_month_temperature: mean_coldest_month_temperature,
-        winter_precipitations: winter_precipitations,
-        summer_precipitations: summer_precipitations,
-        autumn_precipitations: autumn_precipitations,
-        spring_precipitations: spring_precipitations,
-        nitrogen: nitrogen,
-        carbon_nitrogen_ratio: carbon_nitrogen_ratio,
-        ph: ph,
-        phosphorus: phosphorus,
-        calcium: calcium,
+        population_id:,
+        latitude:,
+        longitude:,
+        elevation:,
+        mean_annual_temperature:,
+        mean_coldest_month_temperature:,
+        winter_precipitations:,
+        summer_precipitations:,
+        autumn_precipitations:,
+        spring_precipitations:,
+        nitrogen:,
+        carbon_nitrogen_ratio:,
+        ph:,
+        phosphorus:,
+        calcium:,
         magnesium: manganese,
-        sodium: sodium,
-        potassium: potassium,
-        iron: iron,
-        aluminium: aluminium,
-        water_holding_capacity: water_holding_capacity,
-        organic_carbon: organic_carbon,
-        soil_organic_matter: soil_organic_matter,
-        manganese: manganese
+        sodium:,
+        potassium:,
+        iron:,
+        aluminium:,
+        water_holding_capacity:,
+        organic_carbon:,
+        soil_organic_matter:,
+        manganese:
       )
     end
   end

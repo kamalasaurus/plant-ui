@@ -11,7 +11,7 @@ class CytometryReadingResolver < BaseResolver
     scope.where(mean_f2: value)
   end
 
-  option :mean_f2_range, type: FloatFilter, description: 'use gt and lt to define the bounds of the mean f2' do |scope, value|
+  option :mean_f2_range, type: FloatFilter, description: 'use gt and lt to define the bounds of the mean f2' do |scope, _value|
     scope.where("mean_f2 between #{gt} and #{lt}")
   end
 
@@ -23,16 +23,16 @@ class CytometryReadingResolver < BaseResolver
     scope.where(minimum_peak: value)
   end
 
-  option :minimum_peak_range, type: IntegerFilter, description: 'use gt and lt to define the bounds of the minimum peak' do |scope, value|
+  option :minimum_peak_range, type: IntegerFilter, description: 'use gt and lt to define the bounds of the minimum peak' do |scope, _value|
     scope.where("minimum peak between #{gt} and #{lt}")
   end
 
   option(:peak_pattern, type: [Integer], description: 'select if peak pattern matches') do |scope, value|
-    scope.select { |cyt| !(cyt.peak_pattern & value).empty? }
+    scope.select { |cyt| !!cyt.peak_pattern.intersect?(value) }
   end
 
   option(:chromosome_count, type: [Integer], description: 'select if chromosome count matches') do |scope, value|
-    scope.select { |cyt| !(cyt.chromosome_count & value).empty? }
+    scope.select { |cyt| !!cyt.chromosome_count.intersect?(value) }
   end
 
   option(:chromosome_count_certain, type: Boolean, description: 'select if chromosome count is certain') do |scope, value|

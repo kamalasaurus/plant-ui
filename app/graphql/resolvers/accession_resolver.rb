@@ -2,11 +2,13 @@ class AccessionResolver < BaseResolver
   type [Types::AccessionType], null: false
 
   scope do
-    object.blank? ?
-      Accession.all :
-      object.respond_to?(:accessions) ?
-        object.accessions :
-        []
+    if object.blank?
+      Accession.all
+    elsif object.respond_to?(:accessions)
+      object.accessions
+    else
+      []
+    end
   end
 
   option(:accession_number, type: Integer, description: 'select by accession number') do |scope, value|
@@ -42,6 +44,6 @@ class AccessionResolver < BaseResolver
   end
 
   option(:seeds, type: [String], description: 'select by multiple seed abbreviations') do |scope, value|
-    scope.select { |acc| !(acc.seeds.map(&:abbreviation) & value.map(&:upcase)).empty? }
+    scope.select { |acc| !!acc.seeds.map(&:abbreviation).intersect?(value.map(&:upcase)) }
   end
 end

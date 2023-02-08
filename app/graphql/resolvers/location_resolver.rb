@@ -11,7 +11,7 @@ class LocationResolver < BaseResolver
     scope.where(elevation: value)
   end
 
-  option :elevation_range, type: IntegerFilter, description: 'use gt and lt to define the bounds of the elevation' do |scope, value|
+  option :elevation_range, type: IntegerFilter, description: 'use gt and lt to define the bounds of the elevation' do |scope, _value|
     scope.where("elevation between #{gt} and #{lt}")
   end
 
@@ -41,19 +41,21 @@ class LocationResolver < BaseResolver
     soil_organic_matter
     manganese
   ].each do |element|
-    plural = (%i[latitude longitude mean_annual_temperature mean_coldest_month_temperature].include? element) ? \
-      "#{element}".pluralize.to_sym : \
-      "#{element}_amounts".to_sym
+    plural = if %i[latitude longitude mean_annual_temperature mean_coldest_month_temperature].include? element
+               "#{element}".pluralize.to_sym
+             else
+               "#{element}_amounts".to_sym
+             end
 
     option element, type: Float, description: "select by #{element}" do |scope, value|
       scope.where(element => value)
     end
-  
+
     option plural, type: [Float], description: "select by multiple #{plural.to_s.split('_')}" do |scope, value|
       scope.where(element => value)
     end
-  
-    option "#{element}_range".to_sym, type: FloatFilter, description: "use gt and lt to define the bounds of the #{element}" do |scope, value|
+
+    option "#{element}_range".to_sym, type: FloatFilter, description: "use gt and lt to define the bounds of the #{element}" do |scope, _value|
       scope.where("#{element} between #{gt} and #{lt}")
     end
   end

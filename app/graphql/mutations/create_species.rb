@@ -9,8 +9,8 @@ module Mutations
 
     def resolve(genus: nil, species: nil)
       Species.create!(
-        genus: genus,
-        species: species
+        genus:,
+        species:
       )
     end
   end

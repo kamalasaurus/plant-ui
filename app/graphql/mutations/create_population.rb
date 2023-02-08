@@ -9,8 +9,8 @@ module Mutations
 
     def resolve(population_name: nil, subpopulation: nil)
       Population.create!(
-        population_name: population_name,
-        subpopulation: subpopulation,
+        population_name:,
+        subpopulation:
       )
     end
   end

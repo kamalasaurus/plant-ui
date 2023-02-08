@@ -32,22 +32,22 @@ module Mutations
       seed_ids: []
     )
       plant_sample = PlantSample.create!(
-        accession_id: accession_id,
-        species_id: species_id,
-        label: label,
-        storage_method: storage_method,
-        quantity: quantity,
-        accession_tray: accession_tray,
-        replication_tray: replication_tray,
-        row: row,
-        column: column,
-        sowing_date: sowing_date,
-        harvest_date: harvest_date
+        accession_id:,
+        species_id:,
+        label:,
+        storage_method:,
+        quantity:,
+        accession_tray:,
+        replication_tray:,
+        row:,
+        column:,
+        sowing_date:,
+        harvest_date:
       )
 
       seed_ids.each do |seed_id|
         SeedsPlantSample.create!(
-          seed_id: seed_id,
+          seed_id:,
           plant_sample_id: plant_sample.id
         )
       end

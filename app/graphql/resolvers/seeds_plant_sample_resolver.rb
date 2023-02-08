@@ -2,11 +2,13 @@ class SeedsPlantSampleResolver < BaseResolver
   type [Types::SeedsPlantSampleType], null: false
 
   scope do
-    object.blank? ?
-      SeedsPlantSample.all :
-      object.respond_to?(:seeds_plant_samples) ?
-        object.seeds_plant_samples :
-        []
+    if object.blank?
+      SeedsPlantSample.all
+    elsif object.respond_to?(:seeds_plant_samples)
+      object.seeds_plant_samples
+    else
+      []
+    end
   end
 
   scope { SeedsPlantSample.all }

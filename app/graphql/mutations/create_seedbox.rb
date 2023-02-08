@@ -8,7 +8,7 @@ module Mutations
 
     def resolve(name: nil)
       Seedbox.create!(
-        name: name
+        name:
       )
     end
   end
