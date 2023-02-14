@@ -1,4 +1,4 @@
-Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Duplicate,Description
+Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Duplicate,Comment
 ME_P.037,Pseudomonas viridiflava,Z-SCI,5,21,1,Arabidopsis thaliana,14,,Michigan Extension,"42°5'33.72""N","86°21'22.76""W",Luke Barrett,4/22/08,W,,
 ME_P.038,Xanthomonas campestris,Z-SCI,5,21,2,Arabidopsis thaliana,14,,Michigan Extension,"42°5'33.72""N","86°21'22.76""W",Luke Barrett,4/22/08,W,Duplicate Box 49+54?,
 ME_P.039,Pseudomonas viridiflava,Z-SCI,5,21,3,Arabidopsis thaliana,15,,Michigan Extension,"42°5'33.72""N","86°21'22.76""W",Luke Barrett,4/22/08,W,,

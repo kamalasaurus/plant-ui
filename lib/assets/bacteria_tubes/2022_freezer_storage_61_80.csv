@@ -1,4 +1,4 @@
-Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Comment,Duplicate,Description
+Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Comment,Duplicate
 RT 247a AvrPphB2,AvrPpHB2 in P. syringae strains,Z-SCI,13,61,1,,,,,,,Joel Kniskern,5/7/08,L,
 LP 900.1a AvrPphB2,AvrPpHB2 in P. syringae strains,Z-SCI,13,61,2,,,,,,,Joel Kniskern,5/7/08,L,
 Knox 244a AvrPphB2,AvrPpHB2 in P. syringae strains,Z-SCI,13,61,3,,,,,,,Joel Kniskern,5/7/08,L,

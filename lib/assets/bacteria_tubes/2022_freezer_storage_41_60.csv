@@ -1,4 +1,4 @@
-Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Comment,Duplicate,Description
+Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Comment,Duplicate
 RM_P.11,Pseudomonas viridiflava,Z-SCI,9,41,1,Arabidopsis thaliana,6,,Route Marker,"41°21'17.41""N","86°44'14.47""W",Luke Barrett,4/14/08,W,,
 RM_P.12,,Z-SCI,9,41,2,Arabidopsis thaliana,6,,Route Marker,"41°21'17.41""N","86°44'14.47""W",Luke Barrett,4/14/08,W,,
 RM_P.13,,Z-SCI,9,41,3,Arabidopsis thaliana,8,,Route Marker,"41°21'17.41""N","86°44'14.47""W",Luke Barrett,4/14/08,W,,

@@ -1,4 +1,4 @@
-Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Duplicate,Description
+Sample_ID,Identification,Freezer,Rack,Box,Position,Source,Source_number,Organ/tissue,Site/Population,Lat,Long,Curator,Year,Wild or Lab,Duplicate,Comment
 BOC 1.1a,Pseudomonas viridiflava,Z-SCI,1,1,1,Arabidopsis thaliana,,,Somewhere else? Spain,,,,3/28/2002,W,,
 BOC 1.2a,Pseudomonas viridiflava,Z-SCI,1,1,2,Arabidopsis thaliana,,,Somewhere else? Spain,,,,3/28/2002,W,,
 BOC 1.2b,Pseudomonas viridiflava,Z-SCI,1,1,3,Arabidopsis thaliana,,,Somewhere else? Spain,,,,3/28/2002,W,,
