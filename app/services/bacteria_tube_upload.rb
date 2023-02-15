@@ -38,14 +38,14 @@ class BacteriaTubeUpload
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 
-  # def create_or_update_species(h)
-  #   genus, species = SPECIES[h[:species]].split('-')
-  #   Species.upsert({
-  #                    genus:,
-  #                    species:
-  #                  }, unique_by: %i[genus species])
-  #   Species.find_by(genus:, species:)
-  # end
+  def create_or_update_species(h)
+    genus, species = SPECIES[h[:species]].split('-')
+    Species.upsert({
+                     genus:,
+                     species:
+                   }, unique_by: %i[genus species])
+    Species.find_by(genus:, species:)
+  end
 
   # def create_or_update_seedbox(h)
   #   Seedbox.upsert({
@@ -102,17 +102,21 @@ class BacteriaTubeUpload
 
   def parse
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
-      bacteria_box, bacteria_population, bacteria_accession, \
-      bacteria_tube, bacteria_boxes, freezer_rack, freezer = nil
+      bacteria_population, bacteria_location, bacteria_accession, \
+      bacteria_tube, bacteria_box, freezer_rack, freezer, \
+      species, source_species = nil
       h = row.to_h
       ActiveRecord::Base.transaction do
-        freezer = create_or_update_freezer(h)
         species = create_or_update_species(h)
-        seedbox = create_or_update_seedbox(h)
-        population = create_or_update_population(h)
-        accession = create_or_update_accession(h, population)
-        seed = create_or_update_seed(h, accession, species)
-        tube = create_or_update_tube(h, seed, seedbox)
+        source_species = create_or_update_source_species(h)
+        freezer = create_or_update_freezer(h)
+        freezer_rack = create_or_update_freezer_rack(h, freezer)
+        bacteria_box = create_or_update_bacteria_box(h, freezer_rack)
+        bacteria_population = create_or_update_bacteria_population(h)
+        bacteria_location = create_or_update_bacteria_location(h, bacteria_population)
+        bacteria_accession = create_or_update_bacteria_accession(h, bacteria_populationk \
+          species, source_species)
+        bacteria_tube = create_or_update_bacteria_tube(h, bacteria_accession)
       rescue StandardError => e
         puts e
         puts h
