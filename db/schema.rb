@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,9 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.bigint "species_id"
     t.bigint "source_species_id"
     t.string "source_number"
-    t.string "sample_identity"
+    t.string "sample_identity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bacteria_population_id", "sample_identity"], name: "bacteria_accessoins_index", unique: true
     t.index ["bacteria_population_id"], name: "index_bacteria_accessions_on_bacteria_population_id"
     t.index ["source_species_id"], name: "index_bacteria_accessions_on_source_species_id"
     t.index ["species_id"], name: "index_bacteria_accessions_on_species_id"
@@ -46,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["freezer_rack_id", "name"], name: "index_bacteria_boxes_on_freezer_rack_id_and_name", unique: true
     t.index ["freezer_rack_id"], name: "index_bacteria_boxes_on_freezer_rack_id"
   end
 
@@ -55,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.bigint "bacteria_population_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bacteria_population_id", "latitude", "longitude"], name: "bacteria_locations_index", unique: true
     t.index ["bacteria_population_id"], name: "index_bacteria_locations_on_bacteria_population_id"
   end
 
@@ -62,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_bacteria_populations_on_name", unique: true
   end
 
   create_table "bacteria_tubes", force: :cascade do |t|
@@ -73,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bacteria_accession_id"], name: "index_bacteria_tubes_on_bacteria_accession_id"
+    t.index ["bacteria_box_id", "position"], name: "index_bacteria_tubes_on_bacteria_box_id_and_position", unique: true
     t.index ["bacteria_box_id"], name: "index_bacteria_tubes_on_bacteria_box_id"
   end
 
@@ -93,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["freezer_id", "name"], name: "index_freezer_racks_on_freezer_id_and_name", unique: true
     t.index ["freezer_id"], name: "index_freezer_racks_on_freezer_id"
   end
 
@@ -100,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_194311) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_freezers_on_name", unique: true
   end
 
   create_table "leaf_communities", force: :cascade do |t|
