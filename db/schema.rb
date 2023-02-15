@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
     t.string "sample_identity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bacteria_population_id", "sample_identity"], name: "bacteria_accessoins_index", unique: true
+    t.index ["bacteria_population_id", "sample_identity"], name: "bacteria_accessions_index", unique: true
     t.index ["bacteria_population_id"], name: "index_bacteria_accessions_on_bacteria_population_id"
     t.index ["source_species_id"], name: "index_bacteria_accessions_on_source_species_id"
     t.index ["species_id"], name: "index_bacteria_accessions_on_species_id"
