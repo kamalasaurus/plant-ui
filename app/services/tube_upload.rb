@@ -12,6 +12,12 @@ class TubeUpload
     'Dve' => 'draba-verna'
   }.freeze
 
+  COMMON_NAME = {
+    'Ath' => 'thale cress',
+    'Chi' => 'hairy bittercress',
+    'Dve' => 'spring whitlowgrass'
+  }.freeze
+
   def initialize(file)
     @errors = []
     @file = file
@@ -44,9 +50,12 @@ class TubeUpload
 
   def create_or_update_species(h)
     genus, species = SPECIES[h[:species]].split('-')
+    common_name = COMMON_NAME[h[:species]]
     Species.upsert({
+                     kingdom: 'plant',
                      genus:,
-                     species:
+                     species:,
+                     common_name:
                    }, unique_by: %i[genus species])
     Species.find_by(genus:, species:)
   end

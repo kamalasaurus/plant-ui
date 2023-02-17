@@ -293,12 +293,30 @@ class BacteriaTubeUpload
   end
 
   def create_or_update_species(h)
-    genus, species = SPECIES[h[:species]].split('-')
-    Species.upsert({
+    _species = PLANT_SPECIES[h[:species]] ?
+      ['plant', PLANT_SPECIES[h[:species]]] :
+        BACTERIA_SPECIES[h[:species]] ?
+        ['bacteria', BACTERIA_SPECIES[h[:species]]] :
+          nil
+
+    return if _species.nil?
+
+    kingdom, genus, species, common_name, strain = [_species[0]].concat(_species[1].split('-'))
+        Species.upsert({
+                     kingdom:,
                      genus:,
-                     species:
+                     species:,
+                     common_name: common_name&.split('_')&.join(' ')
                    }, unique_by: %i[genus species])
-    Species.find_by(genus:, species:)
+
+    created_species = Species.find_by(genus:, species:)
+
+    Subspecies.upsert({
+        strain: strain&.split('_')&.join(' '),
+        species_id: created_species.id
+      }, unique_by: :strain)
+
+    created_species
   end
 
   # def create_or_update_seedbox(h)
