@@ -254,7 +254,13 @@ class BacteriaTubeUpload
     "Klenkia sp." => 'klenkia-sp.-klenkia',
     "Staphylococcus sp." => 'staphylococcus-sp.-staphylococcus',
     "Novosphingobium sp." => 'novosphingobium-sp.-novosphingobium',
-    "Allorhizobium sp." => 'allorhizobium-sp.-rhizobia'
+    "Allorhizobium sp." => 'allorhizobium-sp.-rhizobia',
+    "????" => 'incertae_genus-sp.-unknown',
+    "??" => 'incertae_genus-sp.-unknown',
+    "?" => 'incertae_genus-sp.-unknown',
+    "failed" => 'incertae_genus-sp.-unknown',
+    " " => 'incertae_genus-sp.-unknown',
+    nil => 'incertae_genus-sp.-unknown'
   }.freeze
 
   def initialize(file)
@@ -274,121 +280,163 @@ class BacteriaTubeUpload
 
   private
 
-  def check(str)
-    is_nil = [nil, 'empty', ' ', 'empy', 'failed', /^\?+$/].any? do |test|
-      if test.is_a? Regexp
-        str =~ test
-      else
-        str == test
-      end
+  def empty?(str)
+    ['empty', 'empy'].any? do |test|
+      str == test
     end
-    str == is_nil ? nil : str
+  end
+
+  def wild?(flag)
+    if flag == 'W'
+      true
+    elsif flag == 'L'
+      false
+    else
+      nil
+    end
+  end
+
+  def uncertain?(str)
+    str =~ /\?/
+  end
+
+  def recomb(str)
+    str&.split('_')&.join(' ')
   end
 
   def copy
     return if Rails.env.production?
 
-    name = "#{DateTime.now.strftime '%Y_%m_%d'}_upload.csv"
+    name = "#{DateTime.now.strftime '%Y_%m_%d'}_bacteria_upload.csv"
     File.binwrite(Rails.root.join('public', 'uploads', name), @file)
   end
 
-  def create_or_update_species(h)
-    _species = PLANT_SPECIES[h[:species]] ?
-      ['plant', PLANT_SPECIES[h[:species]]] :
-        BACTERIA_SPECIES[h[:species]] ?
-        ['bacteria', BACTERIA_SPECIES[h[:species]]] :
-          nil
+  def create_or_update_freezer(h)
+    Freezer.upsert({
+      name: h[:freezer]
+    }, unique_by: :name)
+    Freezer.find_by(name: h[:freezer])
+  end
 
-    return if _species.nil?
+  def create_or_update_freezer_rack(h, freezer)
+    FreezerRack.upsert({
+      name: h[:rack],
+      freezer_id: freezer.id
+    }, unique_by: %i[freezer_id name])
+    FreezerRack.find_by(name: h[:rack], freezer_id: freezer.id)
+  end
+
+  def create_or_update_bacteria_box(h, freezer_rack)
+    BacteriaBox.upsert({
+      name: h[:box],
+      freezer_rack_id: freezer_rack.id
+    }, unique_by: %i[freezer_rack_id name])
+    BacteriaBox.find_by(name: h[:box], freezer_rack_id: freezer_rack.id)
+  end
+
+  def create_or_update_species(h)
+    _species = PLANT_SPECIES[h[:identification]] ?
+      ['plant', PLANT_SPECIES[h[:identification]]] :
+        BACTERIA_SPECIES[h[:identification]] ?
+        ['bacteria', BACTERIA_SPECIES[h[:identification]]] :
+          ['incertae regnum', 'incertae_genus-sp.-unknown']
 
     kingdom, genus, species, common_name, strain = [_species[0]].concat(_species[1].split('-'))
         Species.upsert({
                      kingdom:,
-                     genus:,
+                     genus: recomb(genus),
                      species:,
-                     common_name: common_name&.split('_')&.join(' ')
+                     common_name: recomb(common_name)
                    }, unique_by: %i[genus species])
 
     created_species = Species.find_by(genus:, species:)
 
-    Subspecies.upsert({
-        strain: strain&.split('_')&.join(' '),
-        species_id: created_species.id
-      }, unique_by: :strain)
-
+    create_subspecies(h, created_species) unless strain.nil?
+ 
     created_species
   end
 
-  # def create_or_update_seedbox(h)
-  #   Seedbox.upsert({
-  #                    name: h[:seedbox]
-  #                  }, unique_by: :name)
-  #   Seedbox.find_by(name: h[:seedbox])
+  def create_or_update_subspecies(h, species)
+    Subspecies.upsert({
+      strain: strain&.split('_')&.join(' '),
+      species_id: created_species.id
+    }, unique_by: :strain)
+  end
+
+  # def create_or_update_transformation(h, species)
+
   # end
 
-  # def create_or_update_population(h)
-  #   Population.upsert({
-  #                       population_name: h[:popid1].upcase,
-  #                       subpopulation: h[:popid2].upcase
-  #                     }, unique_by: %i[population_name subpopulation])
-  #   Population.find_by(population_name: h[:popid1], subpopulation: h[:popid2])
-  # end
+  def create_or_update_bacteria_population(h)
+    BacteriaPopulation.upsert({
+      name: h[:sitepopulation]
+    }, unique_by: :name)
+    BacteriaPopulation.find_by(name: h[:sitepopulation])
+  end
 
-  # def create_or_update_accession(h, population)
-  #   Accession.upsert({
-  #                      accession_number: h[:accid].to_i,
-  #                      population_id: population.id
-  #                    }, unique_by: %i[population_id accession_number])
-  #   Accession.find_by(population_id: population.id, accession_number: h[:accid])
-  # end
+  def create_or_update_bacteria_location(h, bacteria_population)
+    BacteriaLocation.upsert({
+      latitude: h[:lat],
+      longitude: h[:long],
+      bacteria_population_id: bacteria_population.id
+    }, unique_by: :bacteria_locations_index)
+    BacteriaLocation.find_by(latitude: h[:lat], longitude: h[:long], \
+      bacteria_population_id: bacteria_population.id)
+  end
 
-  # def create_or_update_seed(h, accession, species)
-  #   Seed.upsert({
-  #                 species_id: species.id,
-  #                 generation: h[:generation],
-  #                 accession_id: accession.id
-  #               }, unique_by: :uniqueness_index)
-  #   Seed.find_by(
-  #     species_id: species.id,
-  #     generation: h[:generation],
-  #     accession_id: accession.id
-  #   )
-  # end
+  def create_or_update_bacteria_accession(h, bacteria_population, species, source_species, \
+    transformation)
+    BacteriaAccession.upsert({
+      bacteria_population_id: bacteria_population.id,
+      species: species.id,
+      source_species: source_species.id,
+      organ_tissue: h[:organtissue],
+      comment: h[:comment],
+      curator: h[:curator],
+      sample_identity: h[:sample_id],
+      source_number: h[:source_number],
+      wild: wild?(h[:wild_or_lab]),
+      date_collected: h[:year],
+      uncertain_species: uncertain?(h[:identification])
+    }, unique_by: :bacteria_accessions_index)
+    BacteriaAccession.find_by(bacteria_population_id: bacteria_population.id, sample_identity: h[:sample_id])
+  end
 
-  # def create_or_update_tube(h, seed, seedbox)
-  #   Tube.upsert({
-  #                 seed_id: seed.id,
-  #                 seedbox_id: seedbox.id,
-  #                 position: h[:position],
-  #                 volume: h[:quantity_ml],
-  #                 count: check(h[:quantity_seeds])
-  #               }, unique_by: %i[seedbox_id position])
-  #   Tube.find_by(
-  #     seed_id: seed.id,
-  #     seedbox_id: seedbox.id,
-  #     position: h[:position],
-  #     volume: h[:quantity_ml],
-  #     count: check(h[:quantity_seeds])
-  #   )
-  # end
+  def create_or_update_bacteria_tube(h, bacteria_box, bacteria_accession)
+    BacteriaTube.upsert({
+      position: h[:position],
+      bacteria_accession_id: bacteria_accession.id,
+      volume: nil,
+      duplicate_bacteria_tubes: h[:duplicate],
+      bacteria_box_id: bacteria_box.id
+    }, unique_by: %i[bacteria_box_id position])
+    BacteriaTube.find_by(bacteria_box_id: bacteria_box.id, position: h[:position])
+  end
 
   def parse
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
+      h = row.to_h
+      next if empty?(h[:sample_id])
+
       bacteria_population, bacteria_location, bacteria_accession, \
       bacteria_tube, bacteria_box, freezer_rack, freezer, \
-      species, source_species, subspecies = nil
-      h = row.to_h
+      species, source_species, subspecies, transformation = nil
+
       ActiveRecord::Base.transaction do
-        species = create_or_update_species(h)
-        source_species = create_or_update_source_species(h)
         freezer = create_or_update_freezer(h)
         freezer_rack = create_or_update_freezer_rack(h, freezer)
         bacteria_box = create_or_update_bacteria_box(h, freezer_rack)
+
+        species = create_or_update_species(h)
+        source_species = create_or_update_species(h)
+        # transformation = create_or_update_transformation(h, species)
+
         bacteria_population = create_or_update_bacteria_population(h)
         bacteria_location = create_or_update_bacteria_location(h, bacteria_population)
-        bacteria_accession = create_or_update_bacteria_accession(h, bacteria_populationk \
-          species, source_species)
-        bacteria_tube = create_or_update_bacteria_tube(h, bacteria_accession)
+        bacteria_accession = create_or_update_bacteria_accession(h, bacteria_population \
+          species, source_species, transformation)
+
+        bacteria_tube = create_or_update_bacteria_tube(h, bacteria_box, bacteria_accession)
       rescue StandardError => e
         puts e
         puts h
