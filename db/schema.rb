@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_212150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
 
   create_table "bacteria_accessions", force: :cascade do |t|
     t.bigint "bacteria_population_id", null: false
-    t.date "date_collected"
+    t.string "date_collected"
     t.boolean "wild"
     t.string "organ_tissue"
     t.string "comment"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
     t.string "sample_identity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "uncertain_species"
     t.index ["bacteria_population_id", "sample_identity"], name: "bacteria_accessions_index", unique: true
     t.index ["bacteria_population_id"], name: "index_bacteria_accessions_on_bacteria_population_id"
     t.index ["source_species_id"], name: "index_bacteria_accessions_on_source_species_id"
@@ -72,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
     t.integer "position"
     t.bigint "bacteria_accession_id", null: false
     t.decimal "volume"
-    t.bigint "duplicate_bacteria_tubes", default: [], array: true
+    t.string "duplicate_bacteria_tubes"
     t.bigint "bacteria_box_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -392,7 +393,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
     t.string "species"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "common_name"
+    t.string "kingdom"
     t.index ["genus", "species"], name: "index_species_on_genus_and_species", unique: true
+  end
+
+  create_table "subspecies", force: :cascade do |t|
+    t.string "strain"
+    t.bigint "species_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["species_id"], name: "index_subspecies_on_species_id"
+    t.index ["strain", "species_id"], name: "index_subspecies_on_strain_and_species_id", unique: true
   end
 
   create_table "tubes", force: :cascade do |t|
@@ -427,6 +439,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_200537) do
   add_foreign_key "seeds", "accessions"
   add_foreign_key "seeds", "seeds", column: "parent_id"
   add_foreign_key "seeds", "species"
+  add_foreign_key "subspecies", "species"
   add_foreign_key "tubes", "seedboxes"
   add_foreign_key "tubes", "seeds"
 end

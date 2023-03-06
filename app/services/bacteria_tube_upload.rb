@@ -351,15 +351,15 @@ class BacteriaTubeUpload
 
     created_species = Species.find_by(genus:, species:)
 
-    create_subspecies(h, created_species) unless strain.nil?
+    create_subspecies(h, created_species, strain) unless strain.nil?
  
     created_species
   end
 
-  def create_or_update_subspecies(h, species)
+  def create_or_update_subspecies(h, species, strain)
     Subspecies.upsert({
       strain: strain&.split('_')&.join(' '),
-      species_id: created_species.id
+      species_id: species.id
     }, unique_by: :strain)
   end
 
@@ -433,7 +433,7 @@ class BacteriaTubeUpload
 
         bacteria_population = create_or_update_bacteria_population(h)
         bacteria_location = create_or_update_bacteria_location(h, bacteria_population)
-        bacteria_accession = create_or_update_bacteria_accession(h, bacteria_population \
+        bacteria_accession = create_or_update_bacteria_accession(h, bacteria_population, \
           species, source_species, transformation)
 
         bacteria_tube = create_or_update_bacteria_tube(h, bacteria_box, bacteria_accession)
