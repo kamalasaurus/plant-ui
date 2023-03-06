@@ -12,17 +12,17 @@ class AddFieldsToSpeciesAndBacteriaAccessions < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :transformations do |t|
-      t.string :plasmid
-      t.index :plasmid, unique: true
-      
-      t.timestamps
-    end
+    # create_table :transformations do |t|
+    #   t.string :plasmid
+    #   t.index :plasmid, unique: true
 
-    create_table :transformations_bacteria_accessions do |t|
-      t.belongs_to :transformation
-      t.belongs_to :bacteria_accession
-      t.index %i[transformation_id bacteria_accession_id], unique: true
-    end
+    #   t.timestamps
+    # end
+
+    # create_table :transformations_bacteria_accessions do |t|
+    #   t.belongs_to :transformation
+    #   t.belongs_to :bacteria_accession
+    #   t.index %i[transformation_id bacteria_accession_id], name: 'trans_acc__index', unique: true
+    # end
   end
 end
