@@ -357,7 +357,6 @@ class BacteriaTubeUpload
   end
 
   def create_or_update_subspecies(h, species, strain)
-    binding.pry
     Subspecies.upsert({
       strain: strain&.split('_')&.join(' '),
       species_id: species.id
