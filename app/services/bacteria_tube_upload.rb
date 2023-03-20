@@ -349,9 +349,9 @@ class BacteriaTubeUpload
                      common_name: recomb(common_name)
                    }, unique_by: %i[genus species])
 
-    created_species = Species.find_by(genus:, species:)
+    created_species = Species.find_by(genus: recomb(genus), species:)
 
-    create_subspecies(h, created_species, strain) unless strain.nil?
+    create_or_update_subspecies(h, created_species, strain) unless strain.nil?
  
     created_species
   end
@@ -388,7 +388,7 @@ class BacteriaTubeUpload
     transformation)
     BacteriaAccession.upsert({
       bacteria_population_id: bacteria_population.id,
-      species: species.id,
+      species_id: species.id,
       source_species: source_species.id,
       organ_tissue: h[:organtissue],
       comment: h[:comment],
