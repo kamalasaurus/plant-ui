@@ -19,5 +19,5 @@ class BacteriaAccessionResolver < BaseResolver
 
   # option(:names, type: [String], description: 'select by multiple names') do |scope, value|
   #   scope.select { |bacteria_population| value.map(&:upcase).include? bacteria_population.name }
-  end
+  # end
 end

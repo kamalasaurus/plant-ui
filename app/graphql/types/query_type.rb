@@ -20,5 +20,13 @@ module Types
     field :species, resolver: SpeciesResolver, description: 'Return a list of species'
     field :subspecies, resolver: SubspeciesResolver, description: 'Return a list of subspecies'
     field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
+    # begin additional bacteria types:
+    field :freezers, resolver: FreezerResolver, description: 'Return a list of freezers'
+    field :freezer_racks, resolver: FreezerRackResolver, description: 'Return a list of freezer racks'
+    field :bacteria_boxes, resolver: BacteriaBoxResolver, description: 'Return a list of bacteria boxes'
+    field :bacteria_populations, resolver: BacteriaPopulationResolver, description: 'create Return a list of bacteria populations'
+    field :bacteria_locations, resolver: BacteriaLocationResolver, description: 'creatReturn a list of bacteria locations'
+    field :bacteria_accessions, resolver: BacteriaAccessionResolver, description: 'createReturn a list of bacteria accessions'
+    field :bacteria_tubes, resolver: BacteriaTubeResolver, description: 'cReturn a list of bacteria tubes'
   end
 end
