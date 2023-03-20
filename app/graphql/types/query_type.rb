@@ -18,6 +18,7 @@ module Types
     field :seedboxes, resolver: SeedboxResolver, description: 'Return a list of seedboxes'
     field :seeds_plant_samples, resolver: SeedsPlantSampleResolver, description: 'Return a list of seeds to plant sample relations'
     field :species, resolver: SpeciesResolver, description: 'Return a list of species'
+    field :subspecies, resolver: SubspeciesResolver, description: 'Return a list of subspecies'
     field :tubes, resolver: TubeResolver, description: 'Return a list of tubes'
   end
 end
