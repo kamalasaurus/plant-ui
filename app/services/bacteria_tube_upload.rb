@@ -357,10 +357,11 @@ class BacteriaTubeUpload
   end
 
   def create_or_update_subspecies(h, species, strain)
+    binding.pry
     Subspecies.upsert({
       strain: strain&.split('_')&.join(' '),
       species_id: species.id
-    }, unique_by: :strain)
+    }, unique_by: %i[strain species_id])
   end
 
   # def create_or_update_transformation(h, species)
@@ -389,7 +390,7 @@ class BacteriaTubeUpload
     BacteriaAccession.upsert({
       bacteria_population_id: bacteria_population.id,
       species_id: species.id,
-      source_species: source_species.id,
+      source_species_id: source_species.id,
       organ_tissue: h[:organtissue],
       comment: h[:comment],
       curator: h[:curator],
@@ -416,7 +417,8 @@ class BacteriaTubeUpload
   def parse
     CSV.parse(@file, headers: true, header_converters: %i[downcase symbol]) do |row|
       h = row.to_h
-      next if empty?(h[:sample_id])
+      
+      next if h[:sample_id].blank?
 
       bacteria_population, bacteria_location, bacteria_accession, \
       bacteria_tube, bacteria_box, freezer_rack, freezer, \
