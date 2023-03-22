@@ -5,11 +5,14 @@ module Types
     field :id, ID, null: false
     field :genus, String
     field :species, String
+    field :kingdom, String
+    field :common_name, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
     field :seeds, resolver: SeedResolver
     field :plant_samples, resolver: PlantSampleResolver
+    field :subspecies, resolver: SubspeciesResolver
 
     field :name, String
     field :abbreviation, String

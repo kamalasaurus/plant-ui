@@ -5,6 +5,10 @@ class SpeciesResolver < BaseResolver
 
   scope { Species.all }
 
+  option(:kingdom, type: String, description: 'select by kingdom') do |scope, value|
+    scope.where(kingdom: value)
+  end
+
   option(:genus, type: String, description: 'select by genus') do |scope, value|
     scope.where(genus: value)
   end

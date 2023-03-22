@@ -25,7 +25,7 @@ class TubeResolver < BaseResolver
     scope.includes(:seedbox).where("seedbox.name is #{value}")
   end
 
-  option(:seedbox_names, type: [Integer], description: 'select by seedbox name') do |scope, value|
+  option(:seedbox_names, type: [Integer], description: 'select by multiple seedbox names') do |scope, value|
     scope.includes(:seedbox).where("seedbox.name in #{value}")
   end
 

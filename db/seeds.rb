@@ -61,4 +61,9 @@ ingest(Rails.root.join('lib', 'assets', 'cytometry')) do |csv|
   print 'cytometry readings: '
 end
 
+ingest(Rails.root.join('lib', 'assets', 'bacteria_tubes')) do |csv|
+  BacteriaTubeUpload.parse(File.read(Rails.root.join('lib', 'assets', 'bacteria_tubes', csv)))
+  print 'bacteria tubes: '
+end
+
 puts 'all data seeded!'

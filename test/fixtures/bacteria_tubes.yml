@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: 1
+  bacteria_accession: one
+  volume: 9.99
+  duplicate: 
+  bacteria_box: one
+
+two:
+  position: 1
+  bacteria_accession: two
+  volume: 9.99
+  duplicate: 
+  bacteria_box: two

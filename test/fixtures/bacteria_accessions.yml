@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bacteria_population: one
+  date_collected: 2023-02-15
+  wild_not_lab: false
+  organ_tissue: MyString
+  comment: MyString
+  duplicate: one
+  curator: MyString
+  species: one
+  source_species: one
+  source_number: MyString
+
+two:
+  bacteria_population: two
+  date_collected: 2023-02-15
+  wild_not_lab: false
+  organ_tissue: MyString
+  comment: MyString
+  duplicate: two
+  curator: MyString
+  species: two
+  source_species: two
+  source_number: MyString
