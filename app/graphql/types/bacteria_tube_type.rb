@@ -9,7 +9,10 @@ module Types
     field :volume, Float
     field :duplicate_bacteria_tubes, String
 
+    field :bacteria_population, Types::BacteriaPopulationType
     field :bacteria_accession, Types::BacteriaAccessionType
     field :bacteria_box, Types::BacteriaBoxType
+    field :freezer_rack, Types::FreezerRackType
+    field :freezer, Types::FreezerType
   end
 end
