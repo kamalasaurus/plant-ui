@@ -5,7 +5,9 @@ task :create_db_dump do
 
   dump_number = Dir["./lib/db_dumps/**/*"].count + 1
 
-  sh "pg_dump -U plant_ui --no-owner --no-acl plant_ui_development > plant_ui_production_#{dump_number}.sql"
+  # plant_ui instead of plant_ui_development after --no-acl because there is some
+  # environment bug I have locally
+  sh "pg_dump -U plant_ui --no-owner --no-acl plant_ui > plant_ui_production_#{dump_number}.sql"
 
   puts "dumped db with name plant_ui_production_#{dump_number}.sql!"
 
