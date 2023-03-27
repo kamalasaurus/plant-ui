@@ -6,7 +6,7 @@ class BacteriaTubeResolver < BaseResolver
   scope do
     if object.blank?
       BacteriaTube.all
-    elsif object.respond_to?(:bacteria_accessions)
+    elsif object.respond_to?(:bacteria_tubes)
       object.bacteria_tubes
     else
       []
