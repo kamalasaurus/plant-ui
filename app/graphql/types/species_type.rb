@@ -14,6 +14,8 @@ module Types
     field :plant_samples, resolver: PlantSampleResolver
     field :subspecies, resolver: SubspeciesResolver
 
+    field :bacteria_accession, resolver: BacteriaAccessionResolver
+
     field :name, String
     field :abbreviation, String
 
