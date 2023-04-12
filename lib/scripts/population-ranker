@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'csv'
+
+# seed_name = ARGV[0].to_s
+seed_name = 'draba-verna'
+
+seed_tubes = Population.all.flat_map do |pop|
+  seeds = pop.seeds.filter { |seed| seed.species.name == seed_name }
+  tubes = seeds.flat_map { |seed| seed.tubes.filter { |tube| !tube.critical? } }.sort_by(&:volume).last
+end.compact.map do |tube|
+  { species: tube.seed.species.name, seedbox: tube.seedbox.name, position: tube.position, accession: tube.seed.accession.name, volume: tube.volume }
+end
+
+CSV.open("#{seed_name}-largest-pops.csv", "w") do |csv|
+  csv << seed_tubes.first.keys
+  seed_tubes.each do |tube|
+    csv << tube.values
+  end
+end
