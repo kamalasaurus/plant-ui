@@ -3,6 +3,7 @@
 class Tube < ApplicationRecord
   belongs_to :seed
   belongs_to :seedbox
+  delegate :species, to: :seed
 
   validates :position, inclusion: { in: 1..100 }
 

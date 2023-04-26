@@ -5,6 +5,8 @@ class Species < ApplicationRecord
   has_many :plant_samples
   has_many :subspecies
 
+  has_many :tubes, through: :seeds
+
   def name
     "#{genus}-#{species}"
   end
