@@ -6,6 +6,8 @@ class Accession < ApplicationRecord
   has_many :plant_samples
   has_one :cytometry_reading
 
+  has_many :tubes, through: :seeds
+
   # assume format AMBR-A-01
   def self.get(dasherized_string)
     population_name, subpopulation, accession_str = dasherized_string.split('-')
