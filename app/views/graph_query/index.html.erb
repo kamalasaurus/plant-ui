@@ -2,6 +2,7 @@
 
 <%= javascript_import_module_tag "graphql-to-csv-request" %>
 <%= javascript_import_module_tag "graphql-to-csv" %>
+<%= javascript_import_module_tag "render-query-results" %>
 
 <script>
   function interceptor() {
@@ -14,7 +15,11 @@
       const promise = originalFetch.apply(contentWindow, args)
       promise
         .then(response => response.clone().json())
-        .then(data => window.lastResponse = data)
+        .then(data => {
+          window.renderQueryResults(JSON.parse(JSON.stringify(data)))
+          window.lastResponse = data
+          return data
+        })
       return promise
     }
   }
@@ -32,6 +37,9 @@
     onload="interceptor(this)"
     >
   </iframe>
+
+  <section id="query-results">
+  </section>
 
 </div>
 

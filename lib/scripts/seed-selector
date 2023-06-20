@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+puts "species, seedbox, position, accession, volume"
+
+Species
+  .find_by(genus: 'arabidopsis')
+  .tubes.select { |t| t.volume > 0.5 && t.seedbox_id == 684 }
+  .sample(3).each do |t|
+    puts "#{t.species.name}, #{t.seedbox.name}, #{t.position}, #{t.seed.accession.name}, #{t.volume}"
+  end
