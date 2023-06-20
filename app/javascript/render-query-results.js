@@ -1,7 +1,7 @@
-function renderQueryResults(results) {
-  console.log(results)
-}
+// function renderQueryResults(results) {
+//   console.log(results)
+// }
 
-void function() {
-  window.renderQueryResults = renderQueryResults
-}()
+// void function() {
+//   window.renderQueryResults = renderQueryResults
+// }()
